@@ -33,14 +33,17 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
 
     // 网络请求方面
-    compile "io.reactivex.rxjava2:rxjava:2.1.0" // 必要rxjava2依赖
-    compile "io.reactivex.rxjava2:rxandroid:2.0.1" // 必要rxandrroid依赖，切线程时需要用到
-    compile 'com.squareup.retrofit2:retrofit:2.3.0' // 必要retrofit依赖
-    compile 'com.squareup.retrofit2:adapter-rxjava2:2.3.0' // 必要依赖，和Rxjava结合必须用到，下面会提到
-    compile 'com.squareup.retrofit2:converter-gson:2.3.0' // 必要依赖，解析json字符所用
+    compile "io.reactivex.rxjava2:rxjava:2.1.0"
+    compile "io.reactivex.rxjava2:rxandroid:2.0.1"
+    compile 'com.squareup.retrofit2:retrofit:2.3.0'
+    compile 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.3.0'
     compile 'com.squareup.okhttp3:logging-interceptor:3.8.1'
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 
+    // 沉浸式状态栏
     compile 'com.gyf.barlibrary:barlibrary:2.3.0'
 
+    // 换肤框架
+    compile 'com.bilibili:magicasakura:0.1.8@aar'
 }

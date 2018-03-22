@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_like"
-            android:icon="@mipmap/icon_like"
-            android:title="like" />
-        <item
-            android:id="@+id/nav_gallery"
-            android:icon="@mipmap/icon_theme"
-            android:title="theme" />
-        <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@mipmap/icon_about"
-            android:title="about" />
-    </group>
+    <!--<menu android:checkableBehavior="none">-->
+    <item
+        android:id="@+id/navLike"
+        android:icon="@mipmap/icon_like"
+        android:title="like" />
+    <item
+        android:id="@+id/navTheme"
+        android:icon="@mipmap/icon_theme"
+        android:title="theme" />
+    <item
+        android:id="@+id/navAbout"
+        android:icon="@mipmap/icon_about"
+        android:title="about" />
+    <!--</menu>-->
 </menu>

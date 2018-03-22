@@ -67,7 +67,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="40dp"
-        android:background="@color/colorPrimary"
+        android:background="@color/theme_color_primary"
         android:text="登录"
         android:textColor="#ffffff" />
 
@@ -80,7 +80,7 @@
         android:layout_marginTop="10dp"
         android:padding="10dp"
         android:text="还没账号？点此注册"
-        android:textColor="@color/colorPrimary" />
+        android:textColor="@color/theme_color_primary" />
 
     <TextView
         android:layout_width="wrap_content"

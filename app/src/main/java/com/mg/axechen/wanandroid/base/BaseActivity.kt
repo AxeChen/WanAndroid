@@ -23,7 +23,7 @@ abstract class BaseActivity : AppCompatActivity() {
     protected abstract fun setLayoutId(): Int
 
     open fun initImmersionBar() {
-        immersionBar = ImmersionBar.with(this).fitsSystemWindows(true).statusBarColor(R.color.colorPrimaryDark)
+        immersionBar = ImmersionBar.with(this)
     }
 
     override fun onDestroy() {

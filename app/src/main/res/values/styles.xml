@@ -3,9 +3,14 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <!--<item name="colorPrimary">@color/theme_color_primary</item>-->
+        <!--<item name="colorPrimaryDark">@color/theme_color_primary_dark</item>-->
+        <!--<item name="colorAccent">@color/theme_color_primary_trans</item>-->
+        <!-- for library use when is in night theme-->
+        <item name="themeColorSecondary">@color/theme_color_secondary</item>
+
+        <item name="android:windowBackground">@color/window_background</item>
+        <item name="android:textColorPrimary">@color/text_primary_color</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -17,4 +22,9 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="AppTheme.AppCompat.Dialog.Alert" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:windowMinWidthMinor">90%</item>
+        <item name="android:windowMinWidthMajor">90%</item>
+        <item name="android:maxWidth">1080px</item>
+    </style>
 </resources>

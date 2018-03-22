@@ -84,7 +84,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="40dp"
-        android:background="@color/colorPrimary"
+        android:background="@color/theme_color_primary"
         android:text="注册"
         android:textColor="#ffffff" />
 
