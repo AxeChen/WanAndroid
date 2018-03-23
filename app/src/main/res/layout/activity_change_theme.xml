@@ -1,256 +1,289 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <LinearLayout
+    <include layout="@layout/toolbar_layout" />
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <FrameLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="16dp" />
+            <FrameLayout
+                android:id="@+id/flWan"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:foreground="?attr/selectableItemBackground">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="56dp"
-                android:text="经典色" />
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="16dp"
+                    android:background="@color/wan" />
 
-            <com.bilibili.magicasakura.widgets.TintRadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right|center_vertical"
-                android:layout_marginRight="10dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="56dp"
+                    android:text="经典色"
+                    android:textColor="@color/wan"
+                    android:textSize="14sp" />
 
-            <View
-                android:layout_width="wrap_content"
-                android:layout_height="1px"
-                android:layout_gravity="bottom"
-                android:background="@color/theme_color_primary" />
-        </FrameLayout>
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp">
-
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="16dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="56dp"
-                android:text="经典色" />
-
-            <com.bilibili.magicasakura.widgets.TintRadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right|center_vertical"
-                android:layout_marginRight="10dp" />
-
-            <View
-                android:layout_width="wrap_content"
-                android:layout_height="1px"
-                android:layout_gravity="bottom"
-                android:background="@color/theme_color_primary" />
-        </FrameLayout>
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp">
-
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="16dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="56dp"
-                android:text="经典色" />
-
-            <com.bilibili.magicasakura.widgets.TintRadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right|center_vertical"
-                android:layout_marginRight="10dp" />
-
-            <View
-                android:layout_width="wrap_content"
-                android:layout_height="1px"
-                android:layout_gravity="bottom"
-                android:background="@color/theme_color_primary" />
-        </FrameLayout>
+                <com.bilibili.magicasakura.widgets.TintImageView
+                    android:id="@+id/rbWan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|center_vertical"
+                    android:layout_marginRight="16dp"
+                    android:background="@drawable/ic_check_white_18dp"
+                    android:backgroundTint="@color/theme_color_primary" />
 
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp">
+            </FrameLayout>
 
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="16dp" />
+            <FrameLayout
+                android:id="@+id/flPurple"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:foreground="?attr/selectableItemBackground">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="56dp"
-                android:text="经典色" />
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="16dp"
+                    android:background="@color/purple" />
 
-            <com.bilibili.magicasakura.widgets.TintRadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right|center_vertical"
-                android:layout_marginRight="10dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="56dp"
+                    android:text="星球紫"
+                    android:textColor="@color/purple"
+                    android:textSize="14sp" />
 
-            <View
-                android:layout_width="wrap_content"
-                android:layout_height="1px"
-                android:layout_gravity="bottom"
-                android:background="@color/theme_color_primary" />
-        </FrameLayout>
+                <com.bilibili.magicasakura.widgets.TintImageView
+                    android:id="@+id/rbPurple"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|center_vertical"
+                    android:layout_marginRight="16dp"
+                    android:background="@drawable/ic_check_white_18dp"
+                    android:backgroundTint="@color/purple" />
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp">
+            </FrameLayout>
 
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="16dp" />
+            <FrameLayout
+                android:id="@+id/flBlue"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:foreground="?attr/selectableItemBackground">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="56dp"
-                android:text="经典色" />
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="16dp"
+                    android:background="@color/blue" />
 
-            <com.bilibili.magicasakura.widgets.TintRadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right|center_vertical"
-                android:layout_marginRight="10dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="56dp"
+                    android:text="知乎蓝"
+                    android:textColor="@color/blue"
+                    android:textSize="14sp" />
 
-            <View
-                android:layout_width="wrap_content"
-                android:layout_height="1px"
-                android:layout_gravity="bottom"
-                android:background="@color/theme_color_primary" />
-        </FrameLayout>
+                <com.bilibili.magicasakura.widgets.TintImageView
+                    android:id="@+id/rbBlue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|center_vertical"
+                    android:layout_marginRight="16dp"
+                    android:background="@drawable/ic_check_white_18dp"
+                    android:backgroundTint="@color/blue" />
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp">
-
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="16dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="56dp"
-                android:text="经典色" />
-
-            <com.bilibili.magicasakura.widgets.TintRadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right|center_vertical"
-                android:layout_marginRight="10dp" />
-
-            <View
-                android:layout_width="wrap_content"
-                android:layout_height="1px"
-                android:layout_gravity="bottom"
-                android:background="@color/theme_color_primary" />
-        </FrameLayout>
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp">
-
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="16dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="56dp"
-                android:text="经典色" />
-
-            <com.bilibili.magicasakura.widgets.TintRadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right|center_vertical"
-                android:layout_marginRight="10dp" />
-
-            <View
-                android:layout_width="wrap_content"
-                android:layout_height="1px"
-                android:layout_gravity="bottom"
-                android:background="@color/theme_color_primary" />
-        </FrameLayout>
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp">
-
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="16dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="56dp"
-                android:text="经典色" />
-
-            <com.bilibili.magicasakura.widgets.TintRadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right|center_vertical"
-                android:layout_marginRight="10dp" />
-
-            <View
-                android:layout_width="wrap_content"
-                android:layout_height="1px"
-                android:layout_gravity="bottom"
-                android:background="@color/theme_color_primary" />
-        </FrameLayout>
+            </FrameLayout>
 
 
-    </LinearLayout>
+            <FrameLayout
+                android:id="@+id/flGreen"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:foreground="?attr/selectableItemBackground">
 
-</ScrollView>
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="16dp"
+                    android:background="@color/green" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="56dp"
+                    android:text="酷安绿"
+                    android:textColor="@color/green"
+                    android:textSize="14sp" />
+
+                <com.bilibili.magicasakura.widgets.TintImageView
+                    android:id="@+id/rbGreen"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|center_vertical"
+                    android:layout_marginRight="16dp"
+                    android:background="@drawable/ic_check_white_18dp"
+                    android:backgroundTint="@color/green" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/flPink"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:foreground="?attr/selectableItemBackground">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="16dp"
+                    android:background="@color/pink" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="56dp"
+                    android:text="B站粉"
+                    android:textColor="@color/pink"
+                    android:textSize="14sp" />
+
+                <com.bilibili.magicasakura.widgets.TintImageView
+                    android:id="@+id/rbPink"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|center_vertical"
+                    android:layout_marginRight="16dp"
+                    android:background="@drawable/ic_check_white_18dp"
+                    android:backgroundTint="@color/pink" />
+
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/flBlack"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:foreground="?attr/selectableItemBackground">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="16dp"
+                    android:background="@color/black" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="56dp"
+                    android:text="GIT黑"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+                <com.bilibili.magicasakura.widgets.TintImageView
+                    android:id="@+id/rbBlack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|center_vertical"
+                    android:layout_marginRight="16dp"
+                    android:background="@drawable/ic_check_white_18dp"
+                    android:backgroundTint="@color/black" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/flOrange"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:foreground="?attr/selectableItemBackground">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="16dp"
+                    android:background="@color/orange" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="56dp"
+                    android:text="Tapatalk橙"
+                    android:textColor="@color/orange"
+                    android:textSize="14sp" />
+
+                <com.bilibili.magicasakura.widgets.TintImageView
+                    android:id="@+id/rbOrange"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|center_vertical"
+                    android:layout_marginRight="16dp"
+                    android:background="@drawable/ic_check_white_18dp"
+                    android:backgroundTint="@color/orange" />
+
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/flRed"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:foreground="?attr/selectableItemBackground">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="16dp"
+                    android:background="@color/red" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="56dp"
+                    android:text="网易红"
+                    android:textColor="@color/red"
+                    android:textSize="14sp" />
+
+                <com.bilibili.magicasakura.widgets.TintImageView
+                    android:id="@+id/rbRed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|center_vertical"
+                    android:layout_marginRight="16dp"
+                    android:background="@drawable/ic_check_white_18dp"
+                    android:backgroundTint="@color/red" />
+
+            </FrameLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+</LinearLayout>
