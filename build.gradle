@@ -19,6 +19,9 @@ allprojects {
     repositories {
         google()
         jcenter()
+
+        // baseAdapter
+        maven { url "https://jitpack.io" }
     }
 }
 

@@ -21,7 +21,7 @@ class WanAndroidApplication : Application(), ThemeUtils.switchColor {
     }
 
     override fun replaceColorById(context: Context?, colorId: Int): Int {
-        if (ThemeHelper.isDefaultTheme(context)) {
+        if (ThemeHelper.isDefaultTheme(context!!)) {
             return context?.resources!!.getColor(colorId)
         }
         val theme = getTheme(context!!)
@@ -57,7 +57,7 @@ class WanAndroidApplication : Application(), ThemeUtils.switchColor {
     }
 
     override fun replaceColor(context: Context?, color: Int): Int {
-        if (ThemeHelper.isDefaultTheme(context)) {
+        if (ThemeHelper.isDefaultTheme(context!!)) {
             return color
         }
         val theme = getTheme(context!!)

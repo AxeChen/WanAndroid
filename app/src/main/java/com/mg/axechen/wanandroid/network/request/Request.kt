@@ -1,11 +1,13 @@
 package network.request
 
 import com.mg.axechen.wanandroid.javabean.BannerBean
+import com.mg.axechen.wanandroid.javabean.HomeListBean
 import io.reactivex.Observable
 import network.response.Response
 import org.json.JSONObject
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 /**
@@ -17,6 +19,14 @@ interface Request {
     companion object {
         var HOST: String = "http://www.wanandroid.com/"
     }
+
+    /**
+     * 获取主页文章
+     */
+    @GET("/article/list/{page}/json")
+    fun getHomeList(
+            @Path("page") page: Int
+    ): Observable<Response<HomeListBean>>
 
     /**
      * 获取首页banner数据

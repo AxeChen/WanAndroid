@@ -4,27 +4,32 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.NavigationView
+import android.support.v4.app.Fragment
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.widget.Toolbar
 import android.view.MenuItem
 import android.widget.Toast
 import com.mg.axechen.wanandroid.R
 import com.mg.axechen.wanandroid.base.BaseActivity
+import com.mg.axechen.wanandroid.block.main.home.HomeFragment
 import com.mg.axechen.wanandroid.javabean.BannerBean
 import com.mg.axechen.wanandroid.theme.ChangeThemeActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 
 /**
- * 主页
+ *  * Created by AxeChen on 2018/3/16.
+ *
+ *  主页
  */
 class MainActivity : BaseActivity(), MainContract.View, NavigationView.OnNavigationItemSelectedListener {
     override fun setLayoutId(): Int {
         return R.layout.activity_main
     }
 
-
     private var toolbar: Toolbar? = null
+
+    private var mCurrentFragment: Fragment? = null
 
     companion object {
         fun launch(context: Context) {
@@ -36,6 +41,24 @@ class MainActivity : BaseActivity(), MainContract.View, NavigationView.OnNavigat
         super.onCreate(savedInstanceState)
         initToolBar()
         initDrawer()
+        //展示主页
+        showFragment(HomeFragment())
+    }
+
+    private fun showFragment(fragment: Fragment) {
+        val transaction = supportFragmentManager.beginTransaction()
+
+        if (mCurrentFragment != null) {
+            if (fragment.isAdded) {
+                transaction.hide(mCurrentFragment).show(fragment)
+            } else {
+                transaction.hide(mCurrentFragment).add(R.id.flContent, fragment)
+            }
+        } else {
+            transaction.add(R.id.flContent, fragment)
+        }
+        mCurrentFragment = fragment
+        transaction.commitAllowingStateLoss()
     }
 
     private fun initToolBar() {
@@ -60,19 +83,6 @@ class MainActivity : BaseActivity(), MainContract.View, NavigationView.OnNavigat
     override fun getBannerFail(errorMsg: String) {
         Toast.makeText(this, "请求失败", Toast.LENGTH_SHORT).show()
     }
-
-//    override fun onPostCreate(savedInstanceState: Bundle?) {
-//        super.onPostCreate(savedInstanceState)
-//        if (Build.VERSION.SDK_INT >= 21) {
-//            val window = window
-//            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-//            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-//            window.statusBarColor = ThemeUtils.getColorById(this, R.color.theme_color_primary_dark)
-//            val description = ActivityManager.TaskDescription(null, null,
-//                    ThemeUtils.getThemeAttrColor(this, android.R.attr.colorPrimary))
-//            setTaskDescription(description)
-//        }
-//    }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {

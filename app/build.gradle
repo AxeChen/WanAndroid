@@ -46,4 +46,10 @@ dependencies {
 
     // 换肤框架
     compile 'com.bilibili:magicasakura:0.1.8@aar'
+
+    // cardView
+    compile 'com.android.support:cardview-v7:26.1.0'
+
+    // baseAdapter
+    compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.34'
 }
