@@ -12,6 +12,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.mg.axechen.wanandroid.R
+import com.mg.axechen.wanandroid.WanAndroidApplication
+import com.mg.axechen.wanandroid.javabean.BannerBean
 import com.mg.axechen.wanandroid.javabean.HomeData
 import com.mg.axechen.wanandroid.javabean.HomeListBean
 import com.mg.axechen.wanandroid.javabean.HomeViewType
@@ -24,10 +26,21 @@ import network.schedules.SchedulerProvider
  */
 class HomeFragment : Fragment(), HomeContract.View {
 
+
     /**
      * HomeItemList
      */
     private val datas = mutableListOf<HomeViewType>()
+
+    /**
+     * 循环轮询的数据
+     */
+    private val bannerLoopDatas = mutableListOf<BannerBean>()
+
+    /**
+     * 滑动的数据
+     */
+    private val bannerListDatas = mutableListOf<BannerBean>()
 
     private val homeAdapter: HomeAdapter by lazy {
         HomeAdapter(datas)
@@ -47,9 +60,10 @@ class HomeFragment : Fragment(), HomeContract.View {
 
     override fun getHomeListSuccess(homeListBean: HomeListBean, isRefresh: Boolean) {
         var homedatas: List<HomeData> = homeListBean.datas
-        if (isRefresh) {
-            datas.clear()
-        }
+//        if (isRefresh) {
+//            datas.clear()
+//        }
+
         sRefresh.isRefreshing = false
         for (it in homedatas) {
             datas.add(HomeViewType(HomeViewType.VIEW_TYPE_ITEM, it))
@@ -63,6 +77,10 @@ class HomeFragment : Fragment(), HomeContract.View {
     }
 
     private fun initRefresh() {
+        // 封装成自定控件
+        // 主题框架需要封装
+        var color: Int = WanAndroidApplication.instance!!.getThemeColor(activity, WanAndroidApplication.instance!!.getTheme(activity)!!)
+        sRefresh.setColorSchemeColors(resources.getColor(color), resources.getColor(color), resources.getColor(color))
         sRefresh.setOnRefreshListener(SwipeRefreshLayout.OnRefreshListener {
             presenter.getHomeList(true)
         })
@@ -70,7 +88,7 @@ class HomeFragment : Fragment(), HomeContract.View {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        presenter.getHomeList(true)
+        presenter.getBannerData()
         initRefresh()
         rvList.run {
             layoutManager = LinearLayoutManager(activity)
@@ -101,6 +119,34 @@ class HomeFragment : Fragment(), HomeContract.View {
         homeAdapter.setOnLoadMoreListener(BaseQuickAdapter.RequestLoadMoreListener {
             presenter.getHomeList(false)
         })
+    }
+
+    override fun showBanner(banners: List<BannerBean>) {
+        for (bean in banners) {
+            if (bean.type == 0) {
+                bannerLoopDatas.add(bean)
+            } else {
+                bannerListDatas.add(bean)
+            }
+        }
+        // 先添加图片轮询的数据
+        datas.add(HomeViewType(HomeViewType.VIEW_TYPE_BANNER_LOOP, bannerLoopDatas))
+        // 然后添加推荐的文章
+        datas.add(HomeViewType(HomeViewType.VIEW_TYPE_SELECTION, "今日推荐"))
+        datas.add(HomeViewType(HomeViewType.VIEW_TYPE_BANNER_LIST, bannerListDatas))
+        datas.add(HomeViewType(HomeViewType.VIEW_TYPE_SELECTION, "最新博文"))
+        homeAdapter.notifyDataSetChanged()
+        // 请求最新博文
+        presenter.getHomeList(false)
+    }
+
+    override fun getBannerFail(errorMsg: String) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun onResume() {
+        super.onResume()
+        initRefresh()
     }
 
 

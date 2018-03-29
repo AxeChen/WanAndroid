@@ -14,8 +14,13 @@ import com.mg.axechen.wanandroid.theme.ThemeHelper
 
 class WanAndroidApplication : Application(), ThemeUtils.switchColor {
 
+    companion object {
+        var instance: WanAndroidApplication? = null
+    }
+
     override fun onCreate() {
         super.onCreate()
+        instance = this
         NetWorkManager.getInstance().init()
         ThemeUtils.setSwitchColor(this)
     }
@@ -32,7 +37,7 @@ class WanAndroidApplication : Application(), ThemeUtils.switchColor {
         return context.resources.getColor(cId)
     }
 
-    private fun getTheme(context: Context): String? {
+    public fun getTheme(context: Context): String? {
         return when {
             ThemeHelper.getTheme(context) == ThemeHelper.CARD_STORM -> "blue"
             ThemeHelper.getTheme(context) == ThemeHelper.CARD_HOPE -> "purple"
@@ -47,7 +52,7 @@ class WanAndroidApplication : Application(), ThemeUtils.switchColor {
     }
 
     @ColorRes
-    private fun getThemeColorId(context: Context, colorId: Int, theme: String): Int {
+    public fun getThemeColorId(context: Context, colorId: Int, theme: String): Int {
         when (colorId) {
             R.color.theme_color_primary -> return context.resources.getIdentifier(theme, "color", packageName)
             R.color.theme_color_primary_dark -> return context.resources.getIdentifier(theme + "_dark", "color", packageName)
@@ -70,12 +75,16 @@ class WanAndroidApplication : Application(), ThemeUtils.switchColor {
     }
 
     @ColorRes
-    private fun getThemeColor(context: Context, color: Int, theme: String): Int {
+    public fun getThemeColor(context: Context, color: Int, theme: String): Int {
         when (color) {
             -0x48d67 -> return context.resources.getIdentifier(theme, "color", packageName)
             -0x47a98f -> return context.resources.getIdentifier(theme + "_dark", "color", packageName)
             -0x660fb794 -> return context.resources.getIdentifier(theme + "_trans", "color", packageName)
         }
         return -1
+    }
+
+    public fun getThemeColor(context: Context, theme: String): Int {
+        return  context.resources.getIdentifier(theme, "color", packageName)
     }
 }

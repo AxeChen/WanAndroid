@@ -10,9 +10,10 @@ import com.chad.library.adapter.base.entity.MultiItemEntity;
 
 public class HomeViewType implements MultiItemEntity {
 
-    public static final int VIEW_TYPE_BANNER = 0;
+    public static final int VIEW_TYPE_BANNER_LIST = 0;
     public static final int VIEW_TYPE_SELECTION = 1;
     public static final int VIEW_TYPE_ITEM = 2;
+    public static final int VIEW_TYPE_BANNER_LOOP = 3;
 
     private int itemType;
     private Object item;

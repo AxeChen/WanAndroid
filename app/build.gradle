@@ -52,4 +52,10 @@ dependencies {
 
     // baseAdapter
     compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.34'
+
+    // 图片请求框架
+    compile 'com.github.bumptech.glide:glide:4.0.0'
+
+    // 轮播图
+    compile 'com.bigkoo:convenientbanner:2.0.5'
 }

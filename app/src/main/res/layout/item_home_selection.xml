@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.bilibili.magicasakura.widgets.TintTextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tvSelection"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:gravity="center_vertical"
+    android:paddingLeft="16dp"
+    android:text="selection"
+    android:textColor="@color/theme_color_primary"
+    android:textSize="18sp" />

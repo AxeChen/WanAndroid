@@ -1,6 +1,7 @@
 package com.mg.axechen.wanandroid.block.main.home
 
 import com.mg.axechen.wanandroid.base.BasePresenter
+import com.mg.axechen.wanandroid.javabean.BannerBean
 import com.mg.axechen.wanandroid.javabean.HomeListBean
 import io.reactivex.Observable
 import network.response.Response
@@ -11,15 +12,19 @@ import network.response.Response
  */
 interface HomeContract {
     interface View {
-        fun getHomeListSuccess(homeListBean: HomeListBean,isRefresh: Boolean)
+        fun getHomeListSuccess(homeListBean: HomeListBean, isRefresh: Boolean)
         fun getHomeListFail(msg: String)
+        fun showBanner(banners: List<BannerBean>)
+        fun getBannerFail(errorMsg: String)
     }
 
     interface mode {
         fun getHomeList(page: Int): Observable<Response<HomeListBean>>
+        fun getBannerData(): Observable<Response<List<BannerBean>>>
     }
 
     interface Presenter : BasePresenter {
         fun getHomeList(isRefresh: Boolean)
+        fun getBannerData()
     }
 }
