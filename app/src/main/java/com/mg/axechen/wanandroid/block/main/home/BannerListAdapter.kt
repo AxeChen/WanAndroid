@@ -22,5 +22,4 @@ class BannerListAdapter : BaseQuickAdapter<BannerBean, BaseViewHolder> {
         Glide.with(mContext).load(item.imagePath).into(view)
     }
 
-
 }

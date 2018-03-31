@@ -13,6 +13,7 @@ import android.widget.Toast
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.mg.axechen.wanandroid.R
 import com.mg.axechen.wanandroid.WanAndroidApplication
+import com.mg.axechen.wanandroid.block.details.WebViewActivity
 import com.mg.axechen.wanandroid.javabean.BannerBean
 import com.mg.axechen.wanandroid.javabean.HomeData
 import com.mg.axechen.wanandroid.javabean.HomeListBean
@@ -95,7 +96,8 @@ class HomeFragment : Fragment(), HomeContract.View {
             adapter = homeAdapter
         }
         homeAdapter.setOnItemClickListener { adapter, view, position ->
-            Toast.makeText(activity, "点击Item", Toast.LENGTH_SHORT).show()
+            var homeData: HomeData = homeAdapter.data.get(position).item as HomeData
+            WebViewActivity.lunch(activity, homeData.link, homeData.title)
         }
 
         homeAdapter.setPreLoadNumber(0)
