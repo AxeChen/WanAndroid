@@ -11,7 +11,7 @@ import android.view.MenuItem
 import android.widget.Toast
 import com.mg.axechen.wanandroid.R
 import com.mg.axechen.wanandroid.base.BaseActivity
-import com.mg.axechen.wanandroid.block.main.home.HomeFragment
+import com.mg.axechen.wanandroid.block.main.knowledge.KnowledgeTreeListFragment
 import com.mg.axechen.wanandroid.javabean.BannerBean
 import com.mg.axechen.wanandroid.theme.ChangeThemeActivity
 import kotlinx.android.synthetic.main.activity_main.*
@@ -42,7 +42,7 @@ class MainActivity : BaseActivity(), MainContract.View, NavigationView.OnNavigat
         initToolBar()
         initDrawer()
         //展示主页
-        showFragment(HomeFragment())
+        showFragment(KnowledgeTreeListFragment())
     }
 
     private fun showFragment(fragment: Fragment) {
