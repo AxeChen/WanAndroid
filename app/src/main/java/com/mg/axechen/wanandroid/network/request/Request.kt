@@ -1,8 +1,6 @@
 package network.request
 
-import com.mg.axechen.wanandroid.javabean.BannerBean
-import com.mg.axechen.wanandroid.javabean.HomeListBean
-import com.mg.axechen.wanandroid.javabean.KnowledgeTreeBean
+import com.mg.axechen.wanandroid.javabean.*
 import io.reactivex.Observable
 import network.response.Response
 import org.json.JSONObject
@@ -58,5 +56,22 @@ interface Request {
      * 获取知识树
      */
     @GET("tree/json")
-    fun getKnowledgeTreeList(): Observable<Response<List<KnowledgeTreeBean>>>
+    fun getKnowledgeTreeList(): Observable<Response<List<TreeBean>>>
+
+
+    /**
+     * 获取项目树
+     */
+    @GET("project/tree/json")
+    fun getProjectTree(): Observable<Response<List<TreeBean>>>
+
+
+    /**
+     * 根据项目分类id获取项目列表
+     */
+    @GET("project/list/{page}/json")
+    fun getProjectListByCid(@Path("page") page: Int,
+                            @Query("cid") cid: Int): Observable<Response<ProjectListBean>>
+
+
 }

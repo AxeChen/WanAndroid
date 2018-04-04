@@ -6,7 +6,7 @@ import java.util.List;
  * Created by AxeChen on 2018/3/31.
  */
 
-public class KnowledgeTreeBean {
+public class TreeBean {
 
     /**
      * children : []
@@ -24,7 +24,7 @@ public class KnowledgeTreeBean {
     private int order;
     private int parentChapterId;
     private int visible;
-    private List<KnowledgeTreeBean> children;
+    private List<TreeBean> children;
 
     public int getCourseId() {
         return courseId;
@@ -78,7 +78,7 @@ public class KnowledgeTreeBean {
         return children;
     }
 
-    public void setChildren(List<KnowledgeTreeBean> children) {
+    public void setChildren(List<TreeBean> children) {
         this.children = children;
     }
 }

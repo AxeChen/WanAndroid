@@ -54,4 +54,6 @@
     <color name="text_primary_color">#2d2d2d</color>
     <color name="window_background">#eaeaea</color>
     <color name="diver">#e8e8e8</color>
+
+    <color name="gray_dark">#999999</color>
 </resources>

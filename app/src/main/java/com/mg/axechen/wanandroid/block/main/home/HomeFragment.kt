@@ -9,7 +9,6 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.mg.axechen.wanandroid.R
 import com.mg.axechen.wanandroid.WanAndroidApplication
@@ -61,9 +60,6 @@ class HomeFragment : Fragment(), HomeContract.View {
 
     override fun getHomeListSuccess(homeListBean: HomeListBean, isRefresh: Boolean) {
         var homedatas: List<HomeData> = homeListBean.datas
-//        if (isRefresh) {
-//            datas.clear()
-//        }
 
         sRefresh.isRefreshing = false
         for (it in homedatas) {
@@ -120,7 +116,7 @@ class HomeFragment : Fragment(), HomeContract.View {
         homeAdapter.setLoadMoreView(CustomLoadMoreView())
         homeAdapter.setOnLoadMoreListener(BaseQuickAdapter.RequestLoadMoreListener {
             presenter.getHomeList(false)
-        })
+        }, rvList)
     }
 
     override fun showBanner(banners: List<BannerBean>) {

@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.mg.axechen.wanandroid.R
-import com.mg.axechen.wanandroid.javabean.KnowledgeTreeBean
+import com.mg.axechen.wanandroid.javabean.TreeBean
 import kotlinx.android.synthetic.main.fragment_knowledge_tree.*
 import network.schedules.SchedulerProvider
 
@@ -18,21 +18,21 @@ import network.schedules.SchedulerProvider
  */
 class KnowledgeTreeListFragment : Fragment(), KnowledgeTreeListContract.View {
 
-    private var datas: List<KnowledgeTreeBean> = mutableListOf<KnowledgeTreeBean>()
+    private var data: List<TreeBean> = mutableListOf<TreeBean>()
 
     private val presenter: KnowledgeTreeListContract.Presenter by lazy {
         KnowledgeTreeListPresenter(SchedulerProvider.getInstatnce()!!, this)
     }
 
     private val listAdapter: KnowledgeTreeListAdapter by lazy {
-        KnowledgeTreeListAdapter(R.layout.item_knowledge_tree_list, datas)
+        KnowledgeTreeListAdapter(R.layout.item_knowledge_tree_list, data)
     }
 
     override fun getTreeFail() {
     }
 
-    override fun getTreeSuccess(data: List<KnowledgeTreeBean>) {
-        datas = data as MutableList<KnowledgeTreeBean>
+    override fun getTreeSuccess(data: List<TreeBean>) {
+        this.data = data as MutableList<TreeBean>
         setRecycler()
     }
 

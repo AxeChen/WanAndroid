@@ -1,6 +1,6 @@
 package com.mg.axechen.wanandroid.block.main.knowledge
 
-import com.mg.axechen.wanandroid.javabean.KnowledgeTreeBean
+import com.mg.axechen.wanandroid.javabean.TreeBean
 import com.mg.axechen.wanandroid.network.NetWorkManager
 import io.reactivex.Observable
 import network.response.Response
@@ -10,7 +10,7 @@ import network.response.Response
  */
 class KnowlegeTreeListMode:KnowledgeTreeListContract.Mode{
 
-    override fun getKnowledgeTree(): Observable<Response<List<KnowledgeTreeBean>>> {
+    override fun getKnowledgeTree(): Observable<Response<List<TreeBean>>> {
         return NetWorkManager.getInstance().getRequest()!!.getKnowledgeTreeList()
     }
 
