@@ -37,11 +37,6 @@ class HomeFragment : Fragment(), HomeContract.View {
      */
     private val bannerLoopDatas = mutableListOf<BannerBean>()
 
-    /**
-     * 滑动的数据
-     */
-    private val bannerListDatas = mutableListOf<BannerBean>()
-
     private val homeAdapter: HomeAdapter by lazy {
         HomeAdapter(datas)
     }
@@ -121,17 +116,11 @@ class HomeFragment : Fragment(), HomeContract.View {
 
     override fun showBanner(banners: List<BannerBean>) {
         for (bean in banners) {
-            if (bean.type == 0) {
-                bannerLoopDatas.add(bean)
-            } else {
-                bannerListDatas.add(bean)
-            }
+            bannerLoopDatas.add(bean)
         }
         // 先添加图片轮询的数据
         datas.add(HomeViewType(HomeViewType.VIEW_TYPE_BANNER_LOOP, bannerLoopDatas))
         // 然后添加推荐的文章
-        datas.add(HomeViewType(HomeViewType.VIEW_TYPE_SELECTION, "今日推荐"))
-        datas.add(HomeViewType(HomeViewType.VIEW_TYPE_BANNER_LIST, bannerListDatas))
         datas.add(HomeViewType(HomeViewType.VIEW_TYPE_SELECTION, "最新博文"))
         homeAdapter.notifyDataSetChanged()
         // 请求最新博文

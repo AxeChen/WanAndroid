@@ -27,16 +27,16 @@
             android:background="@android:color/white">
 
             <TextView
+                style="@style/title_text_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="16dp"
-                android:text="选择分类"
-                android:textColor="@android:color/primary_text_light"
-                android:textSize="17sp" />
+                android:text="选择分类" />
 
             <com.bilibili.magicasakura.widgets.TintTextView
                 android:id="@+id/tvKind"
+                style="@style/theme_color_14sp"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_alignParentRight="true"
@@ -45,9 +45,7 @@
                 android:foreground="?attr/selectableItemBackground"
                 android:gravity="center_vertical"
                 android:paddingLeft="15dp"
-                android:paddingRight="10dp"
-                android:textColor="@color/theme_color_primary"
-                android:textSize="14sp" />
+                android:paddingRight="10dp" />
 
         </RelativeLayout>
 

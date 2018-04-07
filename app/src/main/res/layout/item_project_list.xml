@@ -69,8 +69,7 @@
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginTop="10dp"
-            android:textColor="@android:color/primary_text_light"
-            android:textSize="17sp" />
+            style="@style/title_text_style" />
 
         <RelativeLayout
             android:layout_width="match_parent"

@@ -11,20 +11,19 @@
 
     <TextView
         android:id="@+id/tvName"
+        style="@style/title_text_style"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:layout_marginLeft="16dp"
-        android:textSize="17sp" />
+        android:layout_marginLeft="16dp" />
 
     <com.bilibili.magicasakura.widgets.TintTextView
         android:id="@+id/tvKinds"
+        style="@style/theme_color_12sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical|right"
         android:layout_marginRight="16dp"
-        android:textColor="@color/theme_color_primary"
-        android:textSize="12sp"
         tools:ignore="RtlHardcoded" />
 
 </android.support.v7.widget.CardView>

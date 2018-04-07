@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="title_text_style">
+        <item name="android:textSize">@dimen/title_text_size</item>
+        <item name="android:textColor">@android:color/primary_text_light</item>
+    </style>
+
+    <style name="theme_color_12sp">
+        <item name="android:textSize">@dimen/sp_12</item>
+        <item name="android:textColor">@color/theme_color_primary</item>
+    </style>
+
+    <style name="theme_color_14sp">
+        <item name="android:textSize">@dimen/sp_14</item>
+        <item name="android:textColor">@color/theme_color_primary</item>
+    </style>
+</resources>

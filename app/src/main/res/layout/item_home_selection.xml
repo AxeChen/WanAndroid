@@ -8,4 +8,4 @@
     android:paddingLeft="16dp"
     android:text="selection"
     android:textColor="@color/theme_color_primary"
-    android:textSize="18sp" />
+    android:textSize="@dimen/title_text_size" />

@@ -21,7 +21,6 @@ class ProjectListAdapter(layoutResId: Int, data: List<HomeData>) : BaseQuickAdap
         helper?.addOnClickListener(R.id.ivMore)
         helper?.addOnClickListener(R.id.ivLike)
         Glide.with(mContext).load(item?.envelopePic).into(helper?.getView(R.id.ivImage))
-
     }
 
 

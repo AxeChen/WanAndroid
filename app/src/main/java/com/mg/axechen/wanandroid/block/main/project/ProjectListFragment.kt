@@ -28,17 +28,20 @@ import network.schedules.SchedulerProvider
  */
 class ProjectListFragment : Fragment(), ProjectListContract.View {
 
-    private var kinds: List<TreeBean> = mutableListOf<TreeBean>()
+    private var kinds = mutableListOf<TreeBean>()
 
     private var projects = mutableListOf<HomeData>()
 
     private var selectProject: TreeBean? = null
 
-    private var listAdapter: ProjectListAdapter? = null
+    private val listAdapter: ProjectListAdapter by lazy {
+        ProjectListAdapter(R.layout.item_project_list, projects)
+    }
 
     private val kindsAdapter: KindsAdapters by lazy {
         KindsAdapters(R.layout.item_spinner_kinds, kinds)
     }
+
 
     private val presenter: ProjectListContract.Presenter by lazy {
         ProjectListPresenter(SchedulerProvider.getInstatnce()!!, this)
@@ -53,13 +56,14 @@ class ProjectListFragment : Fragment(), ProjectListContract.View {
         super.onActivityCreated(savedInstanceState)
         drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
         drawerLayout.setScrimColor(Color.TRANSPARENT)
+        initProjectsAdapter()
         initKindsClick()
         initRefresh()
         presenter.getProjectTree()
     }
 
     override fun getProjectTreeSuccess(bean: List<TreeBean>) {
-        kinds = bean
+        kinds = bean as MutableList<TreeBean>
         selectProject = kinds[0]
         initKindsAdapter()
         kindsAdapter.setSelect(selectProject!!)
@@ -97,17 +101,18 @@ class ProjectListFragment : Fragment(), ProjectListContract.View {
     }
 
     private fun initProjectsAdapter() {
-        rvList.layoutManager = LinearLayoutManager(activity)
-        listAdapter = ProjectListAdapter(R.layout.item_project_list, projects)
+        rvList.run {
+            layoutManager = LinearLayoutManager(activity)
+            adapter = listAdapter
 
-        rvList.adapter = listAdapter
-        listAdapter?.setPreLoadNumber(0)
-        listAdapter?.setEnableLoadMore(true)
-        listAdapter?.setLoadMoreView(CustomLoadMoreView())
-        listAdapter?.setOnLoadMoreListener(BaseQuickAdapter.RequestLoadMoreListener {
+        }
+        listAdapter.setPreLoadNumber(0)
+        listAdapter.setEnableLoadMore(true)
+        listAdapter.setLoadMoreView(CustomLoadMoreView())
+        listAdapter.setOnLoadMoreListener({
             presenter.getProjectTreeList(selectProject!!.id, false)
         }, rvList)
-        listAdapter?.setOnItemClickListener { adapter, view, position ->
+        listAdapter.setOnItemClickListener { adapter, view, position ->
             var homeData: HomeData = adapter.data.get(position) as HomeData
             WebViewActivity.lunch(activity, homeData.link, homeData.title)
         }
@@ -125,27 +130,21 @@ class ProjectListFragment : Fragment(), ProjectListContract.View {
 
     override fun getProjectListByCidSuccess(bean: ProjectListBean, isRefresh: Boolean) {
         sRefresh.isRefreshing = false
-        listAdapter?.loadMoreComplete()
+        listAdapter.loadMoreComplete()
         if (isRefresh) {
             projects.clear()
-            projects = bean.datas
-            listAdapter?.setNewData(projects)
-
-            if (listAdapter == null) {
-                initProjectsAdapter()
-            } else {
-                listAdapter?.notifyDataSetChanged()
-            }
+            projects.addAll(bean.datas)
+            listAdapter.notifyDataSetChanged()
 
             // 计算页数，是否开启加载下一页
             if (bean.size >= bean.total) {
-                listAdapter?.setEnableLoadMore(false)
+                listAdapter.setEnableLoadMore(false)
             }
         } else {
             if (bean.datas.size != 0) {
-                listAdapter?.loadMoreEnd(false)
+                listAdapter.loadMoreEnd(false)
                 projects.addAll(bean.datas)
-                listAdapter?.notifyDataSetChanged()
+                listAdapter.notifyDataSetChanged()
             }
         }
     }
