@@ -8,7 +8,10 @@ import android.support.v4.app.Fragment
 import android.support.v4.view.ViewPager
 import android.support.v7.widget.Toolbar
 import android.view.MenuItem
+import android.view.View
+import android.widget.TextView
 import android.widget.Toast
+import com.bilibili.magicasakura.widgets.TintImageView
 import com.mg.axechen.wanandroid.R
 import com.mg.axechen.wanandroid.WanAndroidApplication
 import com.mg.axechen.wanandroid.base.BaseActivity
@@ -39,7 +42,9 @@ class MainActivity : BaseActivity(), MainContract.View, NavigationView.OnNavigat
 
     private var fragments = mutableListOf<Fragment>()
 
-    private var homeViewPagerAgapter: HomeViewPagerAgapter? = null
+    private var homeViewPagerAdapter: HomeViewPagerAgapter? = null
+
+    private var index: Int = 0
 
     companion object {
         fun launch(context: Context) {
@@ -51,31 +56,28 @@ class MainActivity : BaseActivity(), MainContract.View, NavigationView.OnNavigat
         super.onCreate(savedInstanceState)
         initToolBar()
         setViewPager()
+        selectByIndex(0)
+        initClickListener()
     }
 
     private fun setViewPager() {
         viewPager = findViewById(R.id.viewPager)
 
-        var homeFragment: HomeFragment = HomeFragment()
-        var knowledgeFragment: KnowledgeTreeListFragment = KnowledgeTreeListFragment()
-        var projectListFragment: ProjectListFragment = ProjectListFragment()
-        var profileFragment: ProfileFragment = ProfileFragment()
+        fragments.add(HomeFragment())
+        fragments.add(KnowledgeTreeListFragment())
+        fragments.add(ProjectListFragment())
+        fragments.add(ProfileFragment())
 
-        fragments.add(homeFragment)
-        fragments.add(knowledgeFragment)
-        fragments.add(projectListFragment)
-        fragments.add(profileFragment)
-
-        homeViewPagerAgapter = HomeViewPagerAgapter(supportFragmentManager, fragments)
+        homeViewPagerAdapter = HomeViewPagerAgapter(supportFragmentManager, fragments)
         viewPager.run {
-            this!!.adapter = homeViewPagerAgapter
+            this!!.adapter = homeViewPagerAdapter
             addOnPageChangeListener(PagerChangeListener(this@MainActivity))
         }
     }
 
     class PagerChangeListener(activity: MainActivity) : ViewPager.OnPageChangeListener {
 
-        var weakActivity: WeakReference<MainActivity>? = null
+        private var weakActivity: WeakReference<MainActivity>? = null
 
         init {
             this.weakActivity = WeakReference(activity)
@@ -91,37 +93,78 @@ class MainActivity : BaseActivity(), MainContract.View, NavigationView.OnNavigat
         override fun onPageSelected(position: Int) {
             var activity: MainActivity? = weakActivity?.get()
             if (activity != null) {
-                when (position) {
-                    0 -> {
-                        activity.tvHome.setTextColor(activity.resources.getColor(getColor(activity)))
-                        activity.ivHome.setBackgroundTintList(getColor(activity))
-                        activity.supportActionBar!!.title = "首页"
-                    }
-                    1 -> {
-                        activity.tvHome.setTextColor(activity.resources.getColor(R.color.wan_dark))
-                        activity.ivHome.setBackgroundTintList(android.R.color.transparent)
-                        activity.supportActionBar!!.title = "知识体系"
-                    }
-                    2 -> {
-                        activity.supportActionBar!!.title = "项目"
-                    }
-
-                    3 -> {
-                        activity.supportActionBar!!.title = "用户"
-                    }
-                }
+                activity.index = position
+                activity.selectByIndex(position)
             }
-
-
         }
-
-        fun getColor(activity: MainActivity): Int {
-            var color: Int = WanAndroidApplication.instance!!.getThemeColor(activity, WanAndroidApplication.instance!!.getTheme(activity)!!)
-            return color
-        }
-
     }
 
+    private fun initClickListener() {
+        llHome.setOnClickListener {
+            viewPager?.currentItem = 0
+        }
+
+        llKnowledge.setOnClickListener({
+            viewPager?.currentItem = 1
+        })
+
+        llProject.setOnClickListener({
+            viewPager?.currentItem = 2
+        })
+
+        llUser.setOnClickListener({
+            viewPager?.currentItem = 3
+        })
+    }
+
+
+    private fun selectByIndex(index: Int) {
+        when (index) {
+            0 -> {
+                selectTab(tvHome, ivHome)
+                noSelectTab(tvKnowledge, ivKnowledge)
+                noSelectTab(tvProject, ivProject)
+                noSelectTab(tvUser, ivUser)
+                supportActionBar!!.title = "首页"
+            }
+            1 -> {
+                selectTab(tvKnowledge, ivKnowledge)
+                noSelectTab(tvHome, ivHome)
+                noSelectTab(tvProject, ivProject)
+                noSelectTab(tvUser, ivUser)
+                supportActionBar!!.title = "知识体系"
+            }
+            2 -> {
+                selectTab(tvProject, ivProject)
+                noSelectTab(tvHome, ivHome)
+                noSelectTab(tvKnowledge, ivKnowledge)
+                noSelectTab(tvUser, ivUser)
+                supportActionBar!!.title = "项目"
+            }
+            3 -> {
+                selectTab(tvUser, ivUser)
+                noSelectTab(tvHome, ivHome)
+                noSelectTab(tvKnowledge, ivKnowledge)
+                noSelectTab(tvProject, ivProject)
+                supportActionBar!!.title = "用户"
+            }
+        }
+    }
+
+    private fun selectTab(textView: TextView, imageView: TintImageView) {
+        textView.setTextColor(resources.getColor(getColor(this)))
+        imageView.setBackgroundTintList(getColor(this))
+    }
+
+    private fun noSelectTab(textView: TextView, imageView: TintImageView) {
+        textView.setTextColor(resources.getColor(R.color.tab_icon_no_select))
+        imageView.setBackgroundTintList(R.color.tab_icon_no_select)
+    }
+
+    fun getColor(activity: MainActivity): Int {
+        var color: Int = WanAndroidApplication.instance!!.getThemeColor(activity, WanAndroidApplication.instance!!.getTheme(activity)!!)
+        return color
+    }
 
     private fun initToolBar() {
         toolbar = findViewById(R.id.toolbar)
@@ -146,6 +189,10 @@ class MainActivity : BaseActivity(), MainContract.View, NavigationView.OnNavigat
             }
         }
         return true
+    }
+
+    override fun changeThemeRefresh() {
+        selectByIndex(index)
     }
 
 }

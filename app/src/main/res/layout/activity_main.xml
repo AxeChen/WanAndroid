@@ -34,18 +34,21 @@
         android:orientation="horizontal">
 
         <LinearLayout
+            android:id="@+id/llHome"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
+            android:foreground="?attr/selectableItemBackground"
             android:gravity="center_horizontal"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingTop="5dp">
 
             <com.bilibili.magicasakura.widgets.TintImageView
                 android:id="@+id/ivHome"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:backgroundTint="@color/theme_color_primary"
-                android:background="@drawable/account_icon_feed" />
+                android:background="@drawable/icon_home"
+                app:backgroundTint="@color/theme_color_primary" />
 
             <TextView
                 android:id="@+id/tvHome"
@@ -57,16 +60,21 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/llKnowledge"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
+            android:foreground="?attr/selectableItemBackground"
             android:gravity="center_horizontal"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingTop="5dp">
 
-            <ImageView
+            <com.bilibili.magicasakura.widgets.TintImageView
+                android:id="@+id/ivKnowledge"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/account_icon_feed" />
+                android:background="@drawable/account_icon_following_select"
+                app:backgroundTint="@color/theme_color_primary" />
 
             <TextView
                 android:id="@+id/tvKnowledge"
@@ -78,16 +86,21 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/llProject"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
+            android:foreground="?attr/selectableItemBackground"
             android:gravity="center_horizontal"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingTop="5dp">
 
-            <ImageView
+            <com.bilibili.magicasakura.widgets.TintImageView
+                android:id="@+id/ivProject"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/account_icon_feed" />
+                android:background="@drawable/account_icon_feed_select"
+                app:backgroundTint="@color/theme_color_primary" />
 
             <TextView
                 android:id="@+id/tvProject"
@@ -99,16 +112,21 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/llUser"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
+            android:foreground="?attr/selectableItemBackground"
             android:gravity="center_horizontal"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingTop="5dp">
 
-            <ImageView
+            <com.bilibili.magicasakura.widgets.TintImageView
+                android:id="@+id/ivUser"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/account_icon_feed" />
+                android:background="@drawable/account_icon_me_select"
+                app:backgroundTint="@color/theme_color_primary" />
 
             <TextView
                 android:id="@+id/tvUser"
@@ -123,7 +141,7 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1px"
+        android:layout_height="1dp"
         android:layout_gravity="bottom"
         android:layout_marginBottom="60dp"
         android:background="@color/diver" />

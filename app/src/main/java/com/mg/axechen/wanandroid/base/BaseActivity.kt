@@ -19,7 +19,7 @@ import com.mg.axechen.wanandroid.theme.ThemeHelper
  */
 abstract class BaseActivity : AppCompatActivity() {
 
-    protected lateinit var immersionBar: ImmersionBar
+    private lateinit var immersionBar: ImmersionBar
 
     private var mCurrentTheme: Int = 0;
 
@@ -31,6 +31,12 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     protected abstract fun setLayoutId(): Int
+
+    /**
+     * 修改主题之后，onResume刷新特定的控件
+     */
+    open fun changeThemeRefresh() {
+    }
 
     open fun initImmersionBar() {
         immersionBar = ImmersionBar.with(this)
@@ -62,7 +68,6 @@ abstract class BaseActivity : AppCompatActivity() {
 
     open fun changeTheme(currentTheme: Int) {
         if (ThemeHelper.getTheme(this) !== currentTheme) {
-//            ThemeHelper.setTheme(this, currentTheme)
             ThemeUtils.refreshUI(this, object : ThemeUtils.ExtraRefreshable {
                 override fun refreshGlobal(activity: Activity) {
                     //for global setting, just do once
@@ -86,6 +91,7 @@ abstract class BaseActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
+        changeThemeRefresh()
         changeTheme(mCurrentTheme)
     }
 

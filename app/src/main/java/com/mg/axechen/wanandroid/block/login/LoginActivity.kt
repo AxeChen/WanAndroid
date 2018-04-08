@@ -2,6 +2,8 @@ package com.mg.axechen.wanandroid.block.login
 
 import android.app.ProgressDialog
 import android.os.Bundle
+import android.os.Parcel
+import android.os.Parcelable
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.Toast
@@ -16,7 +18,7 @@ import network.schedules.SchedulerProvider
  *
  * 登陆注册
  */
-class LoginActivity : BaseActivity(), LoginContract.View {
+class LoginActivity() : BaseActivity(), LoginContract.View, Parcelable {
 
     private val presenter: LoginPresenter by lazy {
         LoginPresenter(LoginModel(), this, SchedulerProvider.getInstatnce()!!)
@@ -24,6 +26,9 @@ class LoginActivity : BaseActivity(), LoginContract.View {
 
     private val progressDialog: ProgressDialog by lazy {
         ProgressDialog(this)
+    }
+
+    constructor(parcel: Parcel) : this() {
     }
 
     override fun setLayoutId(): Int {
@@ -91,6 +96,24 @@ class LoginActivity : BaseActivity(), LoginContract.View {
     override fun passwordIsEmpty() {
         ttPassword.error = "密码为空"
         progressDialog.dismiss()
+    }
+
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+
+    }
+
+    override fun describeContents(): Int {
+        return 0
+    }
+
+    companion object CREATOR : Parcelable.Creator<LoginActivity> {
+        override fun createFromParcel(parcel: Parcel): LoginActivity {
+            return LoginActivity(parcel)
+        }
+
+        override fun newArray(size: Int): Array<LoginActivity?> {
+            return arrayOfNulls(size)
+        }
     }
 
 
