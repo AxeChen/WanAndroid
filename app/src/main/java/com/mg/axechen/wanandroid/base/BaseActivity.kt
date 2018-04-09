@@ -33,7 +33,7 @@ abstract class BaseActivity : AppCompatActivity() {
     protected abstract fun setLayoutId(): Int
 
     /**
-     * 修改主题之后，onResume刷新特定的控件
+     * 修改主题之后，onResume刷新特定的控件(有些控件是通过代码设置的颜色因此需要主动去刷新控件)
      */
     open fun changeThemeRefresh() {
     }

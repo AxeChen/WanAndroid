@@ -38,37 +38,41 @@ class HomeAdapter : BaseMultiItemQuickAdapter<HomeViewType, BaseViewHolder> {
     }
 
     override fun convert(helper: BaseViewHolder?, item: HomeViewType?) {
-        if (item!!.itemType == VIEW_TYPE_ITEM) {
-            // 一般的viewHolder
-            var index: Int = helper!!.adapterPosition
-            var homeData: HomeData = item.item as HomeData
-            helper?.setText(R.id.ttTvName, homeData.author)
-            helper?.setText(R.id.tvContent, homeData.title)
-            helper?.setText(R.id.tvTime, homeData.niceDate)
+        when {
+            item!!.itemType == VIEW_TYPE_ITEM -> {
+                // 一般的viewHolder
+                var index: Int = helper!!.adapterPosition
+                var homeData: HomeData = item.item as HomeData
+                helper.setText(R.id.ttTvName, homeData.author)
+                helper.setText(R.id.tvContent, homeData.title)
+                helper.setText(R.id.tvTime, homeData.niceDate)
 
-            helper?.setText(R.id.tvSuperChapterName, homeData.superChapterName)
-            helper?.setText(R.id.tvChildChapterName, homeData.chapterName)
-            helper?.addOnClickListener(R.id.ivMore)
-            helper?.addOnClickListener(R.id.ivLike)
-        } else if (item!!.itemType == VIEW_TYPE_BANNER_LOOP) {
-            // 轮滑的view
-            val bannerBeans: List<BannerBean> = item.item as List<BannerBean>
-            val view: ConvenientBanner<BannerBean> = helper?.getView(R.id.cbLoopView)!!
-            // 自定义翻页page
-            view.setPages({ BannerLoopItemViewHolder() }, bannerBeans)
-                    .setPageIndicator(indicator)
-                    .setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.ALIGN_PARENT_RIGHT)
-                    .startTurning(3000)
-                    .setManualPageable(true)
-        } else if (item.itemType == HomeViewType.VIEW_TYPE_BANNER_LIST) {
-            // 展示横向滑动的View
-            val bannerBeans: MutableList<BannerBean> = item.item as MutableList<BannerBean>
-            listAdapter = BannerListAdapter(R.layout.item_banner_item, bannerBeans)
-            val recyclerView: RecyclerView = helper!!.getView(R.id.rvList)
-            recyclerView.layoutManager = LinearLayoutManager(helper.itemView.context, LinearLayoutManager.HORIZONTAL, false)
-            recyclerView.adapter = listAdapter
-        } else if (item.itemType == HomeViewType.VIEW_TYPE_SELECTION) {
-            helper!!.setText(R.id.tvSelection, item.item as String)
+                helper.setText(R.id.tvSuperChapterName, homeData.superChapterName)
+                helper.setText(R.id.tvChildChapterName, homeData.chapterName)
+                helper.addOnClickListener(R.id.ivMore)
+                helper.addOnClickListener(R.id.ivLike)
+            }
+            item.itemType == VIEW_TYPE_BANNER_LOOP -> {
+                // 轮滑的view
+                val bannerBeans: List<BannerBean> = item.item as List<BannerBean>
+                val view: ConvenientBanner<BannerBean> = helper?.getView(R.id.cbLoopView)!!
+                // 自定义翻页page
+                view.clearDisappearingChildren()
+                view.setPages({ BannerLoopItemViewHolder() }, bannerBeans)
+                        .setPageIndicator(indicator)
+                        .setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.ALIGN_PARENT_RIGHT)
+                        .startTurning(3000)
+                        .setManualPageable(true)
+            }
+            item.itemType == HomeViewType.VIEW_TYPE_BANNER_LIST -> {
+                // 展示横向滑动的View
+                val bannerBeans: MutableList<BannerBean> = item.item as MutableList<BannerBean>
+                listAdapter = BannerListAdapter(R.layout.item_banner_item, bannerBeans)
+                val recyclerView: RecyclerView = helper!!.getView(R.id.rvList)
+                recyclerView.layoutManager = LinearLayoutManager(helper.itemView.context, LinearLayoutManager.HORIZONTAL, false)
+                recyclerView.adapter = listAdapter
+            }
+            item.itemType == HomeViewType.VIEW_TYPE_SELECTION -> helper!!.setText(R.id.tvSelection, item.item as String)
         }
     }
 

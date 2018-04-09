@@ -41,10 +41,6 @@ class HomeFragment : Fragment(), HomeContract.View {
         HomeAdapter(datas)
     }
 
-    private val inflater: LayoutInflater by lazy {
-        LayoutInflater.from(context)
-    }
-
     private val presenter: HomeContract.Presenter by lazy {
         HomePresenter(SchedulerProvider.getInstatnce()!!, this)
     }

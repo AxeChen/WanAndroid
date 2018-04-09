@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.mg.axechen.wanandroid.R
+import com.mg.axechen.wanandroid.block.knowledgetree.KnowledgeTreeDetailActivity
 import com.mg.axechen.wanandroid.javabean.TreeBean
 import kotlinx.android.synthetic.main.fragment_knowledge_tree.*
 import network.schedules.SchedulerProvider
@@ -53,7 +54,7 @@ class KnowledgeTreeListFragment : Fragment(), KnowledgeTreeListContract.View {
         }
 
         listAdapter.setOnItemClickListener { adapter, view, position ->
-            Toast.makeText(activity,"点击知识体系的一项",Toast.LENGTH_SHORT).show()
+            KnowledgeTreeDetailActivity.lunch(activity, data[position])
         }
     }
 

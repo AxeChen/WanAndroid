@@ -1,57 +1,31 @@
 package com.mg.axechen.wanandroid.block.main.project
 
-import android.content.Context
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.BaseAdapter
-import android.widget.TextView
+import com.chad.library.adapter.base.BaseQuickAdapter
+import com.chad.library.adapter.base.BaseViewHolder
 import com.mg.axechen.wanandroid.R
 import com.mg.axechen.wanandroid.javabean.TreeBean
 
 /**
- * Created by AxeChen on 2018/4/2.
+ * Created by AxeChen on 2018/4/3.
  *
- * 项目分类适配器
+ * 项目界面侧滑菜单
  */
-class KindsAdapter(context: Context, data: List<TreeBean>) : BaseAdapter() {
+class KindsAdapter(layoutResId: Int, data: List<TreeBean>) : BaseQuickAdapter<TreeBean, BaseViewHolder>(layoutResId, data) {
 
-    var context: Context? = null
-    var data: List<TreeBean>? = null
-    var inflater: LayoutInflater? = null
+    private var selectProject: TreeBean? = null
 
-    init {
-        this.context = context
-        this.data = data
-        inflater = LayoutInflater.from(context)
-    }
-
-    override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-        var view: View? = null
-        if (convertView == null) {
-            view = inflater!!.inflate(R.layout.item_spinner_kinds, null)
+    override fun convert(helper: BaseViewHolder?, item: TreeBean?) {
+        helper!!.setText(R.id.tvText, item!!.name)
+        if (selectProject?.id == item.id) {
+            helper.setChecked(R.id.rbCheck, true)
         } else {
-            view = convertView
+            helper.setChecked(R.id.rbCheck, false)
         }
-        val text: TextView = view!!.findViewById(R.id.tvText)
-        text.text = data?.get(position)?.name
-        return view!!
     }
 
-    override fun getItem(position: Int): TreeBean? {
-        return data?.get(position)
+    fun setSelect(selectBean: TreeBean) {
+        this.selectProject = selectBean
     }
 
-    override fun getItemId(position: Int): Long {
-        return position.toLong()
-    }
-
-    override fun getCount(): Int {
-        return data?.size!!
-    }
-
-    class SpinnerViewHolder {
-        public var text: TextView? = null
-    }
 
 }

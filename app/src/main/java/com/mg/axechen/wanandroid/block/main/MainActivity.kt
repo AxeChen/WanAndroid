@@ -8,7 +8,6 @@ import android.support.v4.app.Fragment
 import android.support.v4.view.ViewPager
 import android.support.v7.widget.Toolbar
 import android.view.MenuItem
-import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import com.bilibili.magicasakura.widgets.TintImageView
@@ -62,16 +61,15 @@ class MainActivity : BaseActivity(), MainContract.View, NavigationView.OnNavigat
 
     private fun setViewPager() {
         viewPager = findViewById(R.id.viewPager)
-
         fragments.add(HomeFragment())
         fragments.add(KnowledgeTreeListFragment())
         fragments.add(ProjectListFragment())
         fragments.add(ProfileFragment())
-
         homeViewPagerAdapter = HomeViewPagerAgapter(supportFragmentManager, fragments)
         viewPager.run {
             this!!.adapter = homeViewPagerAdapter
             addOnPageChangeListener(PagerChangeListener(this@MainActivity))
+            offscreenPageLimit = fragments.size
         }
     }
 

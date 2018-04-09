@@ -15,7 +15,7 @@ class KnowledgeTreeListAdapter : BaseQuickAdapter<TreeBean, BaseViewHolder> {
 
     override fun convert(helper: BaseViewHolder?, item: TreeBean?) {
         helper!!.setText(R.id.tvName, item!!.name)
-        var kind: String = item.children.size.toString()
+        var kind: String = item.children?.size.toString()
         kind += "分类"
         helper!!.setText(R.id.tvKinds, kind)
     }

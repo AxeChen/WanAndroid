@@ -73,5 +73,12 @@ interface Request {
     fun getProjectListByCid(@Path("page") page: Int,
                             @Query("cid") cid: Int): Observable<Response<ProjectListBean>>
 
+    /**
+     * 获取知识体系的文章
+     */
+    @GET("article/list/{page}/json")
+    fun getKnowledgeList(@Path("page") page: Int,
+                         @Query("cid") cid: Int): Observable<Response<ProjectListBean>>
+
 
 }

@@ -10,7 +10,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import com.chad.library.adapter.base.BaseQuickAdapter
 import com.mg.axechen.wanandroid.R
 import com.mg.axechen.wanandroid.block.details.WebViewActivity
 import com.mg.axechen.wanandroid.block.main.home.CustomLoadMoreView
@@ -18,7 +17,6 @@ import com.mg.axechen.wanandroid.javabean.HomeData
 import com.mg.axechen.wanandroid.javabean.ProjectListBean
 import com.mg.axechen.wanandroid.javabean.TreeBean
 import kotlinx.android.synthetic.main.fragment_project_list.*
-import kotlinx.android.synthetic.main.item_knowledge_tree_list.*
 import network.schedules.SchedulerProvider
 
 /**
@@ -38,8 +36,8 @@ class ProjectListFragment : Fragment(), ProjectListContract.View {
         ProjectListAdapter(R.layout.item_project_list, projects)
     }
 
-    private val kindsAdapter: KindsAdapters by lazy {
-        KindsAdapters(R.layout.item_spinner_kinds, kinds)
+    private val kindsAdapter: KindsAdapter by lazy {
+        KindsAdapter(R.layout.item_spinner_kinds, kinds)
     }
 
 
