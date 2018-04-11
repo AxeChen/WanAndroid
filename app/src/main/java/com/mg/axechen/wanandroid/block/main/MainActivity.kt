@@ -7,6 +7,7 @@ import android.support.design.widget.NavigationView
 import android.support.v4.app.Fragment
 import android.support.v4.view.ViewPager
 import android.support.v7.widget.Toolbar
+import android.view.Menu
 import android.view.MenuItem
 import android.widget.TextView
 import android.widget.Toast
@@ -18,6 +19,7 @@ import com.mg.axechen.wanandroid.block.main.home.HomeFragment
 import com.mg.axechen.wanandroid.block.main.knowledge.KnowledgeTreeListFragment
 import com.mg.axechen.wanandroid.block.main.profile.ProfileFragment
 import com.mg.axechen.wanandroid.block.main.project.ProjectListFragment
+import com.mg.axechen.wanandroid.block.search.SearchActivity
 import com.mg.axechen.wanandroid.javabean.BannerBean
 import com.mg.axechen.wanandroid.theme.ChangeThemeActivity
 import kotlinx.android.synthetic.main.activity_main.*
@@ -95,6 +97,22 @@ class MainActivity : BaseActivity(), MainContract.View, NavigationView.OnNavigat
                 activity.selectByIndex(position)
             }
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when (item?.itemId) {
+            R.id.actionSearch -> {
+                SearchActivity.lunch(this)
+            }
+            R.id.actionUrlNav -> {
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     private fun initClickListener() {

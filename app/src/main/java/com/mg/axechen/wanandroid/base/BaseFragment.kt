@@ -5,7 +5,7 @@ import android.support.v4.app.Fragment
 /**
  * Created by AxeChen on 2018/4/9.
  */
-class BaseFragment : Fragment() {
+open class BaseFragment : Fragment() {
 
 
     override fun onResume() {

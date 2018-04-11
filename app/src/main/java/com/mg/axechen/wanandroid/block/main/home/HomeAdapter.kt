@@ -72,7 +72,8 @@ class HomeAdapter : BaseMultiItemQuickAdapter<HomeViewType, BaseViewHolder> {
                 recyclerView.layoutManager = LinearLayoutManager(helper.itemView.context, LinearLayoutManager.HORIZONTAL, false)
                 recyclerView.adapter = listAdapter
             }
-            item.itemType == HomeViewType.VIEW_TYPE_SELECTION -> helper!!.setText(R.id.tvSelection, item.item as String)
+            item.itemType == HomeViewType.VIEW_TYPE_SELECTION ->
+                helper!!.setText(R.id.tvSelection, item.item as String)
         }
     }
 

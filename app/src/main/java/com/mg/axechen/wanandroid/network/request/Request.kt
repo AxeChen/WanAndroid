@@ -80,5 +80,18 @@ interface Request {
     fun getKnowledgeList(@Path("page") page: Int,
                          @Query("cid") cid: Int): Observable<Response<ProjectListBean>>
 
+    /**
+     * 获取热词
+     */
+    @GET("hotkey/json")
+    fun getRecommendSearchTag(): Observable<Response<MutableList<SearchTag>>>
+
+    /**
+     * 搜索
+     */
+    @POST("article/query/{page}/json")
+    fun search(@Path("page") page: Int,
+               @Query("k") text: String): Observable<Response<ProjectListBean>>
+
 
 }

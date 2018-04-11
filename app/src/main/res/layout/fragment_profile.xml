@@ -45,13 +45,14 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="16dp"
-            android:src="@drawable/post_thank" />
+            android:src="@drawable/ic_like" />
 
         <TextView
+            style="@style/text_color_16sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="15dp"
             android:layout_toRightOf="@+id/ivLike"
             android:text="我的收藏" />
 
@@ -63,7 +64,8 @@
         android:layout_height="50dp"
         android:layout_below="@+id/rlLike"
         android:layout_marginTop="1px"
-        android:background="@android:color/white">
+        android:background="@android:color/white"
+        android:foreground="?attr/selectableItemBackground">
 
         <ImageView
             android:id="@+id/ivTheme"
@@ -71,13 +73,14 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="16dp"
-            android:src="@drawable/post_thank" />
+            android:src="@drawable/ic_theme" />
 
         <TextView
+            style="@style/text_color_16sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="15dp"
             android:layout_toRightOf="@+id/ivTheme"
             android:text="切换主题" />
 
@@ -96,14 +99,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="16dp"
-            android:src="@drawable/post_thank" />
+            android:layout_marginLeft="18dp"
+            android:src="@drawable/ic_about" />
 
         <TextView
+            style="@style/text_color_16sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="15dp"
             android:layout_toRightOf="@+id/ivAbout"
             android:text="关于我们" />
 

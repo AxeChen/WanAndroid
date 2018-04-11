@@ -3,8 +3,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.mg.axechen.wanandroid.block.main.MainActivity">
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/actionSearch"
+        android:icon="@drawable/ic_menu_search_dark"
         android:orderInCategory="100"
-        android:title="@string/action_settings"
+        android:title="搜索"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/actionUrlNav"
+        android:icon="@android:drawable/ic_search_category_default"
+        android:orderInCategory="100"
+        android:title="网站导航"
         app:showAsAction="never" />
 </menu>
