@@ -93,5 +93,10 @@ interface Request {
     fun search(@Path("page") page: Int,
                @Query("k") text: String): Observable<Response<ProjectListBean>>
 
+    /**
+     * 网址导航
+     */
+    @GET("navi/json")
+    fun getNaviJson(): Observable<Response<MutableList<NaviBean>>>
 
 }

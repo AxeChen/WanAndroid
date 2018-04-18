@@ -17,7 +17,6 @@ class KnowledgeListAdapter(layoutResId: Int, data: MutableList<HomeData>?) : Bas
             helper.setText(R.id.ttTvName, item?.author)
             helper.setText(R.id.tvContent, item?.title)
             helper.setText(R.id.tvTime, item?.niceDate)
-
             helper.setText(R.id.tvSuperChapterName, item?.superChapterName)
             helper.setText(R.id.tvChildChapterName, item?.chapterName)
             helper.addOnClickListener(R.id.ivMore)

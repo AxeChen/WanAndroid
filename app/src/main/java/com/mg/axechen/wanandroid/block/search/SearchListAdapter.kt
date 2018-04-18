@@ -1,8 +1,6 @@
 package com.mg.axechen.wanandroid.block.search
 
 import android.content.Context
-import android.graphics.drawable.ShapeDrawable
-import android.graphics.drawable.shapes.Shape
 import android.support.v7.widget.ActionMenuView
 import android.text.Html
 import android.view.LayoutInflater
@@ -48,10 +46,10 @@ class SearchListAdapter : BaseMultiItemQuickAdapter<SearchViewType, BaseViewHold
             var views = mutableListOf<View>()
             for (tag in tags) {
 
-                var textView = layoutInflater!!.inflate(R.layout.item_flowlayout, null) as TextView
+                val textView = layoutInflater!!.inflate(R.layout.item_flowlayout, null) as TextView
                 textView.text = tag.name
                 textView.id = tag.id
-                var margin = ViewGroup.MarginLayoutParams(ActionMenuView.LayoutParams.WRAP_CONTENT, ActionMenuView.LayoutParams.WRAP_CONTENT)
+                val margin = ViewGroup.MarginLayoutParams(ActionMenuView.LayoutParams.WRAP_CONTENT, ActionMenuView.LayoutParams.WRAP_CONTENT)
                 margin.rightMargin = 10
                 margin.topMargin = 10
                 margin.leftMargin = 10

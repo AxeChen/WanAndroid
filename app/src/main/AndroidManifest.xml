@@ -53,6 +53,10 @@
         <activity
             android:name=".block.search.SearchActivity"
             android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".block.navi.NaviWebsiteActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

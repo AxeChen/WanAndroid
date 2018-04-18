@@ -19,6 +19,7 @@ import com.mg.axechen.wanandroid.block.main.home.HomeFragment
 import com.mg.axechen.wanandroid.block.main.knowledge.KnowledgeTreeListFragment
 import com.mg.axechen.wanandroid.block.main.profile.ProfileFragment
 import com.mg.axechen.wanandroid.block.main.project.ProjectListFragment
+import com.mg.axechen.wanandroid.block.navi.NaviWebsiteActivity
 import com.mg.axechen.wanandroid.block.search.SearchActivity
 import com.mg.axechen.wanandroid.javabean.BannerBean
 import com.mg.axechen.wanandroid.theme.ChangeThemeActivity
@@ -110,6 +111,7 @@ class MainActivity : BaseActivity(), MainContract.View, NavigationView.OnNavigat
                 SearchActivity.lunch(this)
             }
             R.id.actionUrlNav -> {
+                NaviWebsiteActivity.lunch(this)
             }
         }
         return super.onOptionsItemSelected(item)
