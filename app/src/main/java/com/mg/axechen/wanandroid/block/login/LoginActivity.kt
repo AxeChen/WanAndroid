@@ -1,6 +1,8 @@
 package com.mg.axechen.wanandroid.block.login
 
 import android.app.ProgressDialog
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.os.Parcel
 import android.os.Parcelable
@@ -9,6 +11,7 @@ import android.text.TextWatcher
 import android.widget.Toast
 import com.mg.axechen.wanandroid.R
 import com.mg.axechen.wanandroid.base.BaseActivity
+import com.mg.axechen.wanandroid.block.main.MainActivity
 import com.mg.axechen.wanandroid.block.register.RegisterActivity
 import kotlinx.android.synthetic.main.activity_login.*
 import network.schedules.SchedulerProvider
@@ -18,7 +21,13 @@ import network.schedules.SchedulerProvider
  *
  * 登陆注册
  */
-class LoginActivity() : BaseActivity(), LoginContract.View, Parcelable {
+class LoginActivity : BaseActivity(), LoginContract.View {
+
+    companion object {
+        fun lunch(context: Context) {
+            context.startActivity(Intent(context, LoginActivity::class.java))
+        }
+    }
 
     private val presenter: LoginPresenter by lazy {
         LoginPresenter(LoginModel(), this, SchedulerProvider.getInstatnce()!!)
@@ -26,9 +35,6 @@ class LoginActivity() : BaseActivity(), LoginContract.View, Parcelable {
 
     private val progressDialog: ProgressDialog by lazy {
         ProgressDialog(this)
-    }
-
-    constructor(parcel: Parcel) : this() {
     }
 
     override fun setLayoutId(): Int {
@@ -81,6 +87,7 @@ class LoginActivity() : BaseActivity(), LoginContract.View, Parcelable {
         progressDialog.dismiss()
         // 跳转逻辑
         Toast.makeText(this, "登录成功", Toast.LENGTH_SHORT).show()
+        MainActivity.launch(this)
     }
 
     override fun loginFail(errorMsg: String) {
@@ -98,23 +105,9 @@ class LoginActivity() : BaseActivity(), LoginContract.View, Parcelable {
         progressDialog.dismiss()
     }
 
-    override fun writeToParcel(parcel: Parcel, flags: Int) {
-
+    override fun onDestroy() {
+        super.onDestroy()
+        presenter.unSubscribe()
     }
-
-    override fun describeContents(): Int {
-        return 0
-    }
-
-    companion object CREATOR : Parcelable.Creator<LoginActivity> {
-        override fun createFromParcel(parcel: Parcel): LoginActivity {
-            return LoginActivity(parcel)
-        }
-
-        override fun newArray(size: Int): Array<LoginActivity?> {
-            return arrayOfNulls(size)
-        }
-    }
-
 
 }

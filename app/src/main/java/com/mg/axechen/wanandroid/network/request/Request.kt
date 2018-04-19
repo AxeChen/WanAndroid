@@ -41,7 +41,7 @@ interface Request {
     fun userLogin(
             @Query("username") userName: String,
             @Query("password") password: String
-    ): Observable<Response<JSONObject>>
+    ): Observable<Response<LoginBean>>
 
     /**
      * 用户注册

@@ -1,6 +1,7 @@
 package com.mg.axechen.wanandroid.block.login
 
 import com.mg.axechen.wanandroid.base.BasePresenter
+import com.mg.axechen.wanandroid.javabean.LoginBean
 import io.reactivex.Observable
 import network.response.Response
 import org.json.JSONObject
@@ -23,6 +24,8 @@ interface LoginContract {
     }
 
     interface Model {
-        fun login(userName: String, password: String): Observable<Response<JSONObject>>
+        fun login(userName: String, password: String): Observable<Response<LoginBean>>
+
+        fun saveCookies(bean: LoginBean)
     }
 }

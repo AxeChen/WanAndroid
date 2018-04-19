@@ -2,6 +2,8 @@ package com.mg.axechen.wanandroid.block.login
 
 import android.text.TextUtils
 import com.mg.axechen.wanandroid.network.response.ResponseTransformer
+import com.mg.axechen.wanandroid.utils.SharePreferencesContants
+import com.mg.axechen.wanandroid.utils.SharedPreferencesUtils
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import network.schedules.BaseSchedulerProvider
@@ -46,7 +48,10 @@ class LoginPresenter(model: LoginModel, view: LoginContract.View, schedulerProvi
                 ?.compose(scheduler?.applySchedulers())
                 ?.compose(ResponseTransformer.handleResult())
                 ?.subscribe(
-                        { t -> view?.loginSuccess() },
+                        { t ->
+                            view?.loginSuccess()
+                            model?.saveCookies(t)
+                        },
                         { throwable -> view?.loginFail(throwable.message!!) }
                 )
         disposable.add(compose!!)
