@@ -69,7 +69,7 @@ class NaviWebsiteActivity : BaseActivity(), NaviWebsiteContract.View {
         }
         naviContentAdapter.itemClickLister = object : NaviContentAdapter.ItemClickListener {
             override fun itemClick(data: HomeData) {
-                WebViewActivity.lunch(this@NaviWebsiteActivity, data.link, data.title)
+                WebViewActivity.lunch(this@NaviWebsiteActivity, data.link!!, data.title!!)
             }
         }
     }
@@ -82,7 +82,7 @@ class NaviWebsiteActivity : BaseActivity(), NaviWebsiteContract.View {
         kindsAdapter.onItemClickListener = BaseQuickAdapter.OnItemClickListener { adapter, view, position ->
             if (position !== -1) {
                 rvList.scrollToPosition(position)
-                val mLayoutManager = rvList.getLayoutManager() as LinearLayoutManager
+                val mLayoutManager = rvList.layoutManager as LinearLayoutManager
                 mLayoutManager.scrollToPositionWithOffset(position, 0)
             }
         }

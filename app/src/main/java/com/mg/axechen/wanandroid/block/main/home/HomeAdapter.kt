@@ -16,8 +16,6 @@ import com.mg.axechen.wanandroid.R
 import com.mg.axechen.wanandroid.javabean.BannerBean
 import com.mg.axechen.wanandroid.javabean.HomeData
 import com.mg.axechen.wanandroid.javabean.HomeViewType
-import com.mg.axechen.wanandroid.javabean.HomeViewType.VIEW_TYPE_BANNER_LOOP
-import com.mg.axechen.wanandroid.javabean.HomeViewType.VIEW_TYPE_ITEM
 
 /**
  * Created by AxeChen on 2018/3/23.
@@ -31,15 +29,15 @@ class HomeAdapter : BaseMultiItemQuickAdapter<HomeViewType, BaseViewHolder> {
     var listAdapter: BannerListAdapter? = null
 
     constructor(data: MutableList<HomeViewType>?) : super(data) {
-        addItemType(VIEW_TYPE_ITEM, R.layout.item_home)
-        addItemType(VIEW_TYPE_BANNER_LOOP, R.layout.item_banner_viewpager)
+        addItemType(HomeViewType.VIEW_TYPE_ITEM, R.layout.item_home)
+        addItemType(HomeViewType.VIEW_TYPE_BANNER_LOOP, R.layout.item_banner_viewpager)
         addItemType(HomeViewType.VIEW_TYPE_BANNER_LIST, R.layout.item_banner_list)
         addItemType(HomeViewType.VIEW_TYPE_SELECTION, R.layout.item_home_selection)
     }
 
     override fun convert(helper: BaseViewHolder?, item: HomeViewType?) {
         when {
-            item!!.itemType == VIEW_TYPE_ITEM -> {
+            item!!.itemType == HomeViewType.VIEW_TYPE_ITEM -> {
                 // 一般的viewHolder
                 var index: Int = helper!!.adapterPosition
                 var homeData: HomeData = item.item as HomeData
@@ -52,7 +50,7 @@ class HomeAdapter : BaseMultiItemQuickAdapter<HomeViewType, BaseViewHolder> {
                 helper.addOnClickListener(R.id.ivMore)
                 helper.addOnClickListener(R.id.ivLike)
             }
-            item.itemType == VIEW_TYPE_BANNER_LOOP -> {
+            item.itemType == HomeViewType.VIEW_TYPE_BANNER_LOOP -> {
                 // 轮滑的view
                 val bannerBeans: List<BannerBean> = item.item as List<BannerBean>
                 val view: ConvenientBanner<BannerBean> = helper?.getView(R.id.cbLoopView)!!

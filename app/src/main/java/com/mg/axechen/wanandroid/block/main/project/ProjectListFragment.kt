@@ -112,7 +112,7 @@ class ProjectListFragment : Fragment(), ProjectListContract.View {
         }, rvList)
         listAdapter.setOnItemClickListener { adapter, view, position ->
             var homeData: HomeData = adapter.data.get(position) as HomeData
-            WebViewActivity.lunch(activity, homeData.link, homeData.title)
+            WebViewActivity.lunch(activity, homeData.link!!, homeData.title!!)
         }
     }
 
@@ -131,7 +131,7 @@ class ProjectListFragment : Fragment(), ProjectListContract.View {
         listAdapter.loadMoreComplete()
         if (isRefresh) {
             projects.clear()
-            projects.addAll(bean.datas)
+            projects.addAll(bean.datas!!)
             listAdapter.notifyDataSetChanged()
 
             // 计算页数，是否开启加载下一页
@@ -139,9 +139,9 @@ class ProjectListFragment : Fragment(), ProjectListContract.View {
                 listAdapter.setEnableLoadMore(false)
             }
         } else {
-            if (bean.datas.size != 0) {
+            if (bean.datas!!.size != 0) {
                 listAdapter.loadMoreEnd(false)
-                projects.addAll(bean.datas)
+                projects.addAll(bean.datas!!)
                 listAdapter.notifyDataSetChanged()
             }
         }

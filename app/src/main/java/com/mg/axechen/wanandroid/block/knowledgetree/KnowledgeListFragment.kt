@@ -70,7 +70,7 @@ class KnowledgeListFragment : Fragment(), KnowledgeListContract.View {
             getArticleList(false)
         }, rvList)
         listAdapter.setOnItemClickListener({ adapter, view, position ->
-            WebViewActivity.lunch(activity, datas.get(position).link, datas.get(position).title)
+            WebViewActivity.lunch(activity, datas.get(position).link!!, datas.get(position).title!!)
         })
     }
 
@@ -104,7 +104,7 @@ class KnowledgeListFragment : Fragment(), KnowledgeListContract.View {
         if (isRefresh) {
             datas.clear()
         }
-        this.datas.addAll(bean.datas)
+        this.datas.addAll(bean.datas!!)
         sRefresh.isRefreshing = false
         listAdapter.loadMoreComplete()
         listAdapter.notifyDataSetChanged()
@@ -115,7 +115,7 @@ class KnowledgeListFragment : Fragment(), KnowledgeListContract.View {
         if (isRefresh) {
             datas.clear()
         }
-        this.datas.addAll(bean.datas)
+        this.datas.addAll(bean.datas!!)
         sRefresh.isRefreshing = false
         listAdapter.loadMoreComplete()
         listAdapter.notifyDataSetChanged()

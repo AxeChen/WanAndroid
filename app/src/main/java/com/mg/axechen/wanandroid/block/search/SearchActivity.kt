@@ -156,7 +156,7 @@ class SearchActivity : BaseActivity(), SearchContract.View {
         listAdapter.setOnItemClickListener { adapter, view, position ->
             if (items[position].itemType == SearchViewType.VIEW_TYPE_RESULT) {
                 var homeData = items[position].item as HomeData
-                WebViewActivity.lunch(this@SearchActivity, homeData.link, homeData.title)
+                WebViewActivity.lunch(this@SearchActivity, homeData.link!!, homeData.title!!)
             }
         }
 
@@ -194,7 +194,7 @@ class SearchActivity : BaseActivity(), SearchContract.View {
         if (isRefresh) {
             items.clear()
         }
-        for (result in bean.datas) {
+        for (result in bean.datas!!) {
             items.add(SearchViewType(SearchViewType.VIEW_TYPE_RESULT, result))
         }
         listAdapter.loadMoreComplete()
@@ -206,7 +206,7 @@ class SearchActivity : BaseActivity(), SearchContract.View {
             items.clear()
         }
         listAdapter.setEnableLoadMore(false)
-        for (result in bean.datas) {
+        for (result in bean.datas!!) {
             items.add(SearchViewType(SearchViewType.VIEW_TYPE_RESULT, result))
         }
         listAdapter.loadMoreComplete()

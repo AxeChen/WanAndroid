@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import com.mg.axechen.wanandroid.R
 import com.mg.axechen.wanandroid.block.login.LoginActivity
 import com.mg.axechen.wanandroid.theme.ChangeThemeActivity
+import com.mg.axechen.wanandroid.utils.ApkVersionUtils
 import com.mg.axechen.wanandroid.utils.SharePreferencesContants
 import com.mg.axechen.wanandroid.utils.SharedPreferencesUtils
 import kotlinx.android.synthetic.main.fragment_profile.*
@@ -33,6 +34,7 @@ class ProfileFragment : Fragment() {
         rlTheme.setOnClickListener { view ->
             ChangeThemeActivity.launch(activity)
         }
+
     }
 
     private fun initData() {
@@ -46,6 +48,7 @@ class ProfileFragment : Fragment() {
             tvName.text = SharedPreferencesUtils.getString(SharePreferencesContants.USER_NAME)
             llProfile.setOnClickListener({})
         }
+        tvVersionName.text = ApkVersionUtils.getVerName(activity)
     }
 
 }

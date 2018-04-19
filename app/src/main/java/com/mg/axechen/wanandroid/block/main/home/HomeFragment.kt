@@ -50,14 +50,17 @@ class HomeFragment : Fragment(), HomeContract.View {
     }
 
     override fun getHomeListSuccess(homeListBean: HomeListBean, isRefresh: Boolean) {
-        var homedatas: List<HomeData> = homeListBean.datas
+        if (homeListBean.datas != null) {
+            var homedatas: List<HomeData> = homeListBean.datas!!
 
-        sRefresh.isRefreshing = false
-        for (it in homedatas) {
-            datas.add(HomeViewType(HomeViewType.VIEW_TYPE_ITEM, it))
+            sRefresh.isRefreshing = false
+            for (it in homedatas) {
+                datas.add(HomeViewType(HomeViewType.VIEW_TYPE_ITEM, it))
+            }
+            homeAdapter.loadMoreComplete()
+            homeAdapter.notifyDataSetChanged()
         }
-        homeAdapter.loadMoreComplete()
-        homeAdapter.notifyDataSetChanged()
+
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -84,7 +87,7 @@ class HomeFragment : Fragment(), HomeContract.View {
         }
         homeAdapter.setOnItemClickListener { adapter, view, position ->
             var homeData: HomeData = homeAdapter.data.get(position).item as HomeData
-            WebViewActivity.lunch(activity, homeData.link, homeData.title)
+            WebViewActivity.lunch(activity, homeData.link!!, homeData.title!!)
         }
 
         homeAdapter.setPreLoadNumber(0)
