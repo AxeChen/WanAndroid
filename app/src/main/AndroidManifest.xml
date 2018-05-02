@@ -66,6 +66,11 @@
 
         <activity
             android:name=".block.login.LoginActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
+        <activity
+            android:name=".block.collect.CollectActivity"
             android:theme="@style/AppTheme.NoActionBar" />
     </application>
 

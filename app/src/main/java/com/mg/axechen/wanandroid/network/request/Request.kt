@@ -99,4 +99,17 @@ interface Request {
     @GET("navi/json")
     fun getNaviJson(): Observable<Response<MutableList<NaviBean>>>
 
+
+    /**
+     * 获取收藏的文章列表
+     */
+    @GET("lg/collect/list/{page}/json")
+    fun getCollectArticleList(@Path("page") page: Int): Observable<Response<ProjectListBean>>
+
+    /**
+     * 获取收藏的网站列表
+     */
+    @GET("lg/collect/usertools/json")
+    fun getCollectWebList(): Observable<Response<MutableList<SearchTag>>>
+
 }

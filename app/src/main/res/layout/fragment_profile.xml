@@ -9,6 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:background="@android:color/white"
+        android:foreground="?attr/selectableItemBackground"
         android:orientation="horizontal">
 
         <ImageView
@@ -16,8 +17,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="16dp"
-            android:src="@drawable/ic_launcher_foreground"
-            app:srcCompat="@android:drawable/sym_def_app_icon" />
+            android:src="@mipmap/default_avatar" />
 
         <TextView
             android:id="@+id/tvName"
@@ -33,7 +33,7 @@
 
 
     <RelativeLayout
-        android:id="@+id/rlLike"
+        android:id="@+id/rlCollect"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_below="@+id/llProfile"
@@ -63,7 +63,7 @@
         android:id="@+id/rlTheme"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_below="@+id/rlLike"
+        android:layout_below="@+id/rlCollect"
         android:layout_marginTop="1px"
         android:background="@android:color/white"
         android:foreground="?attr/selectableItemBackground">

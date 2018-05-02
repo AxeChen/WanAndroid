@@ -6,11 +6,10 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import com.mg.axechen.wanandroid.R
 import com.mg.axechen.wanandroid.block.knowledgetree.KnowledgeTreeDetailActivity
 import com.mg.axechen.wanandroid.javabean.TreeBean
-import kotlinx.android.synthetic.main.fragment_knowledge_tree.*
+import kotlinx.android.synthetic.main.recyclerview_layout.*
 import network.schedules.SchedulerProvider
 
 /**
@@ -38,7 +37,7 @@ class KnowledgeTreeListFragment : Fragment(), KnowledgeTreeListContract.View {
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        var view: View = inflater!!.inflate(R.layout.fragment_knowledge_tree, container, false)
+        var view: View = inflater!!.inflate(R.layout.recyclerview_layout, container, false)
         return view
     }
 

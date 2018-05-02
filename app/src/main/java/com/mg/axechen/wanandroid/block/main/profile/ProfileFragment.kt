@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.mg.axechen.wanandroid.R
+import com.mg.axechen.wanandroid.block.collect.CollectActivity
 import com.mg.axechen.wanandroid.block.login.LoginActivity
 import com.mg.axechen.wanandroid.theme.ChangeThemeActivity
 import com.mg.axechen.wanandroid.utils.ApkVersionUtils
@@ -34,6 +35,11 @@ class ProfileFragment : Fragment() {
         rlTheme.setOnClickListener { view ->
             ChangeThemeActivity.launch(activity)
         }
+
+        rlCollect.setOnClickListener { view ->
+            CollectActivity.lunch(activity)
+        }
+
 
     }
 

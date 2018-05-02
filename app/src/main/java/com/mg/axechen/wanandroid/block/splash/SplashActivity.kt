@@ -39,6 +39,7 @@ class SplashActivity : BaseActivity() {
             btnRegister.visibility = View.GONE
             Handler().postDelayed({
                 MainActivity.launch(this)
+                finish()
             }, 2000)
         }
     }

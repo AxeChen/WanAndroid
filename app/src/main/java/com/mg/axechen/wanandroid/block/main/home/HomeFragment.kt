@@ -26,7 +26,6 @@ import network.schedules.SchedulerProvider
  */
 class HomeFragment : Fragment(), HomeContract.View {
 
-
     /**
      * HomeItemList
      */

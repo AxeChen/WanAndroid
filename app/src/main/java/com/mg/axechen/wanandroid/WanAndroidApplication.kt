@@ -29,7 +29,7 @@ class WanAndroidApplication : Application(), ThemeUtils.switchColor {
         if (ThemeHelper.isDefaultTheme(context!!)) {
             return context?.resources!!.getColor(colorId)
         }
-        val theme = getTheme(context!!)
+        val theme = getTheme(context)
         var cId: Int = colorId
         if (theme != null) {
             cId = getThemeColorId(context, cId, theme)
@@ -65,7 +65,7 @@ class WanAndroidApplication : Application(), ThemeUtils.switchColor {
         if (ThemeHelper.isDefaultTheme(context!!)) {
             return color
         }
-        val theme = getTheme(context!!)
+        val theme = getTheme(context)
         var colorId = -1
 
         if (theme != null) {
