@@ -1,10 +1,10 @@
 package com.mg.axechen.wanandroid.network
 
+import com.mg.axechen.wanandroid.network.converter.GsonConverterFactory
 import com.mg.axechen.wanandroid.network.interceptor.AddCookieInterceptor
 import com.mg.axechen.wanandroid.network.interceptor.GetCookieInterceptor
 import network.request.Request
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
-import retrofit2.converter.gson.GsonConverterFactory
 
 /**
  * Created by AxeChen on 2018/3/19.
@@ -55,6 +55,7 @@ class NetWorkManager private constructor() {
             baseUrl(Request.HOST)
             addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             addConverterFactory(GsonConverterFactory.create())
+
 
         }.build()
     }

@@ -25,7 +25,7 @@ class WebViewActivity : BaseActivity() {
         val INTENT_TAG_URL: String = "intentTagStringUrl"
         val INTENT_TAG_TITLE: String = "intentTagStringTitle"
         fun lunch(context: Context, url: String, title: String) {
-            var intent: Intent = Intent(context, WebViewActivity::class.java)
+            var intent = Intent(context, WebViewActivity::class.java)
             intent.putExtra(INTENT_TAG_URL, url)
             intent.putExtra(INTENT_TAG_TITLE, title)
             context.startActivity(intent)

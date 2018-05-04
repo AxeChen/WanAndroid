@@ -1,5 +1,7 @@
 package com.mg.axechen.wanandroid.block.collect.article
 
+import com.mg.axechen.wanandroid.block.collect.base.BaseCollectPresenter
+import com.mg.axechen.wanandroid.block.collect.base.BaseCollectView
 import com.mg.axechen.wanandroid.javabean.ProjectListBean
 import com.mg.axechen.wanandroid.network.response.ResponseTransformer
 import io.reactivex.disposables.CompositeDisposable
@@ -8,7 +10,8 @@ import network.schedules.BaseSchedulerProvider
 /**
  * Created by AxeChen on 2018/4/20.
  */
-class CollectArticlePresenter(view: CollectArticleContract.View, schedulerProvider: BaseSchedulerProvider) : CollectArticleContract.Presenter {
+class CollectArticlePresenter(schedulerProvider: BaseSchedulerProvider, view: BaseCollectView,collectView: CollectArticleContract.View) : CollectArticleContract.Presenter,
+        BaseCollectPresenter(view, schedulerProvider) {
 
     var page = 0
 
@@ -26,7 +29,7 @@ class CollectArticlePresenter(view: CollectArticleContract.View, schedulerProvid
 
     init {
         this.scheduler = schedulerProvider
-        this.view = view
+        this.view = collectView
     }
 
     override fun getCollectArticleList() {

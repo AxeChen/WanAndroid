@@ -1,10 +1,8 @@
 package com.mg.axechen.wanandroid.block.collect.website
 
-import com.mg.axechen.wanandroid.javabean.HomeData
 import com.mg.axechen.wanandroid.javabean.SearchTag
 import com.mg.axechen.wanandroid.network.response.ResponseTransformer
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.functions.Consumer
 import network.schedules.BaseSchedulerProvider
 
 /**

@@ -1,6 +1,9 @@
 package com.mg.axechen.wanandroid.block.collect.article
 
 import com.mg.axechen.wanandroid.base.BasePresenter
+import com.mg.axechen.wanandroid.block.collect.base.BaseCollectImplView
+import com.mg.axechen.wanandroid.block.collect.base.BaseCollectPresenter
+import com.mg.axechen.wanandroid.block.collect.base.BaseCollectView
 import com.mg.axechen.wanandroid.javabean.ProjectListBean
 import io.reactivex.Observable
 import network.response.Response
@@ -14,7 +17,7 @@ class CollectArticleContract {
         fun getCollectArticleListFail(msg: String)
     }
 
-    interface Presenter : BasePresenter {
+    interface Presenter {
         fun getCollectArticleList()
     }
 

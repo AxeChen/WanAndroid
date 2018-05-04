@@ -126,7 +126,6 @@ class HomeFragment : Fragment(), HomeContract.View {
     }
 
     override fun getBannerFail(errorMsg: String) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun onResume() {

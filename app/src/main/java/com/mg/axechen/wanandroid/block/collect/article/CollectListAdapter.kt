@@ -1,4 +1,4 @@
-package com.mg.axechen.wanandroid.block.collect
+package com.mg.axechen.wanandroid.block.collect.article
 
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder

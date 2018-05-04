@@ -112,4 +112,46 @@ interface Request {
     @GET("lg/collect/usertools/json")
     fun getCollectWebList(): Observable<Response<MutableList<SearchTag>>>
 
+
+    /**
+     * 收藏站内文章
+     */
+    @POST("lg/collect/{id}/json")
+    fun collectInArticle(@Path("id") id: Int): Observable<Response<JSONObject>>
+
+
+    /**
+     * 收藏站外文章
+     */
+    @POST("lg/collect/add/json")
+    fun collectOutArticle(@Query("title") title: String,
+                          @Query("author") author: String,
+                          @Query("link") link: String): Observable<Response<JSONObject>>
+
+    /**
+     * 取消收藏
+     */
+    @POST("lg/uncollect_originId/{id}/json")
+    fun unCollectArticle(@Path("id") id: String): Observable<Response<JSONObject>>
+
+    /**
+     * 收藏网站
+     */
+    @POST("lg/collect/addtool/json")
+    fun collectWebsite(@Query("name") name: String,
+                       @Query("link") link: String): Observable<Response<JSONObject>>
+
+    /**
+     * 取消网站收藏
+     */
+    @POST("lg/collect/deletetool/json")
+    fun unCollectWebsite(@Query("id") id: String): Observable<Response<JSONObject>>
+
+    /**
+     * 编辑收藏的网站
+     */
+    @POST("lg/collect/updatetool/json")
+    fun updateWebsite(@Query("id") id: String,
+                      @Query("name") name: String,
+                      @Query("link") link: String): Observable<Response<JSONObject>>
 }
