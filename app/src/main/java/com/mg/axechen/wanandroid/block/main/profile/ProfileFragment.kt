@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import com.mg.axechen.wanandroid.R
 import com.mg.axechen.wanandroid.block.collect.CollectActivity
 import com.mg.axechen.wanandroid.block.login.LoginActivity
+import com.mg.axechen.wanandroid.block.main.AboutUsActivity
 import com.mg.axechen.wanandroid.theme.ChangeThemeActivity
 import com.mg.axechen.wanandroid.utils.ApkVersionUtils
 import com.mg.axechen.wanandroid.utils.SharePreferencesContants
@@ -40,6 +41,9 @@ class ProfileFragment : Fragment() {
             CollectActivity.lunch(activity)
         }
 
+        rlAbout.setOnClickListener { v: View? ->
+            AboutUsActivity.lunch(activity)
+        }
 
     }
 

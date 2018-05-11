@@ -13,9 +13,9 @@ import network.response.Response
 interface HomeContract {
     interface View {
         fun getHomeListSuccess(homeListBean: HomeListBean, isRefresh: Boolean)
-        fun getHomeListFail(msg: String)
-        fun showBanner(banners: List<BannerBean>)
-        fun getBannerFail(errorMsg: String)
+        fun getHomeListFail(msg: String,isRefresh: Boolean)
+        fun showBanner(banners: List<BannerBean>,isRefresh: Boolean)
+        fun getBannerFail(errorMsg: String,isRefresh: Boolean)
     }
 
     interface mode {
@@ -25,6 +25,6 @@ interface HomeContract {
 
     interface Presenter : BasePresenter {
         fun getHomeList(isRefresh: Boolean)
-        fun getBannerData()
+        fun getBannerData(isRefresh: Boolean)
     }
 }

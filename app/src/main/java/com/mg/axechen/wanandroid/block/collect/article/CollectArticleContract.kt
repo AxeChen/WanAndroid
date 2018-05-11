@@ -1,9 +1,5 @@
 package com.mg.axechen.wanandroid.block.collect.article
 
-import com.mg.axechen.wanandroid.base.BasePresenter
-import com.mg.axechen.wanandroid.block.collect.base.BaseCollectImplView
-import com.mg.axechen.wanandroid.block.collect.base.BaseCollectPresenter
-import com.mg.axechen.wanandroid.block.collect.base.BaseCollectView
 import com.mg.axechen.wanandroid.javabean.ProjectListBean
 import io.reactivex.Observable
 import network.response.Response
@@ -13,12 +9,13 @@ import network.response.Response
  */
 class CollectArticleContract {
     interface View {
-        fun getCollectArticleListSuccess(bean: ProjectListBean)
-        fun getCollectArticleListFail(msg: String)
+        fun getCollectArticleListSuccess(bean: ProjectListBean,isRefresh: Boolean)
+        fun getCollectArticleListFail(msg: String,isRefresh: Boolean)
+        fun loadAllCollectArticle(bean: ProjectListBean,isRefresh: Boolean)
     }
 
     interface Presenter {
-        fun getCollectArticleList()
+        fun getCollectArticleList(isRefresh:Boolean)
     }
 
     interface Model {

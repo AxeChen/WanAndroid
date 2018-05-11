@@ -17,7 +17,7 @@ class BaseCollectModel : BaseCollectContract.Model {
         return NetWorkManager.getInstance().getRequest()!!.collectOutArticle(title, author, link)
     }
 
-    override fun unCollectArticle(id: String): Observable<Response<JSONObject>> {
+    override fun unCollectArticle(id: Int): Observable<Response<JSONObject>> {
         return NetWorkManager.getInstance().getRequest()!!.unCollectArticle(id)
     }
 
@@ -25,7 +25,7 @@ class BaseCollectModel : BaseCollectContract.Model {
         return NetWorkManager.getInstance().getRequest()!!.collectWebsite(name, link)
     }
 
-    override fun unCollectWebsite(id: String): Observable<Response<JSONObject>> {
+    override fun unCollectWebsite(id: Int): Observable<Response<JSONObject>> {
         return NetWorkManager.getInstance().getRequest()!!.unCollectWebsite(id)
     }
 

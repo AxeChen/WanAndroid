@@ -45,13 +45,13 @@
                 android:background="?android:attr/selectableItemBackground"
                 android:src="@drawable/cardview_moreicon" />
 
-            <ImageView
+            <com.bilibili.magicasakura.widgets.TintImageView
                 android:id="@+id/ivLike"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
                 android:layout_centerVertical="true"
                 android:layout_toLeftOf="@+id/ivMore"
-                android:src="@drawable/post_thank" />
+                android:background="@drawable/ic_like" />
 
         </RelativeLayout>
 

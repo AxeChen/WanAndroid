@@ -15,6 +15,7 @@
     <dimen name="sp_12">12sp</dimen>
     <dimen name="sp_14">14sp</dimen>
     <dimen name="sp_16">16sp</dimen>
+    <dimen name="sp_24">24sp</dimen>
 
     <!--文章标题-->
     <dimen name="title_text_size">16sp</dimen>

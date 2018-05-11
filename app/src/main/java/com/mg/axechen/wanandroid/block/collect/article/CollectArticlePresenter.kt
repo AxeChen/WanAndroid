@@ -10,7 +10,8 @@ import network.schedules.BaseSchedulerProvider
 /**
  * Created by AxeChen on 2018/4/20.
  */
-class CollectArticlePresenter(schedulerProvider: BaseSchedulerProvider, view: BaseCollectView,collectView: CollectArticleContract.View) : CollectArticleContract.Presenter,
+class CollectArticlePresenter(schedulerProvider: BaseSchedulerProvider,
+                              view: BaseCollectView, collectView: CollectArticleContract.View) : CollectArticleContract.Presenter,
         BaseCollectPresenter(view, schedulerProvider) {
 
     var page = 0
@@ -32,17 +33,25 @@ class CollectArticlePresenter(schedulerProvider: BaseSchedulerProvider, view: Ba
         this.view = collectView
     }
 
-    override fun getCollectArticleList() {
+    override fun getCollectArticleList(isRefresh: Boolean) {
+        if (isRefresh) {
+            page = 0
+        }
         var dispose = model?.getCollectArticleList(page)
                 ?.compose(ResponseTransformer.handleResult())
                 ?.compose(scheduler?.applySchedulers())
                 ?.subscribe(
                         { t: ProjectListBean ->
-                            view?.getCollectArticleListSuccess(t)
-                            page++
+
+                            if (t.size * (page + 1) >= t.total) {
+                                view?.loadAllCollectArticle(t, isRefresh)
+                            } else {
+                                view?.getCollectArticleListSuccess(t, isRefresh)
+                                page++
+                            }
                         },
                         { t ->
-                            view?.getCollectArticleListFail(t.message!!)
+                            view?.getCollectArticleListFail(t.message!!, isRefresh)
                         })
         compositeDisposable.add(dispose!!)
     }

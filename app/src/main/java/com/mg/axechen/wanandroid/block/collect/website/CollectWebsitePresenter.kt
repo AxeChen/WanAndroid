@@ -1,5 +1,7 @@
 package com.mg.axechen.wanandroid.block.collect.website
 
+import com.mg.axechen.wanandroid.block.collect.base.BaseCollectPresenter
+import com.mg.axechen.wanandroid.block.collect.base.BaseCollectView
 import com.mg.axechen.wanandroid.javabean.SearchTag
 import com.mg.axechen.wanandroid.network.response.ResponseTransformer
 import io.reactivex.disposables.CompositeDisposable
@@ -8,7 +10,8 @@ import network.schedules.BaseSchedulerProvider
 /**
  * Created by AxeChen on 2018/4/20.
  */
-class CollectWebsitePresenter(view: CollectWebsiteContract.View, scheduler: BaseSchedulerProvider) : CollectWebsiteContract.Presenter {
+class CollectWebsitePresenter(collectWebView: CollectWebsiteContract.View,view: BaseCollectView, scheduler: BaseSchedulerProvider)
+    : CollectWebsiteContract.Presenter, BaseCollectPresenter(view, scheduler) {
 
     private var view: CollectWebsiteContract.View? = null
 
@@ -23,7 +26,7 @@ class CollectWebsitePresenter(view: CollectWebsiteContract.View, scheduler: Base
     }
 
     init {
-        this.view = view
+        this.view = collectWebView
         this.scheduler = scheduler
     }
 

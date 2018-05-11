@@ -38,7 +38,7 @@ class HomeData() : Parcelable {
     var author: String? = null
     var chapterId: Int = 0
     var chapterName: String? = null
-    var isCollect: Boolean = false
+    var collect: Boolean = false
     var courseId: Int = 0
     var desc: String? = null
     var envelopePic: String? = null
@@ -56,13 +56,14 @@ class HomeData() : Parcelable {
     var visible: Int = 0
     var zan: Int = 0
     var tags: List<HomeTag>? = null
+    var originId:Int = 0
 
     constructor(parcel: Parcel) : this() {
         apkLink = parcel.readString()
         author = parcel.readString()
         chapterId = parcel.readInt()
         chapterName = parcel.readString()
-        isCollect = parcel.readByte() != 0.toByte()
+        collect = parcel.readByte() != 0.toByte()
         courseId = parcel.readInt()
         desc = parcel.readString()
         envelopePic = parcel.readString()
@@ -79,6 +80,7 @@ class HomeData() : Parcelable {
         type = parcel.readInt()
         visible = parcel.readInt()
         zan = parcel.readInt()
+        originId = parcel.readInt()
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
@@ -86,7 +88,7 @@ class HomeData() : Parcelable {
         parcel.writeString(author)
         parcel.writeInt(chapterId)
         parcel.writeString(chapterName)
-        parcel.writeByte(if (isCollect) 1 else 0)
+        parcel.writeByte(if (collect) 1 else 0)
         parcel.writeInt(courseId)
         parcel.writeString(desc)
         parcel.writeString(envelopePic)
@@ -103,6 +105,7 @@ class HomeData() : Parcelable {
         parcel.writeInt(type)
         parcel.writeInt(visible)
         parcel.writeInt(zan)
+        parcel.writeInt(originId)
     }
 
     override fun describeContents(): Int {

@@ -16,11 +16,11 @@ interface BaseCollectContract {
 
         fun collectOutArticle(title: String, author: String, link: String): Observable<Response<JSONObject>>
 
-        fun unCollectArticle(id: String): Observable<Response<JSONObject>>
+        fun unCollectArticle(id: Int): Observable<Response<JSONObject>>
 
         fun collectWebsite(name: String, link: String): Observable<Response<JSONObject>>
 
-        fun unCollectWebsite(id: String): Observable<Response<JSONObject>>
+        fun unCollectWebsite(id: Int): Observable<Response<JSONObject>>
 
         fun updateWebsite(id: String, name: String, link: String): Observable<Response<JSONObject>>
     }
@@ -30,11 +30,11 @@ interface BaseCollectContract {
 
         fun collectOutArticle(title: String, author: String, link: String)
 
-        fun unCollectArticle(id: String)
+        fun unCollectArticle(id: Int)
 
         fun collectWebsite(name: String, link: String)
 
-        fun unCollectWebsite(id: String)
+        fun unCollectWebsite(id: Int)
 
         fun updateWebsite(id: String, name: String, link: String)
     }

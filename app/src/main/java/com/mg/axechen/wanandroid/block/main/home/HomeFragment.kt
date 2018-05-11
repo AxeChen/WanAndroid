@@ -3,15 +3,16 @@ package com.mg.axechen.wanandroid.block.main.home
 import android.app.AlertDialog
 import android.content.DialogInterface
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.mg.axechen.wanandroid.R
 import com.mg.axechen.wanandroid.WanAndroidApplication
+import com.mg.axechen.wanandroid.block.collect.base.BaseCollectFragment
 import com.mg.axechen.wanandroid.block.details.WebViewActivity
 import com.mg.axechen.wanandroid.javabean.BannerBean
 import com.mg.axechen.wanandroid.javabean.HomeData
@@ -24,7 +25,10 @@ import network.schedules.SchedulerProvider
  * Created by AxeChen on 2018/3/23.
  * 主页文章列表
  */
-class HomeFragment : Fragment(), HomeContract.View {
+class HomeFragment : BaseCollectFragment(), HomeContract.View {
+
+
+    private var selectId: Int = 0
 
     /**
      * HomeItemList
@@ -37,19 +41,26 @@ class HomeFragment : Fragment(), HomeContract.View {
     private val bannerLoopDatas = mutableListOf<BannerBean>()
 
     private val homeAdapter: HomeAdapter by lazy {
-        HomeAdapter(datas)
+        HomeAdapter(datas, activity)
     }
 
-    private val presenter: HomeContract.Presenter by lazy {
-        HomePresenter(SchedulerProvider.getInstatnce()!!, this)
+    private val presenter: HomePresenter by lazy {
+        HomePresenter(SchedulerProvider.getInstatnce()!!, this, this)
     }
 
-    override fun getHomeListFail(msg: String) {
+    override fun getHomeListFail(msg: String, isRefresh: Boolean) {
         homeAdapter.loadMoreComplete()
     }
 
     override fun getHomeListSuccess(homeListBean: HomeListBean, isRefresh: Boolean) {
         if (homeListBean.datas != null) {
+
+            if (isRefresh) {
+                datas
+                        .filter { it -> it.itemType == HomeViewType.VIEW_TYPE_ITEM }
+                        .forEach { it -> datas.remove(it) }
+            }
+
             var homedatas: List<HomeData> = homeListBean.datas!!
 
             sRefresh.isRefreshing = false
@@ -78,8 +89,8 @@ class HomeFragment : Fragment(), HomeContract.View {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        presenter.getBannerData()
         initRefresh()
+        presenter.getBannerData(true)
         rvList.run {
             layoutManager = LinearLayoutManager(activity)
             adapter = homeAdapter
@@ -102,7 +113,16 @@ class HomeFragment : Fragment(), HomeContract.View {
                 }
                 builder.create().show()
             } else if (view.id == R.id.ivLike) {
+                var homdata: HomeData = datas[position].item as HomeData
+                selectId = homdata.id
 
+                if (homdata.collect) {
+                    presenter.unCollectArticle(selectId)
+                    addCollectStatus(homdata)
+                } else {
+                    removeCollectStatus(homdata)
+                    presenter.collectInArticle(selectId)
+                }
             }
         }
 
@@ -112,7 +132,22 @@ class HomeFragment : Fragment(), HomeContract.View {
         }, rvList)
     }
 
-    override fun showBanner(banners: List<BannerBean>) {
+    private fun addCollectStatus(homeData: HomeData) {
+        homeData.collect = false
+        homeAdapter.notifyDataSetChanged()
+    }
+
+    private fun removeCollectStatus(homeData: HomeData) {
+        homeData.collect = true
+        homeAdapter.notifyDataSetChanged()
+    }
+
+    override fun showBanner(banners: List<BannerBean>, isRefresh: Boolean) {
+
+        if (isRefresh) {
+            datas.clear()
+        }
+
         for (bean in banners) {
             bannerLoopDatas.add(bean)
         }
@@ -122,15 +157,42 @@ class HomeFragment : Fragment(), HomeContract.View {
         datas.add(HomeViewType(HomeViewType.VIEW_TYPE_SELECTION, "最新博文"))
         homeAdapter.notifyDataSetChanged()
         // 请求最新博文
-        presenter.getHomeList(false)
+        presenter.getHomeList(isRefresh)
     }
 
-    override fun getBannerFail(errorMsg: String) {
+    override fun getBannerFail(errorMsg: String, isRefresh: Boolean) {
+        homeAdapter.loadMoreComplete()
     }
 
     override fun onResume() {
         super.onResume()
         initRefresh()
+    }
+
+    override fun collectInArticleSuccess() {
+        super.collectInArticleSuccess()
+        Toast.makeText(activity, "收藏成功", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun collectInArticleFail() {
+        super.collectInArticleFail()
+        Toast.makeText(activity, "收藏失败", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun unCollectArticleSuccess() {
+        super.unCollectArticleSuccess()
+        Toast.makeText(activity, "取消收藏成功", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun unCollectArticleFail() {
+        super.unCollectArticleFail()
+        Toast.makeText(activity, "取消收藏失败", Toast.LENGTH_SHORT).show()
+    }
+
+
+    override fun changeThemeRefresh() {
+        super.changeThemeRefresh()
+        homeAdapter.notifyDataSetChanged()
     }
 
 

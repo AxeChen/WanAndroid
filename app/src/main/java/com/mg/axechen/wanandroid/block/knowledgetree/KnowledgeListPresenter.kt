@@ -1,5 +1,7 @@
 package com.mg.axechen.wanandroid.block.knowledgetree
 
+import com.mg.axechen.wanandroid.block.collect.base.BaseCollectPresenter
+import com.mg.axechen.wanandroid.block.collect.base.BaseCollectView
 import com.mg.axechen.wanandroid.network.response.ResponseTransformer
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
@@ -8,7 +10,8 @@ import network.schedules.BaseSchedulerProvider
 /**
  * Created by AxeChen on 2018/4/8.
  */
-class KnowledgeListPresenter(view: KnowledgeListContract.View, schedulerProvider: BaseSchedulerProvider) : KnowledgeListContract.Presenter {
+class KnowledgeListPresenter(collectView:BaseCollectView,view: KnowledgeListContract.View, schedulerProvider: BaseSchedulerProvider)
+    :BaseCollectPresenter(collectView,schedulerProvider), KnowledgeListContract.Presenter {
 
     var view: KnowledgeListContract.View? = null
 

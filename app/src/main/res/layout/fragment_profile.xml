@@ -110,7 +110,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="15dp"
             android:layout_toRightOf="@+id/ivAbout"
-            android:text="关于我们" />
+            android:text="关于软件" />
 
     </RelativeLayout>
 

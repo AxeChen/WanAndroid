@@ -1,11 +1,11 @@
 package com.mg.axechen.wanandroid.block.collect.base
 
-import android.support.v4.app.Fragment
+import com.mg.axechen.wanandroid.base.BaseFragment
 
 /**
  * Created by AxeChen on 2018/5/4.
  */
-open class BaseCollectFragment : Fragment(), BaseCollectView {
+open class BaseCollectFragment : BaseFragment(), BaseCollectView {
     override fun collectInArticleSuccess() {
     }
 

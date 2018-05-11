@@ -2,7 +2,6 @@ package com.mg.axechen.wanandroid.block.main.project
 
 import android.graphics.Color
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.support.v4.widget.DrawerLayout
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
@@ -11,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.mg.axechen.wanandroid.R
+import com.mg.axechen.wanandroid.block.collect.base.BaseCollectFragment
 import com.mg.axechen.wanandroid.block.details.WebViewActivity
 import com.mg.axechen.wanandroid.block.main.home.CustomLoadMoreView
 import com.mg.axechen.wanandroid.javabean.HomeData
@@ -24,13 +24,15 @@ import network.schedules.SchedulerProvider
  *
  * 项目列表
  */
-class ProjectListFragment : Fragment(), ProjectListContract.View {
+class ProjectListFragment : BaseCollectFragment(), ProjectListContract.View {
 
     private var kinds = mutableListOf<TreeBean>()
 
     private var projects = mutableListOf<HomeData>()
 
     private var selectProject: TreeBean? = null
+
+    private var selectId: Int = 0
 
     private val listAdapter: ProjectListAdapter by lazy {
         ProjectListAdapter(R.layout.item_project_list, projects)
@@ -41,8 +43,8 @@ class ProjectListFragment : Fragment(), ProjectListContract.View {
     }
 
 
-    private val presenter: ProjectListContract.Presenter by lazy {
-        ProjectListPresenter(SchedulerProvider.getInstatnce()!!, this)
+    private val presenter: ProjectListPresenter by lazy {
+        ProjectListPresenter(this,SchedulerProvider.getInstatnce()!!, this)
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -114,6 +116,50 @@ class ProjectListFragment : Fragment(), ProjectListContract.View {
             var homeData: HomeData = adapter.data.get(position) as HomeData
             WebViewActivity.lunch(activity, homeData.link!!, homeData.title!!)
         }
+        listAdapter.setOnItemChildClickListener { adapter, view, position ->
+            if(view.id == R.id.ivLike){
+                var homdata: HomeData = projects[position]
+                selectId = homdata.id
+
+                if (homdata.collect) {
+                    presenter.unCollectArticle(selectId)
+                    addCollectStatus(homdata)
+                } else {
+                    removeCollectStatus(homdata)
+                    presenter.collectInArticle(selectId)
+                }
+            }
+        }
+    }
+
+    private fun addCollectStatus(homeData: HomeData) {
+        homeData.collect = false
+        listAdapter.notifyDataSetChanged()
+    }
+
+    private fun removeCollectStatus(homeData: HomeData) {
+        homeData.collect = true
+        listAdapter.notifyDataSetChanged()
+    }
+
+    override fun collectInArticleSuccess() {
+        super.collectInArticleSuccess()
+        Toast.makeText(activity, "收藏成功", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun collectInArticleFail() {
+        super.collectInArticleFail()
+        Toast.makeText(activity, "收藏失败", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun unCollectArticleSuccess() {
+        super.unCollectArticleSuccess()
+        Toast.makeText(activity, "取消收藏成功", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun unCollectArticleFail() {
+        super.unCollectArticleFail()
+        Toast.makeText(activity, "取消收藏失败", Toast.LENGTH_SHORT).show()
     }
 
     override fun getProjectTreeFail(msg: String) {

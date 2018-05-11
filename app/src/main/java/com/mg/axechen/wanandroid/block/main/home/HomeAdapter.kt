@@ -1,21 +1,26 @@
 package com.mg.axechen.wanandroid.block.main.home
 
 import android.content.Context
+import android.support.v4.view.ViewPager
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
-import com.bigkoo.convenientbanner.ConvenientBanner
 import com.bigkoo.convenientbanner.holder.Holder
+import com.bilibili.magicasakura.widgets.TintImageView
 import com.bumptech.glide.Glide
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.mg.axechen.wanandroid.R
+import com.mg.axechen.wanandroid.WanAndroidApplication
 import com.mg.axechen.wanandroid.javabean.BannerBean
 import com.mg.axechen.wanandroid.javabean.HomeData
 import com.mg.axechen.wanandroid.javabean.HomeViewType
+import com.mg.axechen.wanandroid.views.viewpager.AutoScrollViewPager
+import com.mg.axechen.wanandroid.views.viewpager.CirclePageIndicator
+import com.mg.axechen.wanandroid.views.viewpager.PhotoPagerAdapter
 
 /**
  * Created by AxeChen on 2018/3/23.
@@ -23,12 +28,21 @@ import com.mg.axechen.wanandroid.javabean.HomeViewType
  */
 class HomeAdapter : BaseMultiItemQuickAdapter<HomeViewType, BaseViewHolder> {
 
+    private var context: Context? = null
+
+    init {
+        this.context = context
+    }
+
+    private var position:Int = 0
+
     // Banner选择滑动的指示器图标
     var indicator: IntArray = intArrayOf(R.drawable.ic_page_indicator, R.drawable.ic_page_indicator_focused)
 
     var listAdapter: BannerListAdapter? = null
 
-    constructor(data: MutableList<HomeViewType>?) : super(data) {
+    constructor(data: MutableList<HomeViewType>?, context: Context?) : super(data) {
+        this.context = context
         addItemType(HomeViewType.VIEW_TYPE_ITEM, R.layout.item_home)
         addItemType(HomeViewType.VIEW_TYPE_BANNER_LOOP, R.layout.item_banner_viewpager)
         addItemType(HomeViewType.VIEW_TYPE_BANNER_LIST, R.layout.item_banner_list)
@@ -47,20 +61,38 @@ class HomeAdapter : BaseMultiItemQuickAdapter<HomeViewType, BaseViewHolder> {
 
                 helper.setText(R.id.tvSuperChapterName, homeData.superChapterName)
                 helper.setText(R.id.tvChildChapterName, homeData.chapterName)
+                var like: TintImageView = helper.getView(R.id.ivLike)
+                if (homeData.collect) {
+                    like.setBackgroundTintList(getThemeColor())
+                } else {
+                    like.setBackgroundTintList(R.color.tab_icon_no_select)
+                }
                 helper.addOnClickListener(R.id.ivMore)
                 helper.addOnClickListener(R.id.ivLike)
             }
             item.itemType == HomeViewType.VIEW_TYPE_BANNER_LOOP -> {
                 // 轮滑的view
-                val bannerBeans: List<BannerBean> = item.item as List<BannerBean>
-                val view: ConvenientBanner<BannerBean> = helper?.getView(R.id.cbLoopView)!!
-                // 自定义翻页page
-                view.clearDisappearingChildren()
-                view.setPages({ BannerLoopItemViewHolder() }, bannerBeans)
-                        .setPageIndicator(indicator)
-                        .setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.ALIGN_PARENT_RIGHT)
-                        .startTurning(3000)
-                        .setManualPageable(true)
+                val bannerBeans = item.item as MutableList<BannerBean>
+                var viewPager: AutoScrollViewPager = helper!!.getView(R.id.autoViewPager)
+                viewPager.adapter = PhotoPagerAdapter(context!!, bannerBeans, true)
+                var indicator: CirclePageIndicator = helper!!.getView(R.id.autoIndicator)
+                indicator.setViewPager(viewPager)
+                viewPager.offscreenPageLimit = bannerBeans.size
+                viewPager.currentItem = position
+                helper.setText(R.id.tvTitle, bannerBeans[position].title)
+                viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+                    override fun onPageScrollStateChanged(state: Int) {
+                    }
+
+                    override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+                    }
+
+                    override fun onPageSelected(index: Int) {
+                        helper.setText(R.id.tvTitle, bannerBeans[index].title)
+                        position = index
+                    }
+
+                })
             }
             item.itemType == HomeViewType.VIEW_TYPE_BANNER_LIST -> {
                 // 展示横向滑动的View
@@ -91,5 +123,12 @@ class HomeAdapter : BaseMultiItemQuickAdapter<HomeViewType, BaseViewHolder> {
             content!!.setText(data.title)
             Glide.with(context).load(data.imagePath).into(imageView)
         }
+    }
+
+    private fun getThemeColor(): Int {
+        // 封装成自定控件
+        // 主题框架需要封装
+        return WanAndroidApplication.instance!!.getThemeColor(context!!, WanAndroidApplication.instance!!.getTheme(context!!)!!)
+
     }
 }

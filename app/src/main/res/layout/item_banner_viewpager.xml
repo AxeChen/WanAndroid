@@ -1,8 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.bigkoo.convenientbanner.ConvenientBanner xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/cbLoopView"
+    android:id="@+id/home_auto_view"
     android:layout_width="match_parent"
-    android:layout_height="180dp"
-    android:layout_marginBottom="10dp"
-    app:canLoop="true" />
+    android:layout_height="180dp">
+
+    <com.mg.axechen.wanandroid.views.viewpager.AutoScrollViewPager
+        android:id="@+id/autoViewPager"
+        android:layout_width="match_parent"
+        android:layout_height="180dp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:background="#aa000000">
+
+        <com.mg.axechen.wanandroid.views.viewpager.CirclePageIndicator
+            android:id="@+id/autoIndicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="16dp"
+            app:radius="3dp" />
+
+        <TextView
+            style="@style/text_color_14sp"
+            android:id="@+id/tvTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/autoIndicator"
+            android:layout_marginLeft="16dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@color/white" />
+    </RelativeLayout>
+
+</RelativeLayout>

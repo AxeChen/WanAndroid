@@ -132,7 +132,7 @@ interface Request {
      * 取消收藏
      */
     @POST("lg/uncollect_originId/{id}/json")
-    fun unCollectArticle(@Path("id") id: String): Observable<Response<JSONObject>>
+    fun unCollectArticle(@Path("id") id: Int): Observable<Response<JSONObject>>
 
     /**
      * 收藏网站
@@ -145,7 +145,7 @@ interface Request {
      * 取消网站收藏
      */
     @POST("lg/collect/deletetool/json")
-    fun unCollectWebsite(@Query("id") id: String): Observable<Response<JSONObject>>
+    fun unCollectWebsite(@Query("id") id: Int): Observable<Response<JSONObject>>
 
     /**
      * 编辑收藏的网站

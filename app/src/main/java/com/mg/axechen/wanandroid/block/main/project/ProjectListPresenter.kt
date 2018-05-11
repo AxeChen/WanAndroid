@@ -1,5 +1,7 @@
 package com.mg.axechen.wanandroid.block.main.project
 
+import com.mg.axechen.wanandroid.block.collect.base.BaseCollectPresenter
+import com.mg.axechen.wanandroid.block.collect.base.BaseCollectView
 import com.mg.axechen.wanandroid.network.response.ResponseTransformer
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
@@ -8,7 +10,8 @@ import network.schedules.BaseSchedulerProvider
 /**
  * Created by AxeChen on 2018/4/2.
  */
-class ProjectListPresenter(scheduler: BaseSchedulerProvider, view: ProjectListContract.View) : ProjectListContract.Presenter {
+class ProjectListPresenter(collectView: BaseCollectView,scheduler: BaseSchedulerProvider, view: ProjectListContract.View)
+    :BaseCollectPresenter(collectView,scheduler), ProjectListContract.Presenter {
 
     private var view: ProjectListContract.View? = null
 

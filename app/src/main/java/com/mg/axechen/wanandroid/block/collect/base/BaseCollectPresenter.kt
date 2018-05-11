@@ -39,7 +39,7 @@ open class BaseCollectPresenter(view: BaseCollectView, schedulerProvider: BaseSc
         compositeDisposable.add(disposable)
     }
 
-    override fun unCollectArticle(id: String) {
+    override fun unCollectArticle(id: Int) {
         var disposable = model.unCollectArticle(id)
                 .compose(ResponseTransformer.handleResult())
                 .compose(schedulerProvider?.applySchedulers())
@@ -68,7 +68,7 @@ open class BaseCollectPresenter(view: BaseCollectView, schedulerProvider: BaseSc
         compositeDisposable.add(disposable)
     }
 
-    override fun unCollectWebsite(id: String) {
+    override fun unCollectWebsite(id: Int) {
         var disposable = model.unCollectWebsite(id)
                 .compose(ResponseTransformer.handleResult())
                 .compose(schedulerProvider?.applySchedulers())

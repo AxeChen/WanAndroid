@@ -1,13 +1,14 @@
 package com.mg.axechen.wanandroid.block.knowledgetree
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.mg.axechen.wanandroid.R
+import com.mg.axechen.wanandroid.block.collect.base.BaseCollectFragment
 import com.mg.axechen.wanandroid.block.details.WebViewActivity
 import com.mg.axechen.wanandroid.block.main.home.CustomLoadMoreView
 import com.mg.axechen.wanandroid.javabean.HomeData
@@ -20,7 +21,7 @@ import network.schedules.SchedulerProvider
  * Created by AxeChen on 2018/4/8.
  *
  */
-class KnowledgeListFragment : Fragment(), KnowledgeListContract.View {
+class KnowledgeListFragment : BaseCollectFragment(), KnowledgeListContract.View {
 
     companion object {
         var INTENT_TAG_JAVA_BEAN_TREE_BEAN = "treeBean"
@@ -32,9 +33,10 @@ class KnowledgeListFragment : Fragment(), KnowledgeListContract.View {
 
     var init: Boolean = false
 
+    private var selectId: Int = 0
 
-    private val presenter: KnowledgeListContract.Presenter by lazy {
-        KnowledgeListPresenter(this, SchedulerProvider.getInstatnce()!!)
+    private val presenter: KnowledgeListPresenter by lazy {
+        KnowledgeListPresenter(this, this, SchedulerProvider.getInstatnce()!!)
     }
 
     private val listAdapter: KnowledgeListAdapter by lazy {
@@ -72,6 +74,30 @@ class KnowledgeListFragment : Fragment(), KnowledgeListContract.View {
         listAdapter.setOnItemClickListener({ adapter, view, position ->
             WebViewActivity.lunch(activity, datas.get(position).link!!, datas.get(position).title!!)
         })
+        listAdapter.setOnItemChildClickListener { adapter, view, position ->
+            if (view.id == R.id.ivLike) {
+                var homdata: HomeData = datas[position]
+
+                if (homdata.collect) {
+                    presenter.unCollectArticle(selectId)
+                    addCollectStatus(homdata)
+                } else {
+                    removeCollectStatus(homdata)
+                    presenter.collectInArticle(selectId)
+                }
+            }
+        }
+
+    }
+
+    private fun addCollectStatus(homeData: HomeData) {
+        homeData.collect = false
+        listAdapter.notifyDataSetChanged()
+    }
+
+    private fun removeCollectStatus(homeData: HomeData) {
+        homeData.collect = true
+        listAdapter.notifyDataSetChanged()
     }
 
     private fun getBundleData() {
@@ -125,6 +151,26 @@ class KnowledgeListFragment : Fragment(), KnowledgeListContract.View {
         listAdapter.setEnableLoadMore(false)
         sRefresh.isRefreshing = false
         listAdapter.loadMoreComplete()
+    }
+
+    override fun collectInArticleSuccess() {
+        super.collectInArticleSuccess()
+        Toast.makeText(activity, "收藏成功", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun collectInArticleFail() {
+        super.collectInArticleFail()
+        Toast.makeText(activity, "收藏失败", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun unCollectArticleSuccess() {
+        super.unCollectArticleSuccess()
+        Toast.makeText(activity, "取消收藏成功", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun unCollectArticleFail() {
+        super.unCollectArticleFail()
+        Toast.makeText(activity, "取消收藏失败", Toast.LENGTH_SHORT).show()
     }
 
 }

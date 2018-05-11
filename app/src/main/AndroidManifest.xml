@@ -72,6 +72,10 @@
         <activity
             android:name=".block.collect.CollectActivity"
             android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".block.main.AboutUsActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>
