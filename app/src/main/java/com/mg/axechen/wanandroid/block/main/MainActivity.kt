@@ -15,14 +15,18 @@ import com.bilibili.magicasakura.widgets.TintImageView
 import com.mg.axechen.wanandroid.R
 import com.mg.axechen.wanandroid.WanAndroidApplication
 import com.mg.axechen.wanandroid.base.BaseActivity
+import com.mg.axechen.wanandroid.block.login.LoginActivity
 import com.mg.axechen.wanandroid.block.main.home.HomeFragment
 import com.mg.axechen.wanandroid.block.main.knowledge.KnowledgeTreeListFragment
 import com.mg.axechen.wanandroid.block.main.profile.ProfileFragment
 import com.mg.axechen.wanandroid.block.main.project.ProjectListFragment
 import com.mg.axechen.wanandroid.block.navi.NaviWebsiteActivity
 import com.mg.axechen.wanandroid.block.search.SearchActivity
+import com.mg.axechen.wanandroid.block.splash.SplashActivity
 import com.mg.axechen.wanandroid.javabean.BannerBean
 import com.mg.axechen.wanandroid.theme.ChangeThemeActivity
+import com.mg.axechen.wanandroid.utils.SharePreferencesContants
+import com.mg.axechen.wanandroid.utils.SharedPreferencesUtils
 import kotlinx.android.synthetic.main.activity_main.*
 import java.lang.ref.WeakReference
 
@@ -56,6 +60,7 @@ class MainActivity : BaseActivity(), MainContract.View, NavigationView.OnNavigat
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        registerLoginStatusReceiver()
         initToolBar()
         setViewPager()
         selectByIndex(0)
@@ -102,6 +107,11 @@ class MainActivity : BaseActivity(), MainContract.View, NavigationView.OnNavigat
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu)
+        if (SharedPreferencesUtils.getInt(SharePreferencesContants.USER_ID) == 0) {
+            menu?.add(0, 1, 0, "登录")
+        } else {
+            menu?.add(0, 2, 0, "注销")
+        }
         return super.onCreateOptionsMenu(menu)
     }
 
@@ -112,6 +122,15 @@ class MainActivity : BaseActivity(), MainContract.View, NavigationView.OnNavigat
             }
             R.id.actionUrlNav -> {
                 NaviWebsiteActivity.lunch(this)
+            }
+            1 -> {
+                LoginActivity.lunch(this)
+            }
+            2 -> {
+                SharedPreferencesUtils.userDataclear()
+                SharedPreferencesUtils.systemDataClear()
+                SplashActivity.lunch(this)
+                finish()
             }
         }
         return super.onOptionsItemSelected(item)
@@ -213,4 +232,8 @@ class MainActivity : BaseActivity(), MainContract.View, NavigationView.OnNavigat
         selectByIndex(index)
     }
 
+    override fun loginSuccess() {
+        super.loginSuccess()
+        invalidateOptionsMenu()
+    }
 }

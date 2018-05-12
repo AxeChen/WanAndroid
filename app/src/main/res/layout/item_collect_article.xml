@@ -36,24 +36,14 @@
                 android:layout_toRightOf="@+id/ttIvHead"
                 android:textSize="@dimen/sp_14" />
 
-            <ImageView
-                android:id="@+id/ivMore"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:visibility="gone"
-                android:background="?android:attr/selectableItemBackground"
-                android:src="@drawable/cardview_moreicon" />
 
             <com.bilibili.magicasakura.widgets.TintImageView
                 android:id="@+id/ivLike"
                 android:layout_width="18dp"
                 android:layout_height="18dp"
-                android:layout_marginRight="16dp"
                 android:layout_centerVertical="true"
-                android:layout_toLeftOf="@+id/ivMore"
                 android:layout_alignParentRight="true"
+                android:layout_marginRight="16dp"
                 android:background="@drawable/ic_like" />
 
         </RelativeLayout>
@@ -77,36 +67,6 @@
             android:layout_marginTop="10dp"
             android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/tvTagTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="分类："
-                android:textSize="@dimen/sp_12" />
-
-            <com.bilibili.magicasakura.widgets.TintTextView
-                android:id="@+id/tvSuperChapterName"
-                style="@style/theme_color_12sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/tvTagTitle" />
-
-            <TextView
-                android:id="@+id/tvLip"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_toRightOf="@+id/tvSuperChapterName"
-                android:text="/" />
-
-            <com.bilibili.magicasakura.widgets.TintTextView
-                android:id="@+id/tvChildChapterName"
-                style="@style/theme_color_12sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/tvLip" />
 
             <TextView
                 android:id="@+id/tvTime"

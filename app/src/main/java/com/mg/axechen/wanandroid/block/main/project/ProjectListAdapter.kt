@@ -37,8 +37,6 @@ class ProjectListAdapter(layoutResId: Int, data: List<HomeData>) : BaseQuickAdap
         // 封装成自定控件
         // 主题框架需要封装
         return WanAndroidApplication.instance!!.getThemeColor(WanAndroidApplication.instance!!.applicationContext, WanAndroidApplication.instance!!.getTheme(WanAndroidApplication.instance!!.applicationContext)!!)
-
     }
-
 
 }

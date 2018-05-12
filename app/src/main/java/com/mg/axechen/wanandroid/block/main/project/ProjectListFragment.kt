@@ -44,7 +44,7 @@ class ProjectListFragment : BaseCollectFragment(), ProjectListContract.View {
 
 
     private val presenter: ProjectListPresenter by lazy {
-        ProjectListPresenter(this,SchedulerProvider.getInstatnce()!!, this)
+        ProjectListPresenter(this, SchedulerProvider.getInstatnce()!!, this)
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -54,6 +54,7 @@ class ProjectListFragment : BaseCollectFragment(), ProjectListContract.View {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        registerLoginStatusReceiver()
         drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
         drawerLayout.setScrimColor(Color.TRANSPARENT)
         initProjectsAdapter()
@@ -117,9 +118,9 @@ class ProjectListFragment : BaseCollectFragment(), ProjectListContract.View {
             WebViewActivity.lunch(activity, homeData.link!!, homeData.title!!)
         }
         listAdapter.setOnItemChildClickListener { adapter, view, position ->
-            if(view.id == R.id.ivLike){
+            if (view.id == R.id.ivLike) {
                 var homdata: HomeData = projects[position]
-                selectId = homdata.id
+                selectId = homdata.originId
 
                 if (homdata.collect) {
                     presenter.unCollectArticle(selectId)
@@ -198,5 +199,10 @@ class ProjectListFragment : BaseCollectFragment(), ProjectListContract.View {
         Toast.makeText(activity, msg, Toast.LENGTH_SHORT).show()
     }
 
-
+    override fun loginSuccess() {
+        super.loginSuccess()
+        if (selectProject != null) {
+            presenter.getProjectTreeList(selectProject!!.id, true)
+        }
+    }
 }

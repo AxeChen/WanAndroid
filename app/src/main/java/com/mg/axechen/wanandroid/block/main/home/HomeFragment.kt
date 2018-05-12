@@ -89,6 +89,7 @@ class HomeFragment : BaseCollectFragment(), HomeContract.View {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        registerLoginStatusReceiver()
         initRefresh()
         presenter.getBannerData(true)
         rvList.run {
@@ -130,6 +131,11 @@ class HomeFragment : BaseCollectFragment(), HomeContract.View {
         homeAdapter.setOnLoadMoreListener(BaseQuickAdapter.RequestLoadMoreListener {
             presenter.getHomeList(false)
         }, rvList)
+        homeAdapter.bannerImageClicListener = object : HomeAdapter.OnBannerImageClickListener {
+            override fun onImageClickListener(bean: BannerBean) {
+                WebViewActivity.lunch(activity, bean.url!!, bean.title!!)
+            }
+        }
     }
 
     private fun addCollectStatus(homeData: HomeData) {
@@ -193,6 +199,10 @@ class HomeFragment : BaseCollectFragment(), HomeContract.View {
     override fun changeThemeRefresh() {
         super.changeThemeRefresh()
         homeAdapter.notifyDataSetChanged()
+    }
+
+    override fun loginSuccess() {
+        presenter.getHomeList(true)
     }
 
 

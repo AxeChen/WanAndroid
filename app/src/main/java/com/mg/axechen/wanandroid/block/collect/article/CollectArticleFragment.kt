@@ -37,7 +37,7 @@ class CollectArticleFragment : BaseCollectFragment(), CollectArticleContract.Vie
     }
 
     private val listAdapter: CollectListAdapter by lazy {
-        CollectListAdapter(R.layout.item_home, datas, activity)
+        CollectListAdapter(R.layout.item_collect_article, datas, activity)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

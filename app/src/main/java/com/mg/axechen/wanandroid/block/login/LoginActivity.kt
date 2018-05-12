@@ -10,9 +10,11 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.widget.Toast
 import com.mg.axechen.wanandroid.R
+import com.mg.axechen.wanandroid.WanAndroidApplication
 import com.mg.axechen.wanandroid.base.BaseActivity
 import com.mg.axechen.wanandroid.block.main.MainActivity
 import com.mg.axechen.wanandroid.block.register.RegisterActivity
+import com.mg.axechen.wanandroid.utils.Contacts
 import kotlinx.android.synthetic.main.activity_login.*
 import network.schedules.SchedulerProvider
 
@@ -86,8 +88,14 @@ class LoginActivity : BaseActivity(), LoginContract.View {
     override fun loginSuccess() {
         progressDialog.dismiss()
         // 跳转逻辑
-        Toast.makeText(this, "登录成功", Toast.LENGTH_SHORT).show()
+        Toast.makeText(WanAndroidApplication.instance, "登录成功", Toast.LENGTH_SHORT).show()
+        finish()
+
+
         MainActivity.launch(this)
+        var intent = Intent()
+        intent.action = Contacts.LOGIN_SUCCESS
+        sendBroadcast(intent)
     }
 
     override fun loginFail(errorMsg: String) {

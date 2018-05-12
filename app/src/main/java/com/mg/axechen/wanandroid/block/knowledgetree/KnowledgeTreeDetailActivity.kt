@@ -18,11 +18,15 @@ import kotlinx.android.synthetic.main.activity_knowledge_tree_detail.*
  */
 class KnowledgeTreeDetailActivity : BaseActivity() {
 
+    var initIndex = 0
+
     companion object {
         val INTENT_TAG_JAVABEAN_TREE_BEAN = "treeBean"
-        fun lunch(context: Context, treeBean: TreeBean) {
+        val INTENT_TAG_INT_INDEX = "index"
+        fun lunch(context: Context, treeBean: TreeBean, index: Int) {
             var intent = Intent(context, KnowledgeTreeDetailActivity::class.java)
             intent.putExtra(INTENT_TAG_JAVABEAN_TREE_BEAN, treeBean)
+            intent.putExtra(INTENT_TAG_INT_INDEX, index)
             context.startActivity(intent)
         }
     }
@@ -47,6 +51,7 @@ class KnowledgeTreeDetailActivity : BaseActivity() {
 
     private fun getIntentData() {
         treeBean = intent.getParcelableExtra(INTENT_TAG_JAVABEAN_TREE_BEAN)
+        initIndex = intent.getIntExtra(INTENT_TAG_INT_INDEX, 0)
     }
 
     private fun initFrame() {
@@ -72,6 +77,7 @@ class KnowledgeTreeDetailActivity : BaseActivity() {
         viewPager.run {
             adapter = viewPagerAdapter
             offscreenPageLimit = fragments.size
+            setCurrentItem(initIndex, false)
         }
         tabLayout.run {
             tabMode = TabLayout.MODE_SCROLLABLE

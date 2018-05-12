@@ -2,6 +2,9 @@ package com.mg.axechen.wanandroid.base
 
 import android.app.Activity
 import android.app.ActivityManager
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -11,6 +14,10 @@ import com.bilibili.magicasakura.utils.ThemeUtils
 import com.gyf.barlibrary.ImmersionBar
 import com.mg.axechen.wanandroid.R
 import com.mg.axechen.wanandroid.theme.ThemeHelper
+import android.content.IntentFilter
+import com.mg.axechen.wanandroid.utils.Contacts
+import java.lang.ref.WeakReference
+
 
 /**
  * Created by AxeChen on 2018/3/19.
@@ -21,13 +28,22 @@ abstract class BaseActivity : AppCompatActivity() {
 
     private lateinit var immersionBar: ImmersionBar
 
-    private var mCurrentTheme: Int = 0;
+    private var mCurrentTheme: Int = 0
+
+    private var receiver: MyLoginStatusReceiver? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mCurrentTheme = ThemeHelper.getTheme(this)
         setContentView(setLayoutId())
         initImmersionBar()
+    }
+
+    protected fun registerLoginStatusReceiver() {
+        receiver = MyLoginStatusReceiver(this)//广播接受者实例
+        val intentFilter = IntentFilter()
+        intentFilter.addAction(Contacts.LOGIN_SUCCESS)
+        registerReceiver(receiver, intentFilter)
     }
 
     protected abstract fun setLayoutId(): Int
@@ -38,6 +54,10 @@ abstract class BaseActivity : AppCompatActivity() {
     open fun changeThemeRefresh() {
     }
 
+    open fun loginSuccess() {
+    }
+
+
     open fun initImmersionBar() {
         immersionBar = ImmersionBar.with(this)
     }
@@ -45,6 +65,9 @@ abstract class BaseActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         immersionBar.destroy()
+        if (receiver != null) {
+            unregisterReceiver(receiver)
+        }
     }
 
     override fun finish() {
@@ -89,10 +112,24 @@ abstract class BaseActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * 登录状态广播接收
+     */
+    class MyLoginStatusReceiver(activity: BaseActivity) : BroadcastReceiver() {
+        var weakActivity: WeakReference<BaseActivity>? = null
+
+        init {
+            this.weakActivity = WeakReference(activity)
+        }
+
+        override fun onReceive(context: Context?, intent: Intent?) {
+            weakActivity?.get()?.loginSuccess()
+        }
+    }
+
     override fun onResume() {
         super.onResume()
         changeThemeRefresh()
         changeTheme(mCurrentTheme)
     }
-
 }

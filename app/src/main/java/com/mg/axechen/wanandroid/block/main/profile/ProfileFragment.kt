@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.mg.axechen.wanandroid.R
+import com.mg.axechen.wanandroid.base.BaseFragment
 import com.mg.axechen.wanandroid.block.collect.CollectActivity
 import com.mg.axechen.wanandroid.block.login.LoginActivity
 import com.mg.axechen.wanandroid.block.main.AboutUsActivity
@@ -19,7 +20,7 @@ import kotlinx.android.synthetic.main.fragment_profile.*
  * Created by AxeChen on 2018/4/2.
  * 个人详情页
  */
-class ProfileFragment : Fragment() {
+class ProfileFragment : BaseFragment() {
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         var view: View = inflater!!.inflate(R.layout.fragment_profile, container, false)
@@ -28,6 +29,7 @@ class ProfileFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        registerLoginStatusReceiver()
         initClickListener()
         initData()
     }
@@ -61,4 +63,8 @@ class ProfileFragment : Fragment() {
         tvVersionName.text = ApkVersionUtils.getVerName(activity)
     }
 
+    override fun loginSuccess() {
+        super.loginSuccess()
+        initData()
+    }
 }

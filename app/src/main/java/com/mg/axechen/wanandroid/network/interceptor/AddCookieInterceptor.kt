@@ -1,5 +1,6 @@
 package com.mg.axechen.wanandroid.network.interceptor
 
+import com.mg.axechen.wanandroid.utils.SharePreferencesContants
 import com.mg.axechen.wanandroid.utils.SharedPreferencesUtils
 import okhttp3.Interceptor
 import okhttp3.Response
@@ -16,7 +17,8 @@ class AddCookieInterceptor : Interceptor {
         val request = chain?.request()
         val domain = request?.url()?.host()
         val builder = request?.newBuilder()
-        if (domain!!.isNotEmpty()) {
+        var userId = SharedPreferencesUtils.getInt(SharePreferencesContants.USER_ID)
+        if (domain!!.isNotEmpty() && userId != 0) {
             var cookies = SharedPreferencesUtils.getString(domain)
             if (cookies.isNotEmpty()) {
                 builder?.addHeader(COOKIE_NAME, cookies)

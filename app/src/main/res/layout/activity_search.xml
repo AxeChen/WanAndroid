@@ -28,9 +28,9 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:visibility="gone"
                 android:layout_marginRight="16dp"
-                android:src="@drawable/ic_clear" />
+                android:src="@drawable/ic_clear"
+                android:visibility="gone" />
 
             <EditText
                 android:id="@+id/edSearch"
@@ -40,11 +40,11 @@
                 android:layout_toLeftOf="@id/ivClear"
                 android:layout_toRightOf="@+id/ivSearch"
                 android:background="@null"
-                android:textCursorDrawable="@color/white"
                 android:imeOptions="actionSearch"
                 android:maxLines="1"
                 android:singleLine="true"
-                android:textColor="@android:color/white" />
+                android:textColor="@android:color/white"
+                android:textCursorDrawable="@drawable/editext_cursor" />
 
 
         </RelativeLayout>

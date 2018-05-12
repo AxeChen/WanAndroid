@@ -34,12 +34,11 @@ class HomeAdapter : BaseMultiItemQuickAdapter<HomeViewType, BaseViewHolder> {
         this.context = context
     }
 
-    private var position:Int = 0
-
-    // Banner选择滑动的指示器图标
-    var indicator: IntArray = intArrayOf(R.drawable.ic_page_indicator, R.drawable.ic_page_indicator_focused)
+    private var position: Int = 0
 
     var listAdapter: BannerListAdapter? = null
+
+    var bannerImageClicListener: OnBannerImageClickListener? = null
 
     constructor(data: MutableList<HomeViewType>?, context: Context?) : super(data) {
         this.context = context
@@ -74,7 +73,8 @@ class HomeAdapter : BaseMultiItemQuickAdapter<HomeViewType, BaseViewHolder> {
                 // 轮滑的view
                 val bannerBeans = item.item as MutableList<BannerBean>
                 var viewPager: AutoScrollViewPager = helper!!.getView(R.id.autoViewPager)
-                viewPager.adapter = PhotoPagerAdapter(context!!, bannerBeans, true)
+                var photoAdapter = PhotoPagerAdapter(context!!, bannerBeans, true)
+                viewPager.adapter = photoAdapter
                 var indicator: CirclePageIndicator = helper!!.getView(R.id.autoIndicator)
                 indicator.setViewPager(viewPager)
                 viewPager.offscreenPageLimit = bannerBeans.size
@@ -93,6 +93,13 @@ class HomeAdapter : BaseMultiItemQuickAdapter<HomeViewType, BaseViewHolder> {
                     }
 
                 })
+
+                photoAdapter.setImageClickListener(object : PhotoPagerAdapter.ImageClickListener {
+                    override fun onImageClickListener(bean: BannerBean) {
+                        bannerImageClicListener?.onImageClickListener(bean)
+                    }
+                })
+
             }
             item.itemType == HomeViewType.VIEW_TYPE_BANNER_LIST -> {
                 // 展示横向滑动的View
@@ -130,5 +137,9 @@ class HomeAdapter : BaseMultiItemQuickAdapter<HomeViewType, BaseViewHolder> {
         // 主题框架需要封装
         return WanAndroidApplication.instance!!.getThemeColor(context!!, WanAndroidApplication.instance!!.getTheme(context!!)!!)
 
+    }
+
+    interface OnBannerImageClickListener {
+        fun onImageClickListener(bean: BannerBean)
     }
 }

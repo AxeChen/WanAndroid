@@ -17,6 +17,12 @@ import com.mg.axechen.wanandroid.javabean.BannerBean
  */
 class PhotoPagerAdapter(private val mContext: Context, private val mData: MutableList<BannerBean>, private val mIsMatch: Boolean) : PagerAdapter() {
 
+    private var imageClickListener: ImageClickListener? = null
+
+    fun setImageClickListener(imageClickListener: ImageClickListener) {
+        this.imageClickListener = imageClickListener
+    }
+
     override fun getCount(): Int {
         return mData.size
     }
@@ -29,10 +35,12 @@ class PhotoPagerAdapter(private val mContext: Context, private val mData: Mutabl
         } else {
             photoView = ImageView(mContext)
         }
-
         Glide.with(mContext).load(mData[position].imagePath).into(photoView)
         container.addView(photoView, LayoutParams.MATCH_PARENT,
                 LayoutParams.MATCH_PARENT)
+        photoView.setOnClickListener({
+            imageClickListener?.onImageClickListener(mData[position])
+        })
         return photoView
     }
 
@@ -42,5 +50,9 @@ class PhotoPagerAdapter(private val mContext: Context, private val mData: Mutabl
 
     override fun isViewFromObject(view: View, `object`: Any): Boolean {
         return view === `object`
+    }
+
+    interface ImageClickListener {
+        fun onImageClickListener(bean: BannerBean)
     }
 }

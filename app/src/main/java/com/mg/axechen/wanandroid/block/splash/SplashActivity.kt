@@ -1,5 +1,7 @@
 package com.mg.axechen.wanandroid.block.splash
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.view.View
@@ -18,6 +20,12 @@ import kotlinx.android.synthetic.main.activity_splash.*
 class SplashActivity : BaseActivity() {
     override fun setLayoutId(): Int {
         return R.layout.activity_splash
+    }
+
+    companion object {
+        fun lunch(context: Context) {
+            context.startActivity(Intent(context, SplashActivity::class.java))
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,6 +55,7 @@ class SplashActivity : BaseActivity() {
     private fun initClickListener() {
         tvNextTime.setOnClickListener({
             MainActivity.launch(this)
+            finish()
         })
 
         btnLogin.setOnClickListener({

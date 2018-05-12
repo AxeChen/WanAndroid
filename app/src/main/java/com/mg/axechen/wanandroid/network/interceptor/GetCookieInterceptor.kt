@@ -1,5 +1,6 @@
 package com.mg.axechen.wanandroid.network.interceptor
 
+import com.mg.axechen.wanandroid.utils.SharePreferencesContants
 import com.mg.axechen.wanandroid.utils.SharedPreferencesUtils
 import okhttp3.Interceptor
 import okhttp3.Response
@@ -19,7 +20,8 @@ class GetCookieInterceptor : Interceptor {
         val requestUrl = request?.url().toString()
         val domain = request?.url()?.host()
         // 登录之后保存cookies
-        if (requestUrl.contains(SAVE_USER_LOGIN_KEY) && !response?.header(SET_COOKIE_KEY)?.isEmpty()!!) {
+        if (requestUrl.contains(SAVE_USER_LOGIN_KEY) &&
+                !response?.header(SET_COOKIE_KEY)?.isEmpty()!!) {
             val cookies = response.headers(SET_COOKIE_KEY)
             val cookie = encodeCookie(cookies)
             saveCookie(requestUrl, domain, cookie)

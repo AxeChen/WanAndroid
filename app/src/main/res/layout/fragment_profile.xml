@@ -46,7 +46,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="16dp"
-            android:src="@drawable/ic_like" />
+            android:src="@drawable/ic_collect" />
 
         <TextView
             style="@style/text_color_16sp"

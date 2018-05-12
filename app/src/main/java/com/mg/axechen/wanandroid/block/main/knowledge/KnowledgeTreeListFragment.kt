@@ -11,6 +11,7 @@ import com.mg.axechen.wanandroid.block.knowledgetree.KnowledgeTreeDetailActivity
 import com.mg.axechen.wanandroid.javabean.TreeBean
 import kotlinx.android.synthetic.main.recyclerview_layout.*
 import network.schedules.SchedulerProvider
+import java.text.FieldPosition
 
 /**
  * Created by AxeChen on 2018/3/31.
@@ -25,7 +26,7 @@ class KnowledgeTreeListFragment : Fragment(), KnowledgeTreeListContract.View {
     }
 
     private val listAdapter: KnowledgeTreeListAdapter by lazy {
-        KnowledgeTreeListAdapter(R.layout.item_knowledge_tree_list, data)
+        KnowledgeTreeListAdapter(R.layout.item_knowledge_tree_list, data, activity)
     }
 
     override fun getTreeFail() {
@@ -53,7 +54,12 @@ class KnowledgeTreeListFragment : Fragment(), KnowledgeTreeListContract.View {
         }
 
         listAdapter.setOnItemClickListener { adapter, view, position ->
-            KnowledgeTreeDetailActivity.lunch(activity, data[position])
+            KnowledgeTreeDetailActivity.lunch(activity, data[position], 0)
+        }
+        listAdapter.knowledgeItemClick = object : KnowledgeTreeListAdapter.KnowledgeItemListener {
+            override fun knowledgeItemClick(bean: TreeBean, index: Int,position: Int) {
+                KnowledgeTreeDetailActivity.lunch(activity, data[position], index)
+            }
         }
     }
 
