@@ -36,7 +36,7 @@ class HomeAdapter : BaseMultiItemQuickAdapter<HomeViewType, BaseViewHolder> {
 
     private var position: Int = 0
 
-    var listAdapter: BannerListAdapter? = null
+    private var listAdapter: BannerListAdapter? = null
 
     var bannerImageClicListener: OnBannerImageClickListener? = null
 
@@ -116,7 +116,7 @@ class HomeAdapter : BaseMultiItemQuickAdapter<HomeViewType, BaseViewHolder> {
 
     class BannerLoopItemViewHolder : Holder<BannerBean> {
 
-        var imageView: ImageView? = null
+        private var imageView: ImageView? = null
         var content: TextView? = null
 
         override fun createView(context: Context?): View {
@@ -127,7 +127,7 @@ class HomeAdapter : BaseMultiItemQuickAdapter<HomeViewType, BaseViewHolder> {
         }
 
         override fun UpdateUI(context: Context?, position: Int, data: BannerBean) {
-            content!!.setText(data.title)
+            content!!.text = data.title
             Glide.with(context).load(data.imagePath).into(imageView)
         }
     }

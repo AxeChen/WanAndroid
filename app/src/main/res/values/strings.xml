@@ -5,7 +5,59 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
-    <string name="cancel">cancel</string>
-    <string name="confirm">ok</string>
+    <string name="cancel">Cancel</string>
+    <string name="confirm">Ok</string>
     <string name="textview_title_unlock">Lock Setting</string>
+    <string name="host">www.wanandroid.com</string>
+
+    <!-- 关于软件-->
+    <string name="app_introduce">软件简述</string>
+    <string name="app_introduce_content">WanAndroid安卓客户端是根据张鸿洋老师的WanAndroid开放API开发。WanAndroid项目收集了来自CSDN、掘金、简书等平台的热门Android技术博客，建立了丰富的安卓知识体系。是一个安卓开发者用于学习和技术积累的优良平台。欢迎各位Android开发者开发一个属于自己的WanAndroid项目！</string>
+    <string name="app_home">WanAndroid主页：http://www.wanandroid.com/index</string>
+    <string name="app_open_api">开放API地址：http://www.wanandroid.com/blog/show/2</string>
+    <string name="app_git_src">本项目地址：https://github.com/AxeChen/WanAndroid</string>
+    <string name="app_developer">关于开发者</string>
+    <string name="app_developer_blog">简书地址：https://www.jianshu.com/u/05f7d21f41ed</string>
+    <string name="app_developer_git">gitHub：https://github.com/AxeChen</string>
+
+    <!-- 切换主题 -->
+    <string name="theme_standard">经典色</string>
+    <string name="theme_purple">经典色</string>
+    <string name="theme_blue">知乎蓝</string>
+    <string name="theme_green">酷安绿</string>
+    <string name="theme_pink">B站粉</string>
+    <string name="theme_black">GIT黑</string>
+    <string name="theme_orange">Tapatalk橙</string>
+    <string name="theme_red">网易红</string>
+
+    <!--登录、注册-->
+    <string name="login">登录</string>
+    <string name="login_input_name_pls">请输入用户名</string>
+    <string name="login_input_pwd_pls">请输入密码</string>
+    <string name="login_click_to_register">还没账号？点此注册</string>
+
+    <string name="register">注册</string>
+    <string name="register_input_pwd_again">请再次输入密码</string>
+
+    <!--splash-->
+    <string name="next_login">下次再说</string>
+
+    <!-- 主页 -->
+    <string name="main_home">首页</string>
+    <string name="main_tree">体系</string>
+    <string name="main_project">项目</string>
+    <string name="main_user">用户</string>
+
+    <!--用户-->
+    <string name="my_collect">我的收藏</string>
+    <string name="my_theme">切换主题</string>
+    <string name="about_app">关于软件</string>
+
+    <string name="select_kind">选择分类</string>
+    <string name="kinds">分类：</string>
+    <string name="kinds_two">分类</string>
+
+    <string name="search">搜索</string>
+    <string name="nav_web">网站导航</string>
+    <string name="list">菜单</string>
 </resources>

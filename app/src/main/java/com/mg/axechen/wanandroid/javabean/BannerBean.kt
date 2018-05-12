@@ -10,7 +10,7 @@ import android.os.Parcelable
  * 首页Banner
  */
 
-class BannerBean : Parcelable {
+open class BannerBean : Parcelable {
 
     /**
      * desc : 一起来做个App吧
@@ -23,11 +23,11 @@ class BannerBean : Parcelable {
      * url : http://www.wanandroid.com/blog/show/2
      */
 
-    var desc: String? = null
+    private var desc: String? = null
     var id: Int = 0
     var imagePath: String? = null
-    var isVisible: Int = 0
-    var order: Int = 0
+    private var isVisible: Int = 0
+    private var order: Int = 0
     var title: String? = null
     var type: Int = 0
     var url: String? = null

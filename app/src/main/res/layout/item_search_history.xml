@@ -18,8 +18,7 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_marginLeft="10dp"
-        android:layout_toRightOf="@+id/ivHistory"
-        android:text="鸿洋" />
+        android:layout_toRightOf="@+id/ivHistory" />
 
     <View
         android:layout_width="match_parent"

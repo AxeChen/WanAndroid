@@ -17,7 +17,7 @@ class AddCookieInterceptor : Interceptor {
         val request = chain?.request()
         val domain = request?.url()?.host()
         val builder = request?.newBuilder()
-        var userId = SharedPreferencesUtils.getInt(SharePreferencesContants.USER_ID)
+        val userId = SharedPreferencesUtils.getInt(SharePreferencesContants.USER_ID)
         if (domain!!.isNotEmpty() && userId != 0) {
             var cookies = SharedPreferencesUtils.getString(domain)
             if (cookies.isNotEmpty()) {

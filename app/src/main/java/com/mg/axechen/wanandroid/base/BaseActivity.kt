@@ -116,7 +116,7 @@ abstract class BaseActivity : AppCompatActivity() {
      * 登录状态广播接收
      */
     class MyLoginStatusReceiver(activity: BaseActivity) : BroadcastReceiver() {
-        var weakActivity: WeakReference<BaseActivity>? = null
+        private var weakActivity: WeakReference<BaseActivity>? = null
 
         init {
             this.weakActivity = WeakReference(activity)

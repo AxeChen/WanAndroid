@@ -10,7 +10,6 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_marginRight="16dp"
-        android:layout_toRightOf="@+id/rbCheck"
         android:gravity="left|center_vertical"
         android:paddingBottom="10dp"
         android:paddingLeft="10dp"

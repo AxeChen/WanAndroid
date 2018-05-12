@@ -15,17 +15,17 @@ class CustomException {
         /**
          * 未知错误
          */
-        var UNKNOWN: Int = 1000
+        private var UNKNOWN: Int = 1000
 
         /**
          * 解析错误
          */
-        var PARSE_ERROR: Int = 1001
+        private var PARSE_ERROR: Int = 1001
 
         /**
          * 网络错误
          */
-        var NETWORK_ERROR: Int = 1002
+        private var NETWORK_ERROR: Int = 1002
 
         /**
          * HTTP错误
@@ -37,14 +37,14 @@ class CustomException {
          */
         fun handleException(cause: Throwable?): ApiException? {
             var exception: ApiException? = null
-            if (cause is JsonParseException) {
-                exception = ApiException(cause?.message, cause, PARSE_ERROR)
+            exception = if (cause is JsonParseException) {
+                ApiException(cause?.message, cause, PARSE_ERROR)
             } else if (cause is UnknownHostException ||
                     cause is SocketTimeoutException ||
                     cause is ConnectException) {
-                exception = ApiException(cause?.message, cause, NETWORK_ERROR)
+                ApiException(cause?.message, cause, NETWORK_ERROR)
             } else {
-                exception = ApiException(cause?.message, cause, UNKNOWN)
+                ApiException(cause?.message, cause, UNKNOWN)
             }
             return exception
         }

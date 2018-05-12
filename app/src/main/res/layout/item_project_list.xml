@@ -33,27 +33,26 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
                 android:layout_toRightOf="@+id/ttIvHead"
-                android:text="张弘扬"
                 android:textSize="14sp" />
 
             <ImageView
                 android:id="@+id/ivMore"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:visibility="gone"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:background="?android:attr/selectableItemBackground"
-                android:src="@drawable/cardview_moreicon" />
+                android:src="@drawable/cardview_moreicon"
+                android:visibility="gone" />
 
             <com.bilibili.magicasakura.widgets.TintImageView
                 android:id="@+id/ivLike"
                 android:layout_width="18dp"
                 android:layout_height="18dp"
-                android:layout_centerVertical="true"
-                android:layout_toLeftOf="@+id/ivMore"
-                android:layout_marginRight="16dp"
                 android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="16dp"
+                android:layout_toLeftOf="@+id/ivMore"
                 android:background="@drawable/ic_like" />
 
         </RelativeLayout>
@@ -66,13 +65,13 @@
 
         <TextView
             android:id="@+id/tvContent"
+            style="@style/title_text_style"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
-            android:layout_marginTop="10dp"
-            style="@style/title_text_style" />
+            android:layout_marginTop="10dp" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -88,8 +87,7 @@
                 android:id="@+id/tvTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:text="一小时前" />
+                android:layout_alignParentLeft="true" />
 
         </RelativeLayout>
 

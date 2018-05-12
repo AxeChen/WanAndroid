@@ -55,7 +55,7 @@
                 android:id="@+id/tvHome"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="主页"
+                android:text="@string/main_home"
                 android:textSize="@dimen/sp_12" />
 
         </LinearLayout>
@@ -81,7 +81,7 @@
                 android:id="@+id/tvKnowledge"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="体系"
+                android:text="@string/main_tree"
                 android:textSize="@dimen/sp_12" />
 
         </LinearLayout>
@@ -107,7 +107,7 @@
                 android:id="@+id/tvProject"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="项目"
+                android:text="@string/main_project"
                 android:textSize="@dimen/sp_12" />
 
         </LinearLayout>
@@ -133,7 +133,7 @@
                 android:id="@+id/tvUser"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="用户"
+                android:text="@string/main_user"
                 android:textSize="@dimen/sp_12" />
 
         </LinearLayout>

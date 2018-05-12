@@ -34,7 +34,7 @@ class HomeData() : Parcelable {
      * zan : 0
      */
 
-    var apkLink: String? = null
+    private var apkLink: String? = null
     var author: String? = null
     var chapterId: Int = 0
     var chapterName: String? = null

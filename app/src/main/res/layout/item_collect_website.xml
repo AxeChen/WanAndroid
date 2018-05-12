@@ -37,8 +37,7 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 android:layout_marginTop="5dp"
-                android:layout_toLeftOf="@+id/ivLike"
-                android:text="百度" />
+                android:layout_toLeftOf="@+id/ivLike" />
 
         </RelativeLayout>
 
@@ -50,8 +49,7 @@
             android:layout_marginBottom="10dp"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
-            android:layout_marginTop="10dp"
-            android:text="www.baidu.com" />
+            android:layout_marginTop="10dp" />
 
     </LinearLayout>
 

@@ -6,6 +6,5 @@
     android:layout_marginTop="10dp"
     android:gravity="center_vertical"
     android:paddingLeft="16dp"
-    android:text="selection"
     android:textColor="@color/theme_color_primary"
     android:textSize="@dimen/title_text_size" />

@@ -36,7 +36,7 @@ import java.lang.ref.WeakReference
  *
  *  主页
  */
-class MainActivity : BaseActivity(), MainContract.View, NavigationView.OnNavigationItemSelectedListener {
+class MainActivity : BaseActivity(), MainContract.View {
 
     override fun setLayoutId(): Int {
         return R.layout.activity_main
@@ -219,14 +219,6 @@ class MainActivity : BaseActivity(), MainContract.View, NavigationView.OnNavigat
         Toast.makeText(this, "请求失败", Toast.LENGTH_SHORT).show()
     }
 
-    override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.navTheme -> {
-                ChangeThemeActivity.launch(this)
-            }
-        }
-        return true
-    }
 
     override fun changeThemeRefresh() {
         selectByIndex(index)

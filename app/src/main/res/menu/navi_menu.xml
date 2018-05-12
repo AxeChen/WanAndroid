@@ -6,7 +6,7 @@
         android:id="@+id/actionMenu"
         android:icon="@drawable/ic_menu"
         android:orderInCategory="100"
-        android:title="菜单"
+        android:title="@string/list"
         app:showAsAction="always" />
 
 </menu>

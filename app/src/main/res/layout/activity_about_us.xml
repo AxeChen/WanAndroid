@@ -12,7 +12,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:orientation="vertical">
 
@@ -20,14 +20,14 @@
                 style="@style/text_color_24sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="软件简述" />
+                android:text="@string/app_introduce" />
 
             <TextView
                 style="@style/text_color_16sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="WanAndroid安卓客户端是根据张鸿洋老师的WanAndroid开放API开发。WanAndroid项目收集了来自CSDN、掘金、简书等平台的热门Android技术博客，建立了丰富的安卓知识体系。是一个安卓开发者用于学习和技术积累的优良平台。欢迎各位Android开发者开发一个属于自己的WanAndroid项目！" />
+                android:text="@string/app_introduce_content" />
 
             <TextView
                 android:id="@+id/tvHome"
@@ -38,7 +38,7 @@
                 android:foreground="?attr/selectableItemBackground"
                 android:paddingBottom="10dp"
                 android:paddingTop="10dp"
-                android:text="WanAndroid主页：http://www.wanandroid.com/index" />
+                android:text="@string/app_home" />
 
             <TextView
                 android:id="@+id/tvOpenApi"
@@ -48,7 +48,7 @@
                 android:foreground="?attr/selectableItemBackground"
                 android:paddingBottom="10dp"
                 android:paddingTop="10dp"
-                android:text="开放API地址：http://www.wanandroid.com/blog/show/2" />
+                android:text="@string/app_open_api" />
 
             <TextView
                 android:id="@+id/tvSrc"
@@ -58,14 +58,14 @@
                 android:foreground="?attr/selectableItemBackground"
                 android:paddingBottom="10dp"
                 android:paddingTop="10dp"
-                android:text="本项目地址：https://github.com/AxeChen/WanAndroid" />
+                android:text="@string/app_git_src" />
 
             <TextView
                 style="@style/text_color_24sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:text="关于开发者" />
+                android:text="@string/app_developer" />
 
             <TextView
                 android:id="@+id/tvBlog"
@@ -76,7 +76,7 @@
                 android:foreground="?attr/selectableItemBackground"
                 android:paddingBottom="10dp"
                 android:paddingTop="10dp"
-                android:text="简书地址：https://www.jianshu.com/u/05f7d21f41ed" />
+                android:text="@string/app_developer_blog" />
 
             <TextView
                 android:id="@+id/tvGitHub"
@@ -86,7 +86,7 @@
                 android:foreground="?attr/selectableItemBackground"
                 android:paddingBottom="10dp"
                 android:paddingTop="10dp"
-                android:text="gitHub：https://www.jianshu.com/u/05f7d21f41ed" />
+                android:text="@string/app_developer_git" />
 
         </LinearLayout>
 

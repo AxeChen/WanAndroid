@@ -40,7 +40,7 @@ open class BaseFragment : Fragment() {
      */
     class MyLoginStatusReceiver(fragment: BaseFragment) : BroadcastReceiver() {
 
-        var weakFragment: WeakReference<BaseFragment>? = null
+        private var weakFragment: WeakReference<BaseFragment>? = null
 
         init {
             weakFragment = WeakReference(fragment)

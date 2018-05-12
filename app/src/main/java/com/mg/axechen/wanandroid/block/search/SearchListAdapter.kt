@@ -37,43 +37,44 @@ class SearchListAdapter : BaseMultiItemQuickAdapter<SearchViewType, BaseViewHold
     }
 
     override fun convert(helper: BaseViewHolder?, item: SearchViewType?) {
-        if (item?.itemType == SearchViewType.VIEW_TYPE_SELECTION) {
-            helper!!.setText(R.id.tvSelection, item.item as String)
-        } else if (item?.itemType == SearchViewType.VIEW_TYPE_RECOMMEND) {
-            var flowLayout: FlowLayout = helper!!.getView(R.id.flowLayout)
-            var tags: MutableList<SearchTag> = item!!.item as MutableList<SearchTag>
+        when {
+            item?.itemType == SearchViewType.VIEW_TYPE_SELECTION -> helper!!.setText(R.id.tvSelection, item.item as String)
+            item?.itemType == SearchViewType.VIEW_TYPE_RECOMMEND -> {
+                var flowLayout: FlowLayout = helper!!.getView(R.id.flowLayout)
+                var tags: MutableList<SearchTag> = item!!.item as MutableList<SearchTag>
 
-            var views = mutableListOf<View>()
-            for (tag in tags) {
+                var views = mutableListOf<View>()
+                for (tag in tags) {
 
-                val textView = layoutInflater!!.inflate(R.layout.item_flowlayout, null) as TextView
-                textView.text = tag.name
-                textView.id = tag.id
-                val margin = ViewGroup.MarginLayoutParams(ActionMenuView.LayoutParams.WRAP_CONTENT, ActionMenuView.LayoutParams.WRAP_CONTENT)
-                margin.rightMargin = 10
-                margin.topMargin = 10
-                margin.leftMargin = 10
-                margin.bottomMargin = 10
-                textView.layoutParams = margin
-                views.add(textView)
+                    val textView = layoutInflater!!.inflate(R.layout.item_flowlayout, null) as TextView
+                    textView.text = tag.name
+                    textView.id = tag.id
+                    val margin = ViewGroup.MarginLayoutParams(ActionMenuView.LayoutParams.WRAP_CONTENT, ActionMenuView.LayoutParams.WRAP_CONTENT)
+                    margin.rightMargin = 10
+                    margin.topMargin = 10
+                    margin.leftMargin = 10
+                    margin.bottomMargin = 10
+                    textView.layoutParams = margin
+                    views.add(textView)
 
-                textView.setOnClickListener({
-                    recommendClickListener?.recommendClick(tag)
-                })
+                    textView.setOnClickListener({
+                        recommendClickListener?.recommendClick(tag)
+                    })
+                }
+                flowLayout.addItems(views)
+
             }
-            flowLayout.addItems(views)
-
-        } else if (item?.itemType == SearchViewType.VIEW_TYPE_HISTORY) {
-            helper!!.setText(R.id.tvName, item!!.item as String)
-        } else {
-            var homeData = item!!.item as HomeData
-            helper?.setText(R.id.ttTvName, homeData.author)
-            helper?.setText(R.id.tvContent, Html.fromHtml(homeData.title))
-            helper?.setText(R.id.tvTime, homeData.niceDate)
-            helper?.setText(R.id.tvSuperChapterName, homeData.superChapterName)
-            helper?.setText(R.id.tvChildChapterName, homeData.chapterName)
-            helper?.addOnClickListener(R.id.ivMore)
-            helper?.addOnClickListener(R.id.ivLike)
+            item?.itemType == SearchViewType.VIEW_TYPE_HISTORY -> helper!!.setText(R.id.tvName, item!!.item as String)
+            else -> {
+                var homeData = item!!.item as HomeData
+                helper?.setText(R.id.ttTvName, homeData.author)
+                helper?.setText(R.id.tvContent, Html.fromHtml(homeData.title))
+                helper?.setText(R.id.tvTime, homeData.niceDate)
+                helper?.setText(R.id.tvSuperChapterName, homeData.superChapterName)
+                helper?.setText(R.id.tvChildChapterName, homeData.chapterName)
+                helper?.addOnClickListener(R.id.ivMore)
+                helper?.addOnClickListener(R.id.ivLike)
+            }
         }
     }
 

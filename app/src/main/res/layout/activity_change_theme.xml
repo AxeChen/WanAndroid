@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -12,7 +13,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <FrameLayout
@@ -33,7 +34,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="56dp"
-                    android:text="经典色"
+                    android:text="@string/theme_standard"
                     android:textColor="@color/wan"
                     android:textSize="14sp" />
 
@@ -44,7 +45,7 @@
                     android:layout_gravity="right|center_vertical"
                     android:layout_marginRight="16dp"
                     android:background="@drawable/ic_check_white_18dp"
-                    android:backgroundTint="@color/theme_color_primary" />
+                    app:backgroundTint="@color/theme_color_primary" />
 
 
             </FrameLayout>
@@ -67,7 +68,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="56dp"
-                    android:text="星球紫"
+                    android:text="@string/theme_purple"
                     android:textColor="@color/purple"
                     android:textSize="14sp" />
 
@@ -78,7 +79,7 @@
                     android:layout_gravity="right|center_vertical"
                     android:layout_marginRight="16dp"
                     android:background="@drawable/ic_check_white_18dp"
-                    android:backgroundTint="@color/purple" />
+                    app:backgroundTint="@color/purple" />
 
             </FrameLayout>
 
@@ -100,7 +101,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="56dp"
-                    android:text="知乎蓝"
+                    android:text="@string/theme_blue"
                     android:textColor="@color/blue"
                     android:textSize="14sp" />
 
@@ -111,7 +112,7 @@
                     android:layout_gravity="right|center_vertical"
                     android:layout_marginRight="16dp"
                     android:background="@drawable/ic_check_white_18dp"
-                    android:backgroundTint="@color/blue" />
+                    app:backgroundTint="@color/blue" />
 
             </FrameLayout>
 
@@ -134,7 +135,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="56dp"
-                    android:text="酷安绿"
+                    android:text="@string/theme_green"
                     android:textColor="@color/green"
                     android:textSize="14sp" />
 
@@ -145,7 +146,7 @@
                     android:layout_gravity="right|center_vertical"
                     android:layout_marginRight="16dp"
                     android:background="@drawable/ic_check_white_18dp"
-                    android:backgroundTint="@color/green" />
+                    app:backgroundTint="@color/green" />
 
             </FrameLayout>
 
@@ -167,7 +168,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="56dp"
-                    android:text="B站粉"
+                    android:text="@string/theme_pink"
                     android:textColor="@color/pink"
                     android:textSize="14sp" />
 
@@ -178,7 +179,7 @@
                     android:layout_gravity="right|center_vertical"
                     android:layout_marginRight="16dp"
                     android:background="@drawable/ic_check_white_18dp"
-                    android:backgroundTint="@color/pink" />
+                    app:backgroundTint="@color/pink" />
 
 
             </FrameLayout>
@@ -201,7 +202,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="56dp"
-                    android:text="GIT黑"
+                    android:text="@string/theme_black"
                     android:textColor="@color/black"
                     android:textSize="14sp" />
 
@@ -212,7 +213,7 @@
                     android:layout_gravity="right|center_vertical"
                     android:layout_marginRight="16dp"
                     android:background="@drawable/ic_check_white_18dp"
-                    android:backgroundTint="@color/black" />
+                    app:backgroundTint="@color/black" />
 
             </FrameLayout>
 
@@ -234,7 +235,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="56dp"
-                    android:text="Tapatalk橙"
+                    android:text="@string/theme_orange"
                     android:textColor="@color/orange"
                     android:textSize="14sp" />
 
@@ -245,7 +246,7 @@
                     android:layout_gravity="right|center_vertical"
                     android:layout_marginRight="16dp"
                     android:background="@drawable/ic_check_white_18dp"
-                    android:backgroundTint="@color/orange" />
+                    app:backgroundTint="@color/orange" />
 
 
             </FrameLayout>
@@ -268,7 +269,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="56dp"
-                    android:text="网易红"
+                    android:text="@string/theme_red"
                     android:textColor="@color/red"
                     android:textSize="14sp" />
 
@@ -279,7 +280,7 @@
                     android:layout_gravity="right|center_vertical"
                     android:layout_marginRight="16dp"
                     android:background="@drawable/ic_check_white_18dp"
-                    android:backgroundTint="@color/red" />
+                    app:backgroundTint="@color/red" />
 
             </FrameLayout>
 

@@ -39,7 +39,7 @@ class AboutUsActivity : BaseActivity() {
         initClickListener()
     }
 
-    fun initToolbar() {
+    private fun initToolbar() {
         toolbar = findViewById(R.id.toolbar)
         toolbar.apply {
             toolbar?.title = "关于软件"

@@ -18,7 +18,7 @@
             android:layout_alignParentBottom="true"
             android:layout_marginEnd="16dp"
             android:layout_marginStart="16dp"
-            android:text="登录"
+            android:text="@string/login"
             android:textSize="40sp" />
 
     </RelativeLayout>
@@ -37,7 +37,7 @@
             android:id="@+id/etName"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="请输入用户名" />
+            android:hint="@string/login_input_name_pls" />
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
@@ -54,11 +54,11 @@
             android:id="@+id/etPassword"
             android:layout_width="match_parent"
             android:layout_height="49dp"
-            android:hint="请输入密码"
+            android:hint="@string/login_input_pwd_pls"
             android:inputType="textPassword" />
     </android.support.design.widget.TextInputLayout>
 
-    <Button
+    <com.bilibili.magicasakura.widgets.TintButton
         android:id="@+id/btLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -67,8 +67,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="40dp"
-        android:background="@color/theme_color_primary"
-        android:text="登录"
+        android:text="@string/login"
         android:textColor="#ffffff" />
 
     <TextView
@@ -79,7 +78,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:padding="10dp"
-        android:text="还没账号？点此注册"
+        android:text="@string/login_click_to_register"
         android:textColor="@color/theme_color_primary" />
 
     <TextView
@@ -88,6 +87,6 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="10dp"
-        android:text="www.wanandroid.com" />
+        android:text="@string/host" />
 
 </RelativeLayout>

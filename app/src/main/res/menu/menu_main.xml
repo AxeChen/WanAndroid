@@ -5,13 +5,13 @@
     <item
         android:id="@+id/actionSearch"
         android:icon="@drawable/ic_menu_search_dark"
-        android:title="搜索"
+        android:title="@string/search"
         app:showAsAction="always" />
 
     <item
         android:id="@+id/actionUrlNav"
         android:icon="@android:drawable/ic_search_category_default"
-        android:title="网站导航"
+        android:title="@string/nav_web"
         app:showAsAction="never" />
 
 </menu>

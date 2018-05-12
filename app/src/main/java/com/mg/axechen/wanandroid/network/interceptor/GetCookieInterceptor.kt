@@ -32,7 +32,7 @@ class GetCookieInterceptor : Interceptor {
     /**
      *  构造cookies字符
      */
-    fun encodeCookie(cookies: List<String>): String {
+    private fun encodeCookie(cookies: List<String>): String {
         val sb = StringBuilder()
         val set = HashSet<String>()
         cookies

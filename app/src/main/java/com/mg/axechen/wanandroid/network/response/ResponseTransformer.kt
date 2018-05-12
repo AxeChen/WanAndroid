@@ -44,10 +44,10 @@ class ResponseTransformer {
     class ResponseFunction<T> : Function<Response<T>, ObservableSource<T>> {
         override fun apply(t: Response<T>): ObservableSource<T> {
             val code: Int = t.errorCode
-            if (code >= 0) {
-                return Observable.just(t.data)
+            return if (code >= 0) {
+                Observable.just(t.data)
             } else {
-                return Observable.error(ApiException(t.errorMsg, null, code))
+                Observable.error(ApiException(t.errorMsg, null, code))
             }
         }
 

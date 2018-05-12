@@ -64,9 +64,7 @@ class HomeFragment : BaseCollectFragment(), HomeContract.View {
             var homedatas: List<HomeData> = homeListBean.datas!!
 
             sRefresh.isRefreshing = false
-            for (it in homedatas) {
-                datas.add(HomeViewType(HomeViewType.VIEW_TYPE_ITEM, it))
-            }
+            homedatas.mapTo(datas) { it -> HomeViewType(HomeViewType.VIEW_TYPE_ITEM, it) }
             homeAdapter.loadMoreComplete()
             homeAdapter.notifyDataSetChanged()
         }
@@ -154,9 +152,7 @@ class HomeFragment : BaseCollectFragment(), HomeContract.View {
             datas.clear()
         }
 
-        for (bean in banners) {
-            bannerLoopDatas.add(bean)
-        }
+        bannerLoopDatas += banners
         // 先添加图片轮询的数据
         datas.add(HomeViewType(HomeViewType.VIEW_TYPE_BANNER_LOOP, bannerLoopDatas))
         // 然后添加推荐的文章

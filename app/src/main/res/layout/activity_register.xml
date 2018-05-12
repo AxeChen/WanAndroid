@@ -17,7 +17,7 @@
             android:layout_alignParentBottom="true"
             android:layout_marginEnd="16dp"
             android:layout_marginStart="16dp"
-            android:text="注册"
+            android:text="@string/register"
             android:textSize="40sp" />
 
     </RelativeLayout>
@@ -36,7 +36,7 @@
             android:id="@+id/etName"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="请输入用户名" />
+            android:hint="@string/login_input_name_pls" />
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
@@ -53,7 +53,7 @@
             android:id="@+id/etPassword"
             android:layout_width="match_parent"
             android:layout_height="49dp"
-            android:hint="请输入密码"
+            android:hint="@string/login_input_pwd_pls"
             android:inputType="textPassword" />
     </android.support.design.widget.TextInputLayout>
 
@@ -71,11 +71,11 @@
             android:id="@+id/etRePassword"
             android:layout_width="match_parent"
             android:layout_height="49dp"
-            android:hint="请再次输入密码"
+            android:hint="@string/register_input_pwd_again"
             android:inputType="textPassword" />
     </android.support.design.widget.TextInputLayout>
 
-    <Button
+    <com.bilibili.magicasakura.widgets.TintButton
         android:id="@+id/btLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -85,7 +85,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="40dp"
         android:background="@color/theme_color_primary"
-        android:text="注册"
+        android:text="@string/register"
         android:textColor="#ffffff" />
 
 

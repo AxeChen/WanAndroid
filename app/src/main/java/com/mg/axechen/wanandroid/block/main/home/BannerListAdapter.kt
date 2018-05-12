@@ -17,7 +17,7 @@ class BannerListAdapter : BaseQuickAdapter<BannerBean, BaseViewHolder> {
     constructor(layoutResId: Int, data: MutableList<BannerBean>) : super(layoutResId, data)
 
     override fun convert(helper: BaseViewHolder?, item: BannerBean?) {
-        helper!!.setText(R.id.tvContent, item!!.title)
+        val text = helper!!.setText(R.id.tvContent, item!!.title)
         val view: ImageView = helper?.getView(R.id.ivImage)!!
         Glide.with(mContext).load(item.imagePath).into(view)
     }
