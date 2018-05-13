@@ -23,7 +23,7 @@ public class ResponseTypeAdapter implements JsonDeserializer<Response> {
         if (json.isJsonObject()) {
             final JsonObject obj = json.getAsJsonObject();
             if (obj.get("data").isJsonNull()) {
-                return new Response(new JSONObject(), obj.get("errorCode").getAsInt(), "");
+                return new Response(new JSONObject(), obj.get("errorCode").getAsInt(), obj.get("errorMsg").getAsString());
             } else {
                 return new Gson().fromJson(json, typeOfT);
             }

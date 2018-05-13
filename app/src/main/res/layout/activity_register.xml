@@ -76,7 +76,7 @@
     </android.support.design.widget.TextInputLayout>
 
     <com.bilibili.magicasakura.widgets.TintButton
-        android:id="@+id/btLogin"
+        android:id="@+id/btnRegister"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/ttRePassword"
@@ -84,9 +84,9 @@
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="40dp"
-        android:background="@color/theme_color_primary"
         android:text="@string/register"
-        android:textColor="#ffffff" />
+        app:backgroundTint="@color/theme_color_primary"
+        android:textColor="@color/white" />
 
 
 </RelativeLayout>

@@ -46,6 +46,7 @@ interface Request {
     /**
      * 用户注册
      */
+    @POST("user/register")
     fun userRegister(
             @Query("username") userName: String,
             @Query("password") password: String,

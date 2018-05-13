@@ -8,9 +8,11 @@ import network.schedules.BaseSchedulerProvider
 /**
  * Created by AxeChen on 2018/3/20.
  */
-class RegisterPresenter(model: RegisterModel, view: RegisterContract.View, schedulerProvider: BaseSchedulerProvider) : RegisterContract.Presenter {
+class RegisterPresenter(view: RegisterContract.View, schedulerProvider: BaseSchedulerProvider) : RegisterContract.Presenter {
 
-    var model: RegisterModel? = null
+    private val model: RegisterContract.Model by lazy {
+        RegisterModel()
+    }
 
     var view: RegisterContract.View? = null
 
@@ -21,7 +23,6 @@ class RegisterPresenter(model: RegisterModel, view: RegisterContract.View, sched
     }
 
     init {
-        this.model = model
         this.view = view
         this.scheduler = schedulerProvider
     }
@@ -38,7 +39,7 @@ class RegisterPresenter(model: RegisterModel, view: RegisterContract.View, sched
             return
         }
 
-        if (rePassword !== password) {
+        if (rePassword != password) {
             view?.rePasswordFault()
             return
         }

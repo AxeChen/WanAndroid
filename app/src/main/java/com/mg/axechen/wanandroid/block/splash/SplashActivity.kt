@@ -39,6 +39,7 @@ class SplashActivity : BaseActivity() {
         if (userId == 0) {
             if (SharedPreferencesUtils.getBoolean(SharePreferencesContants.IS_SECOND_USE)) {
                 MainActivity.launch(this)
+                finish()
             } else {
                 tvNextTime.visibility = View.VISIBLE
                 btnLogin.visibility = View.VISIBLE
@@ -66,10 +67,12 @@ class SplashActivity : BaseActivity() {
 
         btnLogin.setOnClickListener({
             LoginActivity.lunch(this)
+            finish()
         })
 
         btnRegister.setOnClickListener({
             RegisterActivity.lunach(this)
+            finish()
         })
     }
 
