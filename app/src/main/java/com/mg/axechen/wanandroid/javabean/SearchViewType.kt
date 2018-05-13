@@ -21,5 +21,6 @@ class SearchViewType(private var itemType: Int, var item: Any?) : MultiItemEntit
         val VIEW_TYPE_HISTORY = 1
         val VIEW_TYPE_RECOMMEND = 2
         val VIEW_TYPE_RESULT = 3
+        val VIEW_TYPE_HISTORY_SELECTION = 4
     }
 }

@@ -74,7 +74,7 @@
                 android:id="@+id/ivKnowledge"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/account_icon_following_select"
+                android:background="@drawable/ic_knowledge_tree"
                 app:backgroundTint="@color/theme_color_primary" />
 
             <TextView
@@ -100,7 +100,7 @@
                 android:id="@+id/ivProject"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/account_icon_feed_select"
+                android:background="@drawable/ic_project"
                 app:backgroundTint="@color/theme_color_primary" />
 
             <TextView
@@ -126,7 +126,7 @@
                 android:id="@+id/ivUser"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/account_icon_me_select"
+                android:background="@drawable/ic_user"
                 app:backgroundTint="@color/theme_color_primary" />
 
             <TextView

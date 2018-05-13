@@ -40,7 +40,7 @@ class KnowledgeListFragment : BaseCollectFragment(), KnowledgeListContract.View 
     }
 
     private val listAdapter: KnowledgeListAdapter by lazy {
-        KnowledgeListAdapter(R.layout.item_home, datas)
+        KnowledgeListAdapter(R.layout.item_knowledge_list, datas)
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -111,6 +111,7 @@ class KnowledgeListFragment : BaseCollectFragment(), KnowledgeListContract.View 
             if (treeBean == null) {
                 return
             }
+            sRefresh?.isRefreshing = true
             getArticleList(isRefresh)
             init = true
         }
@@ -151,26 +152,6 @@ class KnowledgeListFragment : BaseCollectFragment(), KnowledgeListContract.View 
         listAdapter.setEnableLoadMore(false)
         sRefresh.isRefreshing = false
         listAdapter.loadMoreComplete()
-    }
-
-    override fun collectInArticleSuccess() {
-        super.collectInArticleSuccess()
-        Toast.makeText(activity, "收藏成功", Toast.LENGTH_SHORT).show()
-    }
-
-    override fun collectInArticleFail() {
-        super.collectInArticleFail()
-        Toast.makeText(activity, "收藏失败", Toast.LENGTH_SHORT).show()
-    }
-
-    override fun unCollectArticleSuccess() {
-        super.unCollectArticleSuccess()
-        Toast.makeText(activity, "取消收藏成功", Toast.LENGTH_SHORT).show()
-    }
-
-    override fun unCollectArticleFail() {
-        super.unCollectArticleFail()
-        Toast.makeText(activity, "取消收藏失败", Toast.LENGTH_SHORT).show()
     }
 
 }

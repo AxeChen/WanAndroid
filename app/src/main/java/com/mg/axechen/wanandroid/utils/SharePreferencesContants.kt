@@ -8,5 +8,6 @@ class SharePreferencesContants {
         val USER_ID = "userId"
         val USER_NAME = "userName"
         val USER_EMAIL = "userEmail"
+        var HISTORY_SEARCH = "historySearch"
     }
 }

@@ -22,12 +22,6 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
-    <style name="AppTheme.AppCompat.Dialog.Alert" parent="Theme.AppCompat.Light.Dialog.Alert">
-        <item name="android:windowMinWidthMinor">90%</item>
-        <item name="android:windowMinWidthMajor">90%</item>
-        <item name="android:maxWidth">1080px</item>
-    </style>
-
     <style name="MyCustomTabLayout" parent="Widget.Design.TabLayout">
         <item name="tabIndicatorColor">@color/white</item>
         <item name="tabIndicatorHeight">2dp</item>

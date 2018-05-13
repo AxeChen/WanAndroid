@@ -92,20 +92,10 @@ class CollectWebsiteFragment : BaseCollectFragment(), CollectWebsiteContract.Vie
         }
     }
 
-    override fun collectWebsiteSuccess() {
-        super.collectWebsiteSuccess()
-        Toast.makeText(activity, "收藏成功", Toast.LENGTH_SHORT).show()
-    }
-
     override fun collectWebsiteFail() {
         super.collectWebsiteFail()
         Toast.makeText(activity, "收藏失败", Toast.LENGTH_SHORT).show()
         removeCollectStatus()
-    }
-
-    override fun unCollectWebsiteSuccess() {
-        super.unCollectWebsiteSuccess()
-        Toast.makeText(activity, "取消收藏成功", Toast.LENGTH_SHORT).show()
     }
 
     override fun unCollectWebsiteFail() {

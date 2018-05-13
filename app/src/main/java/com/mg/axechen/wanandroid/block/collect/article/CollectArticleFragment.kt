@@ -123,25 +123,14 @@ class CollectArticleFragment : BaseCollectFragment(), CollectArticleContract.Vie
         })
     }
 
-    override fun collectInArticleSuccess() {
-        super.collectInArticleSuccess()
-        Toast.makeText(activity, "收藏成功", Toast.LENGTH_SHORT).show()
-    }
-
     override fun collectInArticleFail() {
         super.collectInArticleFail()
-        Toast.makeText(activity, "收藏失败", Toast.LENGTH_SHORT).show()
         addCollectStatus()
     }
 
-    override fun unCollectArticleSuccess() {
-        super.unCollectArticleSuccess()
-        Toast.makeText(activity, "取消收藏成功", Toast.LENGTH_SHORT).show()
-    }
 
     override fun unCollectArticleFail() {
         super.unCollectArticleFail()
-        Toast.makeText(activity, "取消收藏失败", Toast.LENGTH_SHORT).show()
         removeCollectStatus()
     }
 

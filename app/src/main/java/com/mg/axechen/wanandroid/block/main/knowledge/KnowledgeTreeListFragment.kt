@@ -44,6 +44,7 @@ class KnowledgeTreeListFragment : Fragment(), KnowledgeTreeListContract.View {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        sRefresh.isEnabled = false
         presenter.getKnowledgeTree()
     }
 
