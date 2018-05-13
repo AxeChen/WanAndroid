@@ -5,7 +5,6 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.mg.axechen.wanandroid.R
 import com.mg.axechen.wanandroid.WanAndroidApplication
@@ -21,7 +20,6 @@ import network.schedules.SchedulerProvider
  * Created by AxeChen on 2018/4/19.
  */
 class CollectArticleFragment : BaseCollectFragment(), CollectArticleContract.View {
-
 
     private var datas = mutableListOf<HomeData>()
 
@@ -83,7 +81,7 @@ class CollectArticleFragment : BaseCollectFragment(), CollectArticleContract.Vie
         }
         listAdapter.onItemChildClickListener = BaseQuickAdapter.OnItemChildClickListener { adapter, view, position ->
             when (view.id) {
-                R.id.ivLike -> {
+                R.id.flLike -> {
                     selectId = datas[position].originId
                     // 判断是要收藏还是取消收藏
                     if (unCollectIds.contains(selectId)) {

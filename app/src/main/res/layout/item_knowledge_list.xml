@@ -46,15 +46,24 @@
                 android:src="@drawable/ic_more"
                 android:visibility="gone" />
 
-            <com.bilibili.magicasakura.widgets.TintImageView
-                android:id="@+id/ivLike"
-                android:layout_width="18dp"
-                android:layout_height="18dp"
+            <FrameLayout
+                android:id="@+id/flLike"
+                android:foreground="?attr/selectableItemBackground"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="16dp"
-                android:layout_toLeftOf="@+id/ivMore"
-                android:background="@drawable/ic_like" />
+                android:layout_centerVertical="true">
+
+                <com.bilibili.magicasakura.widgets.TintImageView
+                    android:id="@+id/ivLike"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_gravity="center"
+                    android:layout_toLeftOf="@+id/ivMore"
+                    android:background="@drawable/ic_like" />
+
+            </FrameLayout>
+
 
         </RelativeLayout>
 

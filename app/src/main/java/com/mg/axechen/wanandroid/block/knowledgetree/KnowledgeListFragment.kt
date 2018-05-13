@@ -76,7 +76,7 @@ class KnowledgeListFragment : BaseCollectFragment(), KnowledgeListContract.View 
             WebViewActivity.lunch(activity, datas.get(position).link!!, datas.get(position).title!!)
         })
         listAdapter.setOnItemChildClickListener { adapter, view, position ->
-            if (view.id == R.id.ivLike) {
+            if (view.id == R.id.flLike) {
                 var homdata: HomeData = datas[position]
                 selectId = homdata.id
                 if (homdata.collect) {

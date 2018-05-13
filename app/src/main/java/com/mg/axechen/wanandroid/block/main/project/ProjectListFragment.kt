@@ -118,7 +118,7 @@ class ProjectListFragment : BaseCollectFragment(), ProjectListContract.View {
             WebViewActivity.lunch(activity, homeData.link!!, homeData.title!!)
         }
         listAdapter.setOnItemChildClickListener { adapter, view, position ->
-            if (view.id == R.id.ivLike) {
+            if (view.id == R.id.flLike) {
                 var homdata: HomeData = projects[position]
                 selectId = homdata.id
 

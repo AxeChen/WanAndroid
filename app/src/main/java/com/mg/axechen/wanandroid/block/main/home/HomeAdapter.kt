@@ -66,8 +66,7 @@ class HomeAdapter : BaseMultiItemQuickAdapter<HomeViewType, BaseViewHolder> {
                 } else {
                     like.setBackgroundTintList(R.color.tab_icon_no_select)
                 }
-                helper.addOnClickListener(R.id.ivMore)
-                helper.addOnClickListener(R.id.ivLike)
+                helper.addOnClickListener(R.id.flLike)
             }
             item.itemType == HomeViewType.VIEW_TYPE_BANNER_LOOP -> {
                 // 轮滑的view

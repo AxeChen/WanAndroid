@@ -14,7 +14,7 @@ import com.mg.axechen.wanandroid.javabean.HomeData
 class KnowledgeListAdapter(layoutResId: Int, data: MutableList<HomeData>?) : BaseQuickAdapter<HomeData, BaseViewHolder>(layoutResId, data) {
 
     override fun convert(helper: BaseViewHolder?, item: HomeData?) {
-        if (helper != null && item!=null) {
+        if (helper != null && item != null) {
             helper.setText(R.id.ttTvName, item.author)
             helper.setText(R.id.tvContent, item.title)
             helper.setText(R.id.tvTime, item.niceDate)
@@ -24,8 +24,7 @@ class KnowledgeListAdapter(layoutResId: Int, data: MutableList<HomeData>?) : Bas
             } else {
                 like.setBackgroundTintList(R.color.tab_icon_no_select)
             }
-            helper.addOnClickListener(R.id.ivMore)
-            helper.addOnClickListener(R.id.ivLike)
+            helper.addOnClickListener(R.id.flLike)
         }
 
     }

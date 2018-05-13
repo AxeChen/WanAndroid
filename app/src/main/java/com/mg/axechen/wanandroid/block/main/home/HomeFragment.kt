@@ -102,16 +102,7 @@ class HomeFragment : BaseCollectFragment(), HomeContract.View {
         homeAdapter.setPreLoadNumber(0)
         homeAdapter.setEnableLoadMore(true)
         homeAdapter.setOnItemChildClickListener { adapter, view, position ->
-            if (view.id == R.id.ivMore) {
-                var builder: AlertDialog.Builder = AlertDialog.Builder(activity).apply {
-                    setTitle("更多操作")
-                    setMessage("呵呵")
-                    setNegativeButton("确认", DialogInterface.OnClickListener { dialog, which ->
-                        dialog.dismiss()
-                    })
-                }
-                builder.create().show()
-            } else if (view.id == R.id.ivLike) {
+            if (view.id == R.id.flLike) {
                 var homdata: HomeData = datas[position].item as HomeData
                 selectId = homdata.id
 

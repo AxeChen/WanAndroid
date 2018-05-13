@@ -39,7 +39,7 @@ class CollectListAdapter(layoutResId: Int, data: MutableList<HomeData>?, context
                 like.setBackgroundTintList(getThemeColor())
             }
             helper.addOnClickListener(R.id.ivMore)
-            helper.addOnClickListener(R.id.ivLike)
+            helper.addOnClickListener(R.id.flLike)
         }
     }
 

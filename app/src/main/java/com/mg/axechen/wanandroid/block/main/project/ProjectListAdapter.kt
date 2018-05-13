@@ -26,11 +26,9 @@ class ProjectListAdapter(layoutResId: Int, data: List<HomeData>) : BaseQuickAdap
             } else {
                 like.setBackgroundTintList(R.color.tab_icon_no_select)
             }
-            helper?.addOnClickListener(R.id.ivMore)
-            helper?.addOnClickListener(R.id.ivLike)
+            helper?.addOnClickListener(R.id.flLike)
             Glide.with(mContext).load(item?.envelopePic).into(helper?.getView(R.id.ivImage))
         }
-
     }
 
     private fun getThemeColor(): Int {
