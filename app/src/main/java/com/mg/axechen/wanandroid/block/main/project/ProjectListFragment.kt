@@ -120,7 +120,7 @@ class ProjectListFragment : BaseCollectFragment(), ProjectListContract.View {
         listAdapter.setOnItemChildClickListener { adapter, view, position ->
             if (view.id == R.id.ivLike) {
                 var homdata: HomeData = projects[position]
-                selectId = homdata.originId
+                selectId = homdata.id
 
                 if (homdata.collect) {
                     presenter.unCollectArticle(selectId)

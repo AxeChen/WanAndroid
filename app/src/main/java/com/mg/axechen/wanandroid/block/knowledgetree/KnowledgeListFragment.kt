@@ -15,6 +15,7 @@ import com.mg.axechen.wanandroid.javabean.HomeData
 import com.mg.axechen.wanandroid.javabean.ProjectListBean
 import com.mg.axechen.wanandroid.javabean.TreeBean
 import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.item_banner_viewpager.*
 import network.schedules.SchedulerProvider
 
 /**
@@ -77,7 +78,7 @@ class KnowledgeListFragment : BaseCollectFragment(), KnowledgeListContract.View 
         listAdapter.setOnItemChildClickListener { adapter, view, position ->
             if (view.id == R.id.ivLike) {
                 var homdata: HomeData = datas[position]
-
+                selectId = homdata.id
                 if (homdata.collect) {
                     presenter.unCollectArticle(selectId)
                     addCollectStatus(homdata)
