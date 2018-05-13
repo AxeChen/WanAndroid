@@ -9,6 +9,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter
 import com.mg.axechen.wanandroid.R
 import com.mg.axechen.wanandroid.WanAndroidApplication
 import com.mg.axechen.wanandroid.block.collect.base.BaseCollectFragment
+import com.mg.axechen.wanandroid.block.details.DetailActivity
 import com.mg.axechen.wanandroid.block.details.WebViewActivity
 import com.mg.axechen.wanandroid.block.main.home.CustomLoadMoreView
 import com.mg.axechen.wanandroid.javabean.HomeData
@@ -40,6 +41,7 @@ class CollectArticleFragment : BaseCollectFragment(), CollectArticleContract.Vie
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        registerLoginStatusReceiver()
         initRecyclerList()
         initRefresh()
         presenter.getCollectArticleList(true)
@@ -52,6 +54,7 @@ class CollectArticleFragment : BaseCollectFragment(), CollectArticleContract.Vie
 
     override fun loadAllCollectArticle(bean: ProjectListBean, isRefresh: Boolean) {
         if (isRefresh) {
+            unCollectIds.clear()
             datas.clear()
         }
         datas.addAll(bean.datas!!)
@@ -63,6 +66,7 @@ class CollectArticleFragment : BaseCollectFragment(), CollectArticleContract.Vie
 
     override fun getCollectArticleListSuccess(bean: ProjectListBean, isRefresh: Boolean) {
         if (isRefresh) {
+            unCollectIds.clear()
             datas.clear()
         }
         sRefresh.isRefreshing = false
@@ -77,7 +81,7 @@ class CollectArticleFragment : BaseCollectFragment(), CollectArticleContract.Vie
             adapter = listAdapter
         }
         listAdapter.onItemClickListener = BaseQuickAdapter.OnItemClickListener { adapter, view, position ->
-            WebViewActivity.lunch(activity, datas[position].link!!, datas[position].title!!)
+            DetailActivity.lunch(activity, datas[position], !unCollectIds.contains(datas[position].originId), datas[position].originId)
         }
         listAdapter.onItemChildClickListener = BaseQuickAdapter.OnItemChildClickListener { adapter, view, position ->
             when (view.id) {
@@ -92,13 +96,12 @@ class CollectArticleFragment : BaseCollectFragment(), CollectArticleContract.Vie
                         addCollectStatus()
                     }
                 }
-
             }
         }
         listAdapter.setPreLoadNumber(0)
         listAdapter.setEnableLoadMore(true)
         listAdapter.setLoadMoreView(CustomLoadMoreView())
-        listAdapter.setOnLoadMoreListener(BaseQuickAdapter.RequestLoadMoreListener {
+        listAdapter.setOnLoadMoreListener({
             presenter.getCollectArticleList(false)
         }, rvList)
     }
@@ -142,4 +145,12 @@ class CollectArticleFragment : BaseCollectFragment(), CollectArticleContract.Vie
         sRefresh.setColorSchemeColors(resources.getColor(color), resources.getColor(color), resources.getColor(color))
     }
 
+    override fun collectStatusChange(id: Int, isCollect: Boolean) {
+        super.collectStatusChange(id, isCollect)
+        datas
+                .filter { it -> (it.originId == id && !isCollect) }
+                .forEach { unCollectIds.add(id) }
+        listAdapter.setUnCollectIds(unCollectIds)
+        listAdapter.notifyDataSetChanged()
+    }
 }

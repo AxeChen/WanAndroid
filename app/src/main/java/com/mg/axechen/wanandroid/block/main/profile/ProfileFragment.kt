@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.mg.axechen.wanandroid.R
 import com.mg.axechen.wanandroid.base.BaseFragment
 import com.mg.axechen.wanandroid.block.collect.CollectActivity
@@ -40,7 +41,11 @@ class ProfileFragment : BaseFragment() {
         }
 
         rlCollect.setOnClickListener { view ->
-            CollectActivity.lunch(activity)
+            if (SharedPreferencesUtils.getInt(SharePreferencesContants.USER_ID) == 0) {
+                Toast.makeText(activity, getString(R.string.pls_login), Toast.LENGTH_SHORT).show()
+            } else {
+                CollectActivity.lunch(activity)
+            }
         }
 
         rlAbout.setOnClickListener { v: View? ->

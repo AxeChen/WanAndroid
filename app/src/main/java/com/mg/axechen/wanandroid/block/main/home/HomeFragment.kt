@@ -13,11 +13,14 @@ import com.chad.library.adapter.base.BaseQuickAdapter
 import com.mg.axechen.wanandroid.R
 import com.mg.axechen.wanandroid.WanAndroidApplication
 import com.mg.axechen.wanandroid.block.collect.base.BaseCollectFragment
+import com.mg.axechen.wanandroid.block.details.DetailActivity
 import com.mg.axechen.wanandroid.block.details.WebViewActivity
 import com.mg.axechen.wanandroid.javabean.BannerBean
 import com.mg.axechen.wanandroid.javabean.HomeData
 import com.mg.axechen.wanandroid.javabean.HomeListBean
 import com.mg.axechen.wanandroid.javabean.HomeViewType
+import com.mg.axechen.wanandroid.utils.SharePreferencesContants
+import com.mg.axechen.wanandroid.utils.SharedPreferencesUtils
 import kotlinx.android.synthetic.main.fragment_home.*
 import network.schedules.SchedulerProvider
 
@@ -96,23 +99,27 @@ class HomeFragment : BaseCollectFragment(), HomeContract.View {
         }
         homeAdapter.setOnItemClickListener { adapter, view, position ->
             var homeData: HomeData = homeAdapter.data.get(position).item as HomeData
-            WebViewActivity.lunch(activity, homeData.link!!, homeData.title!!)
+            DetailActivity.lunch(activity, homeData, homeData.collect, homeData.id)
         }
 
         homeAdapter.setPreLoadNumber(0)
         homeAdapter.setEnableLoadMore(true)
         homeAdapter.setOnItemChildClickListener { adapter, view, position ->
             if (view.id == R.id.flLike) {
-                var homdata: HomeData = datas[position].item as HomeData
-                selectId = homdata.id
-
-                if (homdata.collect) {
-                    presenter.unCollectArticle(selectId)
-                    addCollectStatus(homdata)
+                if (SharedPreferencesUtils.getInt(SharePreferencesContants.USER_ID) == 0) {
+                    Toast.makeText(activity,getString(R.string.collect_fail_pls_login),Toast.LENGTH_SHORT).show()
                 } else {
-                    removeCollectStatus(homdata)
-                    presenter.collectInArticle(selectId)
+                    var homdata: HomeData = datas[position].item as HomeData
+                    selectId = homdata.id
+                    if (homdata.collect) {
+                        presenter.unCollectArticle(selectId)
+                        addCollectStatus(homdata)
+                    } else {
+                        removeCollectStatus(homdata)
+                        presenter.collectInArticle(selectId)
+                    }
                 }
+
             }
         }
 
@@ -171,5 +178,13 @@ class HomeFragment : BaseCollectFragment(), HomeContract.View {
         presenter.getHomeList(true)
     }
 
-
+    override fun collectStatusChange(id: Int, isCollect: Boolean) {
+        super.collectStatusChange(id, isCollect)
+        datas
+                .filter { it -> it.itemType == HomeViewType.VIEW_TYPE_ITEM }
+                .map { it -> it.item as HomeData }
+                .filter { it.id == id }
+                .forEach { it.collect = isCollect }
+        homeAdapter.notifyDataSetChanged()
+    }
 }

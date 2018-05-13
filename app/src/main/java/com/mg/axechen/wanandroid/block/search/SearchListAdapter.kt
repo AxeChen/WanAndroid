@@ -32,7 +32,7 @@ class SearchListAdapter : BaseMultiItemQuickAdapter<SearchViewType, BaseViewHold
         addItemType(SearchViewType.VIEW_TYPE_SELECTION, R.layout.item_home_selection)
         addItemType(SearchViewType.VIEW_TYPE_RECOMMEND, R.layout.item_search_recommend)
         addItemType(SearchViewType.VIEW_TYPE_HISTORY, R.layout.item_search_history)
-        addItemType(SearchViewType.VIEW_TYPE_RESULT, R.layout.item_home)
+        addItemType(SearchViewType.VIEW_TYPE_RESULT, R.layout.item_collect_article)
         addItemType(SearchViewType.VIEW_TYPE_HISTORY_SELECTION, R.layout.item_seach_history_selection)
 
         layoutInflater = LayoutInflater.from(context)
@@ -77,11 +77,8 @@ class SearchListAdapter : BaseMultiItemQuickAdapter<SearchViewType, BaseViewHold
                 helper?.setText(R.id.ttTvName, homeData.author)
                 helper?.setText(R.id.tvContent, Html.fromHtml(homeData.title))
                 helper?.setText(R.id.tvTime, homeData.niceDate)
-                helper?.setText(R.id.tvSuperChapterName, homeData.superChapterName)
-                helper?.setText(R.id.tvChildChapterName, homeData.chapterName)
                 var like: ImageView = helper!!.getView(R.id.ivLike)
                 like.visibility = View.GONE
-                helper?.addOnClickListener(R.id.ivLike)
             }
         }
     }

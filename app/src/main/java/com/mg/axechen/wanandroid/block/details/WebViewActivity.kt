@@ -1,5 +1,6 @@
 package com.mg.axechen.wanandroid.block.details
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -10,7 +11,7 @@ import android.widget.FrameLayout
 import com.just.agentweb.AgentWeb
 import com.just.agentweb.ChromeClientCallbackManager
 import com.mg.axechen.wanandroid.R
-import com.mg.axechen.wanandroid.base.BaseActivity
+import com.mg.axechen.wanandroid.block.collect.base.BaseCollectActivity
 import kotlinx.android.synthetic.main.activity_web_view.*
 
 /**
@@ -19,12 +20,12 @@ import kotlinx.android.synthetic.main.activity_web_view.*
  * webViewActivity
  * 基本的访问操作
  */
-class WebViewActivity : BaseActivity() {
+open class WebViewActivity : BaseCollectActivity() {
 
     companion object {
         val INTENT_TAG_URL: String = "intentTagStringUrl"
         val INTENT_TAG_TITLE: String = "intentTagStringTitle"
-        fun lunch(context: Context, url: String, title: String) {
+        fun lunch(context: Activity, url: String, title: String) {
             var intent = Intent(context, WebViewActivity::class.java)
             intent.putExtra(INTENT_TAG_URL, url)
             intent.putExtra(INTENT_TAG_TITLE, title)
@@ -46,6 +47,8 @@ class WebViewActivity : BaseActivity() {
      * webView
      */
     var agentWebView: AgentWeb? = null
+
+    var loadComplete:Boolean = false
 
     var toolbar: Toolbar? = null
 
@@ -80,7 +83,7 @@ class WebViewActivity : BaseActivity() {
     /**
      * 获取传入的数据
      */
-    fun getIntentData() {
+   open fun getIntentData() {
         title = intent.getStringExtra(INTENT_TAG_TITLE)
         url = intent.getStringExtra(INTENT_TAG_URL)
     }
@@ -108,6 +111,8 @@ class WebViewActivity : BaseActivity() {
             ChromeClientCallbackManager.ReceivedTitleCallback { _, title ->
                 title?.let {
                     toolbar?.title = title
+                    loadComplete = true
+                    invalidateOptionsMenu()
                 }
             }
 

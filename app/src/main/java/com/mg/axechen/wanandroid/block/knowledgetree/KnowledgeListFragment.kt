@@ -8,14 +8,17 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.mg.axechen.wanandroid.R
+import com.mg.axechen.wanandroid.WanAndroidApplication
 import com.mg.axechen.wanandroid.block.collect.base.BaseCollectFragment
+import com.mg.axechen.wanandroid.block.details.DetailActivity
 import com.mg.axechen.wanandroid.block.details.WebViewActivity
 import com.mg.axechen.wanandroid.block.main.home.CustomLoadMoreView
 import com.mg.axechen.wanandroid.javabean.HomeData
 import com.mg.axechen.wanandroid.javabean.ProjectListBean
 import com.mg.axechen.wanandroid.javabean.TreeBean
+import com.mg.axechen.wanandroid.utils.SharePreferencesContants
+import com.mg.axechen.wanandroid.utils.SharedPreferencesUtils
 import kotlinx.android.synthetic.main.fragment_home.*
-import kotlinx.android.synthetic.main.item_banner_viewpager.*
 import network.schedules.SchedulerProvider
 
 /**
@@ -50,6 +53,7 @@ class KnowledgeListFragment : BaseCollectFragment(), KnowledgeListContract.View 
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        registerLoginStatusReceiver()
         initAdapter()
         initRefresh()
         initData(true)
@@ -73,18 +77,23 @@ class KnowledgeListFragment : BaseCollectFragment(), KnowledgeListContract.View 
             getArticleList(false)
         }, rvList)
         listAdapter.setOnItemClickListener({ adapter, view, position ->
-            WebViewActivity.lunch(activity, datas.get(position).link!!, datas.get(position).title!!)
+            val homeData: HomeData = datas.get(position)
+            DetailActivity.lunch(activity, homeData, homeData.collect, homeData.id)
         })
         listAdapter.setOnItemChildClickListener { adapter, view, position ->
             if (view.id == R.id.flLike) {
-                var homdata: HomeData = datas[position]
-                selectId = homdata.id
-                if (homdata.collect) {
-                    presenter.unCollectArticle(selectId)
-                    addCollectStatus(homdata)
+                if (SharedPreferencesUtils.getInt(SharePreferencesContants.USER_ID) == 0) {
+                    Toast.makeText(activity, getString(R.string.collect_fail_pls_login), Toast.LENGTH_SHORT).show()
                 } else {
-                    removeCollectStatus(homdata)
-                    presenter.collectInArticle(selectId)
+                    var homdata: HomeData = datas[position]
+                    selectId = homdata.id
+                    if (homdata.collect) {
+                        presenter.unCollectArticle(selectId)
+                        addCollectStatus(homdata)
+                    } else {
+                        removeCollectStatus(homdata)
+                        presenter.collectInArticle(selectId)
+                    }
                 }
             }
         }
@@ -155,4 +164,17 @@ class KnowledgeListFragment : BaseCollectFragment(), KnowledgeListContract.View 
         listAdapter.loadMoreComplete()
     }
 
+    override fun changeThemeRefresh() {
+        super.changeThemeRefresh()
+        var color: Int = WanAndroidApplication.instance!!.getThemeColor(activity, WanAndroidApplication.instance!!.getTheme(activity)!!)
+        sRefresh.setColorSchemeColors(resources.getColor(color), resources.getColor(color), resources.getColor(color))
+    }
+
+    override fun collectStatusChange(id: Int, isCollect: Boolean) {
+        super.collectStatusChange(id, isCollect)
+        datas
+                .filter { it -> it.id == id }
+                .forEach { it -> it.collect = isCollect }
+        listAdapter.notifyDataSetChanged()
+    }
 }

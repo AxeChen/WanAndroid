@@ -11,11 +11,14 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.mg.axechen.wanandroid.R
 import com.mg.axechen.wanandroid.block.collect.base.BaseCollectFragment
+import com.mg.axechen.wanandroid.block.details.DetailActivity
 import com.mg.axechen.wanandroid.block.details.WebViewActivity
 import com.mg.axechen.wanandroid.block.main.home.CustomLoadMoreView
 import com.mg.axechen.wanandroid.javabean.HomeData
 import com.mg.axechen.wanandroid.javabean.ProjectListBean
 import com.mg.axechen.wanandroid.javabean.TreeBean
+import com.mg.axechen.wanandroid.utils.SharePreferencesContants
+import com.mg.axechen.wanandroid.utils.SharedPreferencesUtils
 import kotlinx.android.synthetic.main.fragment_project_list.*
 import network.schedules.SchedulerProvider
 
@@ -114,20 +117,24 @@ class ProjectListFragment : BaseCollectFragment(), ProjectListContract.View {
             presenter.getProjectTreeList(selectProject!!.id, false)
         }, rvList)
         listAdapter.setOnItemClickListener { adapter, view, position ->
-            var homeData: HomeData = adapter.data.get(position) as HomeData
-            WebViewActivity.lunch(activity, homeData.link!!, homeData.title!!)
+            val homeData: HomeData = adapter.data.get(position) as HomeData
+            DetailActivity.lunch(activity, homeData, homeData.collect, homeData.id)
         }
         listAdapter.setOnItemChildClickListener { adapter, view, position ->
             if (view.id == R.id.flLike) {
-                var homdata: HomeData = projects[position]
-                selectId = homdata.id
-
-                if (homdata.collect) {
-                    presenter.unCollectArticle(selectId)
-                    addCollectStatus(homdata)
+                if (SharedPreferencesUtils.getInt(SharePreferencesContants.USER_ID) == 0) {
+                    Toast.makeText(activity, getString(R.string.collect_fail_pls_login), Toast.LENGTH_SHORT).show()
                 } else {
-                    removeCollectStatus(homdata)
-                    presenter.collectInArticle(selectId)
+                    var homdata: HomeData = projects[position]
+                    selectId = homdata.id
+
+                    if (homdata.collect) {
+                        presenter.unCollectArticle(selectId)
+                        addCollectStatus(homdata)
+                    } else {
+                        removeCollectStatus(homdata)
+                        presenter.collectInArticle(selectId)
+                    }
                 }
             }
         }
@@ -184,6 +191,14 @@ class ProjectListFragment : BaseCollectFragment(), ProjectListContract.View {
         if (selectProject != null) {
             presenter.getProjectTreeList(selectProject!!.id, true)
         }
+    }
+
+    override fun collectStatusChange(id: Int, isCollect: Boolean) {
+        super.collectStatusChange(id, isCollect)
+        projects
+                .filter { it -> it.id == id }
+                .forEach { it -> it.collect = isCollect }
+        listAdapter.notifyDataSetChanged()
     }
 
     override fun changeThemeRefresh() {

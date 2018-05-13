@@ -26,6 +26,7 @@ open class BaseFragment : Fragment() {
         receiver = MyLoginStatusReceiver(this)//广播接受者实例
         val intentFilter = IntentFilter()
         intentFilter.addAction(Contacts.LOGIN_SUCCESS)
+        intentFilter.addAction(Contacts.COLLECT_STATUS)
         activity.registerReceiver(receiver, intentFilter)
     }
 
@@ -48,12 +49,22 @@ open class BaseFragment : Fragment() {
 
         override fun onReceive(context: Context?, intent: Intent?) {
             var fragment = weakFragment?.get()
-            fragment?.loginSuccess()
+            if (Contacts.LOGIN_SUCCESS == intent?.action) {
+                fragment?.loginSuccess()
+            } else if (Contacts.COLLECT_STATUS == intent?.action) {
+                var isCollect = intent.getBooleanExtra(Contacts.INTENT_IS_COLLECT, false)
+                var id = intent.getIntExtra(Contacts.COLLECT_ID, 0)
+                fragment?.collectStatusChange(id, isCollect)
+            }
         }
 
     }
 
     open fun loginSuccess() {
+
+    }
+
+    open fun collectStatusChange(id: Int, isCollect: Boolean) {
 
     }
 

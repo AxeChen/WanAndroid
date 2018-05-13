@@ -5,6 +5,7 @@
     <string name="confirm">Ok</string>
     <string name="host">www.wanandroid.com</string>
 
+
     <!-- 关于软件-->
     <string name="app_introduce">软件简述</string>
     <string name="app_introduce_content">WanAndroid安卓客户端是根据张鸿洋老师的WanAndroid开放API开发。WanAndroid项目收集了来自CSDN、掘金、简书等平台的热门Android技术博客，建立了丰富的安卓知识体系。是一个安卓开发者用于学习和技术积累的优良平台。欢迎各位Android开发者开发一个属于自己的WanAndroid项目！</string>
@@ -53,6 +54,8 @@
     <string name="collect_fail">收藏失败</string>
     <string name="un_collect_success">取消收藏成功</string>
     <string name="un_collect_fail">取消收藏失败</string>
+    <string name="collect_fail_pls_login">收藏失败，请先登录</string>
+    <string name="pls_login">请先登录</string>
 
     <string name="select_kind">选择分类</string>
     <string name="kinds">分类：</string>
