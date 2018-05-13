@@ -18,7 +18,7 @@
 
     <!-- 切换主题 -->
     <string name="theme_standard">经典色</string>
-    <string name="theme_purple">经典色</string>
+    <string name="theme_purple">星球紫</string>
     <string name="theme_blue">知乎蓝</string>
     <string name="theme_green">酷安绿</string>
     <string name="theme_pink">B站粉</string>
