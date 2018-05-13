@@ -68,7 +68,8 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="40dp"
         android:text="@string/login"
-        android:textColor="#ffffff" />
+        android:textColor="@color/white"
+        app:backgroundTint="@color/theme_color_primary" />
 
     <TextView
         android:id="@+id/tvRegister"

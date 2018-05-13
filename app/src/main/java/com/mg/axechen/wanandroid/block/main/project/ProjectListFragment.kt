@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.mg.axechen.wanandroid.R
+import com.mg.axechen.wanandroid.WanAndroidApplication
 import com.mg.axechen.wanandroid.block.collect.base.BaseCollectFragment
 import com.mg.axechen.wanandroid.block.details.DetailActivity
 import com.mg.axechen.wanandroid.block.details.WebViewActivity
@@ -204,5 +205,7 @@ class ProjectListFragment : BaseCollectFragment(), ProjectListContract.View {
     override fun changeThemeRefresh() {
         super.changeThemeRefresh()
         listAdapter?.notifyDataSetChanged()
+        var color: Int = WanAndroidApplication.instance!!.getThemeColor(activity, WanAndroidApplication.instance!!.getTheme(activity)!!)
+        sRefresh.setColorSchemeColors(resources.getColor(color), resources.getColor(color), resources.getColor(color))
     }
 }

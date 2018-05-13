@@ -196,6 +196,7 @@ class MainActivity : BaseActivity(), MainContract.View {
     private fun noSelectTab(textView: TextView, imageView: TintImageView) {
         textView.setTextColor(resources.getColor(R.color.tab_icon_no_select))
         imageView.setBackgroundTintList(R.color.tab_icon_no_select)
+        imageView.invalidate()
     }
 
     fun getColor(activity: MainActivity): Int {

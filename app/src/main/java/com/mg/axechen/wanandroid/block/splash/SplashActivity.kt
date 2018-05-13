@@ -37,9 +37,15 @@ class SplashActivity : BaseActivity() {
     private fun initData() {
         var userId = SharedPreferencesUtils.getInt(SharePreferencesContants.USER_ID)
         if (userId == 0) {
-            tvNextTime.visibility = View.VISIBLE
-            btnLogin.visibility = View.VISIBLE
-            btnRegister.visibility = View.VISIBLE
+            if (SharedPreferencesUtils.getBoolean(SharePreferencesContants.IS_SECOND_USE)) {
+                MainActivity.launch(this)
+            } else {
+                tvNextTime.visibility = View.VISIBLE
+                btnLogin.visibility = View.VISIBLE
+                btnRegister.visibility = View.VISIBLE
+                SharedPreferencesUtils.putBoolean(SharePreferencesContants.IS_SECOND_USE, true)
+            }
+
         } else {
             // 三秒之后跳转
             tvNextTime.visibility = View.GONE

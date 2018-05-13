@@ -11,7 +11,9 @@ import android.widget.FrameLayout
 import com.just.agentweb.AgentWeb
 import com.just.agentweb.ChromeClientCallbackManager
 import com.mg.axechen.wanandroid.R
+import com.mg.axechen.wanandroid.WanAndroidApplication
 import com.mg.axechen.wanandroid.block.collect.base.BaseCollectActivity
+import com.mg.axechen.wanandroid.block.main.MainActivity
 import kotlinx.android.synthetic.main.activity_web_view.*
 
 /**
@@ -98,7 +100,7 @@ open class WebViewActivity : BaseCollectActivity() {
         var builder: AgentWeb.AgentBuilder = AgentWeb.with(this)
         builder.setAgentWebParent(flWebContent, FrameLayout.LayoutParams(-1, -1))
                 .useDefaultIndicator()
-                .defaultProgressBarColor()
+                .setIndicatorColor(resources.getColor(getColor(this)))
                 .setReceivedTitleCallback(receivedTitleCallback)
                 .createAgentWeb()
                 .ready().go(url)
@@ -115,6 +117,11 @@ open class WebViewActivity : BaseCollectActivity() {
                     invalidateOptionsMenu()
                 }
             }
+
+    fun getColor(activity: Activity): Int {
+        var color: Int = WanAndroidApplication.instance!!.getThemeColor(activity, WanAndroidApplication.instance!!.getTheme(activity)!!)
+        return color
+    }
 
 
 }

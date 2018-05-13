@@ -8,4 +8,5 @@ object SharePreferencesContants {
     val USER_NAME = "userName"
     val USER_EMAIL = "userEmail"
     var HISTORY_SEARCH = "historySearch"
+    var IS_SECOND_USE = "isFirstUse"
 }
