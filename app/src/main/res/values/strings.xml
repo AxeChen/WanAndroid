@@ -35,6 +35,12 @@
     <string name="register">注册</string>
     <string name="register_input_pwd_again">请再次输入密码</string>
 
+    <string name="register_username_is_empty">用户名为空</string>
+    <string name="register_pwd_is_empty">密码为空</string>
+    <string name="register_re_pwd_is_empty">确认密码错误</string>
+    <string name="register_success">注册成功</string>
+
+
     <!--splash-->
     <string name="next_login">下次再说</string>
 

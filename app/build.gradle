@@ -57,9 +57,6 @@ dependencies {
     // 图片请求框架
     compile 'com.github.bumptech.glide:glide:4.0.0'
 
-    // 轮播图
-    compile 'com.bigkoo:convenientbanner:2.0.5'
-
     // webView
     compile 'com.just.agentweb:agentweb:3.0.0'
 }

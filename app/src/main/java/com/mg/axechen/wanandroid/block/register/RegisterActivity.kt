@@ -24,23 +24,23 @@ class RegisterActivity : BaseActivity(), RegisterContract.View {
     }
 
     override fun userNameIsEmpty() {
-        ttUserName.error = "用户名为空"
+        ttUserName.error = getString(R.string.register_username_is_empty)
         progressDialog.dismiss()
     }
 
     override fun passwordIsEmpty() {
-        ttPassword.error = "密码为空"
+        ttPassword.error = getString(R.string.register_pwd_is_empty)
         progressDialog.dismiss()
     }
 
     override fun rePasswordFault() {
-        ttRePassword.error = "确认密码错误"
+        ttRePassword.error = getString(R.string.register_re_pwd_is_empty)
         progressDialog.dismiss()
     }
 
     override fun registerSuccess() {
         progressDialog.dismiss()
-        Toast.makeText(this, "注册成功", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, getString(R.string.register_success), Toast.LENGTH_SHORT).show()
         LoginActivity.lunch(this)
     }
 

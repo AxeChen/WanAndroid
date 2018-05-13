@@ -4,13 +4,7 @@ import android.content.Context
 import android.support.v4.view.ViewPager
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.view.LayoutInflater
-import android.view.View
-import android.widget.ImageView
-import android.widget.TextView
-import com.bigkoo.convenientbanner.holder.Holder
 import com.bilibili.magicasakura.widgets.TintImageView
-import com.bumptech.glide.Glide
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.mg.axechen.wanandroid.R
@@ -110,24 +104,6 @@ class HomeAdapter : BaseMultiItemQuickAdapter<HomeViewType, BaseViewHolder> {
             }
             item.itemType == HomeViewType.VIEW_TYPE_SELECTION ->
                 helper!!.setText(R.id.tvSelection, item.item as String)
-        }
-    }
-
-    class BannerLoopItemViewHolder : Holder<BannerBean> {
-
-        private var imageView: ImageView? = null
-        var content: TextView? = null
-
-        override fun createView(context: Context?): View {
-            var view: View = LayoutInflater.from(context).inflate(R.layout.item_banner_loop_item, null)
-            imageView = view.findViewById(R.id.ivImage)
-            content = view.findViewById(R.id.tvContent)
-            return view
-        }
-
-        override fun UpdateUI(context: Context?, position: Int, data: BannerBean) {
-            content!!.text = data.title
-            Glide.with(context).load(data.imagePath).into(imageView)
         }
     }
 
