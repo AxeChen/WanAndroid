@@ -65,7 +65,7 @@ class ProfileFragment : BaseFragment() {
             tvName.text = SharedPreferencesUtils.getString(SharePreferencesContants.USER_NAME)
             llProfile.setOnClickListener({})
         }
-        tvVersionName.text = ApkVersionUtils.getVerName(activity)
+        tvVersionName.text = "v" + ApkVersionUtils.getVerName(activity)
     }
 
     override fun loginSuccess() {
