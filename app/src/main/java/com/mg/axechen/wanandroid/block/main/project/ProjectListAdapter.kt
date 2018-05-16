@@ -17,17 +17,17 @@ class ProjectListAdapter(layoutResId: Int, data: List<HomeData>) : BaseQuickAdap
     override fun convert(helper: BaseViewHolder?, item: HomeData?) {
         if (helper != null && item != null) {
             // 一般的viewHolder
-            helper?.setText(R.id.ttTvName, item?.author)
-            helper?.setText(R.id.tvContent, item?.title)
-            helper?.setText(R.id.tvTime, item?.niceDate)
+            helper.setText(R.id.ttTvName, item.author)
+            helper.setText(R.id.tvContent, item.title)
+            helper.setText(R.id.tvTime, item.niceDate)
             var like: TintImageView = helper.getView(R.id.ivLike)
             if (item.collect) {
                 like.setBackgroundTintList(getThemeColor())
             } else {
                 like.setBackgroundTintList(R.color.tab_icon_no_select)
             }
-            helper?.addOnClickListener(R.id.flLike)
-            Glide.with(mContext).load(item?.envelopePic).into(helper?.getView(R.id.ivImage))
+            helper.addOnClickListener(R.id.flLike)
+            Glide.with(mContext).load(item.envelopePic).into(helper.getView(R.id.ivImage))
         }
     }
 
