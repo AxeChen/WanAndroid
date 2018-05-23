@@ -2,6 +2,7 @@ package com.mg.axechen.wanandroid.javabean
 
 import android.os.Parcel
 import android.os.Parcelable
+import java.io.Serializable
 
 import java.util.ArrayList
 
@@ -9,7 +10,7 @@ import java.util.ArrayList
  * Created by AxeChen on 2018/3/31.
  */
 
-class TreeBean() : Parcelable {
+class TreeBean : Serializable {
 
     /**
      * children : []
@@ -29,37 +30,5 @@ class TreeBean() : Parcelable {
     var visible: Int = 0
     var children: List<TreeBean>? = null
 
-    constructor(parcel: Parcel) : this() {
-        courseId = parcel.readInt()
-        id = parcel.readInt()
-        name = parcel.readString()
-        order = parcel.readInt()
-        parentChapterId = parcel.readInt()
-        visible = parcel.readInt()
-        children = parcel.createTypedArrayList(CREATOR)
-    }
 
-    override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeInt(courseId)
-        parcel.writeInt(id)
-        parcel.writeString(name)
-        parcel.writeInt(order)
-        parcel.writeInt(parentChapterId)
-        parcel.writeInt(visible)
-        parcel.writeTypedList(children)
-    }
-
-    override fun describeContents(): Int {
-        return 0
-    }
-
-    companion object CREATOR : Parcelable.Creator<TreeBean> {
-        override fun createFromParcel(parcel: Parcel): TreeBean {
-            return TreeBean(parcel)
-        }
-
-        override fun newArray(size: Int): Array<TreeBean?> {
-            return arrayOfNulls(size)
-        }
-    }
 }

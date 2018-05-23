@@ -112,7 +112,7 @@ class KnowledgeListFragment : BaseCollectFragment(), KnowledgeListContract.View 
 
     private fun getBundleData() {
         var bundle = arguments
-        treeBean = bundle.getParcelable(INTENT_TAG_JAVA_BEAN_TREE_BEAN)
+        treeBean = bundle.getSerializable(INTENT_TAG_JAVA_BEAN_TREE_BEAN) as TreeBean?
     }
 
     private fun initData(isRefresh: Boolean) {
