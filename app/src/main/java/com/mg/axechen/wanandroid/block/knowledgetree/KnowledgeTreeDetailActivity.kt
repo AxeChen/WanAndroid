@@ -19,7 +19,6 @@ import com.mg.axechen.wanandroid.block.splash.SplashActivity
 import com.mg.axechen.wanandroid.javabean.TreeBean
 import com.mg.axechen.wanandroid.utils.SharedPreferencesUtils
 import kotlinx.android.synthetic.main.activity_knowledge_tree_detail.*
-import java.util.*
 
 
 /**
@@ -37,14 +36,6 @@ class KnowledgeTreeDetailActivity : BaseActivity() {
             var intent = Intent(context, KnowledgeTreeDetailActivity::class.java)
             intent.putExtra(INTENT_TAG_JAVABEAN_TREE_BEAN, treeBean)
             intent.putExtra(INTENT_TAG_INT_INDEX, index)
-            context.startActivity(intent)
-        }
-
-        fun lunchNewTask(context: Context, treeBean: TreeBean, index: Int) {
-            var intent = Intent(context, KnowledgeTreeDetailActivity::class.java)
-            intent.putExtra(INTENT_TAG_JAVABEAN_TREE_BEAN, treeBean)
-            intent.putExtra(INTENT_TAG_INT_INDEX, index)
-            intent.action = "android.intent.action.SINGLE_INSTANCE_SHARE"
             context.startActivity(intent)
         }
     }

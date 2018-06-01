@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="16dp">
+
+    <com.bilibili.magicasakura.widgets.TintTextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="收藏文章"
+        android:textSize="@dimen/sp_24" />
+
+    <EditText
+        android:id="@+id/edTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:hint="请输入标题" />
+
+    <EditText
+        android:id="@+id/edAuthor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:hint="请输入作者" />
+
+    <EditText
+        android:id="@+id/edLink"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:hint="请输入链接地址" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_gravity="center_vertical">
+
+        <com.bilibili.magicasakura.widgets.TintTextView
+            android:id="@+id/ttConfirm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:padding="10dp"
+            android:text="确定"
+            android:textSize="@dimen/sp_14"
+            app:backgroundTint="@color/theme_color_primary" />
+
+        <com.bilibili.magicasakura.widgets.TintTextView
+            android:id="@+id/ttCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/ttConfirm"
+            android:padding="10dp"
+            android:text="取消"
+            android:textSize="@dimen/sp_14"
+            app:backgroundTint="@color/theme_color_primary" />
+    </RelativeLayout>
+
+
+</LinearLayout>

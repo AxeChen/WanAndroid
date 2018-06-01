@@ -23,9 +23,11 @@ open class BaseCollectActivity : BaseActivity(), BaseCollectView {
 
 
     override fun collectOutArticleSuccess() {
+        Toast.makeText(this, getString(R.string.collect_success), Toast.LENGTH_SHORT).show()
     }
 
     override fun collectOutArticleFail() {
+        Toast.makeText(this, getString(R.string.collect_fail), Toast.LENGTH_SHORT).show()
     }
 
     override fun unCollectArticleSuccess() {
@@ -37,15 +39,19 @@ open class BaseCollectActivity : BaseActivity(), BaseCollectView {
     }
 
     override fun collectWebsiteSuccess() {
+        Toast.makeText(this, getString(R.string.collect_success), Toast.LENGTH_SHORT).show()
     }
 
     override fun collectWebsiteFail() {
+        Toast.makeText(this, getString(R.string.collect_fail), Toast.LENGTH_SHORT).show()
     }
 
     override fun unCollectWebsiteSuccess() {
+        Toast.makeText(this, getString(R.string.un_collect_success), Toast.LENGTH_SHORT).show()
     }
 
     override fun unCollectWebsiteFail() {
+        Toast.makeText(this, getString(R.string.un_collect_fail), Toast.LENGTH_SHORT).show()
     }
 
     override fun updateWebsiteSuccess() {

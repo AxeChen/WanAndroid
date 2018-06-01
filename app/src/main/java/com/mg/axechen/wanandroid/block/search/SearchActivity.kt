@@ -18,6 +18,8 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.mg.axechen.wanandroid.R
 import com.mg.axechen.wanandroid.base.BaseActivity
+import com.mg.axechen.wanandroid.block.collect.base.BaseCollectActivity
+import com.mg.axechen.wanandroid.block.details.DetailActivity
 import com.mg.axechen.wanandroid.block.details.WebViewActivity
 import com.mg.axechen.wanandroid.block.main.home.CustomLoadMoreView
 import com.mg.axechen.wanandroid.javabean.HomeData
@@ -35,7 +37,7 @@ import network.schedules.SchedulerProvider
  * Created by AxeChen on 2018/4/10.
  * 搜索
  */
-class SearchActivity : BaseActivity(), SearchContract.View {
+class SearchActivity : BaseCollectActivity(), SearchContract.View {
 
     private var searTags = mutableListOf<SearchTag>()
 
@@ -47,8 +49,8 @@ class SearchActivity : BaseActivity(), SearchContract.View {
         SearchListAdapter(items, this)
     }
 
-    private val presenter: SearchContract.Presenter by lazy {
-        SearchPresenter(this, SchedulerProvider.getInstatnce()!!)
+    private val presenter: SearchPresenter by lazy {
+        SearchPresenter(this, this, SchedulerProvider.getInstatnce()!!)
     }
 
     companion object {
@@ -189,7 +191,7 @@ class SearchActivity : BaseActivity(), SearchContract.View {
         listAdapter.setOnItemClickListener { adapter, view, position ->
             if (items[position].itemType == SearchViewType.VIEW_TYPE_RESULT) {
                 var homeData = items[position].item as HomeData
-                WebViewActivity.lunch(this@SearchActivity, homeData.link!!, homeData.title!!)
+                DetailActivity.lunch(this@SearchActivity, homeData, homeData.collect, homeData.id)
             } else if (items[position].itemType == SearchViewType.VIEW_TYPE_HISTORY) {
                 var str = items[position].item as String
                 presenter.search(str, true)
@@ -214,6 +216,16 @@ class SearchActivity : BaseActivity(), SearchContract.View {
                 KeyBoardUtils.closeKeyboard(this@SearchActivity)
                 showRecommend()
                 Toast.makeText(this@SearchActivity, getString(R.string.clear_history_success), Toast.LENGTH_SHORT).show()
+            } else if (view.id == R.id.ivLike) {
+                var searchType = items[position]
+                var homdata: HomeData = searchType.item as HomeData
+                if (homdata.collect) {
+                    presenter.unCollectArticle(homdata.id)
+                } else {
+                    presenter.collectInArticle(homdata.id)
+                }
+                homdata.collect = !homdata.collect
+                listAdapter.notifyDataSetChanged()
             }
         }
 

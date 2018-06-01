@@ -8,10 +8,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import com.bilibili.magicasakura.widgets.TintImageView
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.mg.axechen.wanandroid.FlowLayout
 import com.mg.axechen.wanandroid.R
+import com.mg.axechen.wanandroid.WanAndroidApplication
 import com.mg.axechen.wanandroid.javabean.HomeData
 import com.mg.axechen.wanandroid.javabean.SearchTag
 import com.mg.axechen.wanandroid.javabean.SearchViewType
@@ -26,6 +28,7 @@ class SearchListAdapter : BaseMultiItemQuickAdapter<SearchViewType, BaseViewHold
 
     var recommendClickListener: RecommendClickListener? = null
 
+    var context: Context? = null
 
     constructor(data: MutableList<SearchViewType>?, context: Context) : super(data) {
         // 添加selection
@@ -34,7 +37,7 @@ class SearchListAdapter : BaseMultiItemQuickAdapter<SearchViewType, BaseViewHold
         addItemType(SearchViewType.VIEW_TYPE_HISTORY, R.layout.item_search_history)
         addItemType(SearchViewType.VIEW_TYPE_RESULT, R.layout.item_collect_article)
         addItemType(SearchViewType.VIEW_TYPE_HISTORY_SELECTION, R.layout.item_seach_history_selection)
-
+        this.context = context
         layoutInflater = LayoutInflater.from(context)
     }
 
@@ -77,10 +80,22 @@ class SearchListAdapter : BaseMultiItemQuickAdapter<SearchViewType, BaseViewHold
                 helper?.setText(R.id.ttTvName, homeData.author)
                 helper?.setText(R.id.tvContent, Html.fromHtml(homeData.title))
                 helper?.setText(R.id.tvTime, homeData.niceDate)
-                var like: ImageView = helper!!.getView(R.id.ivLike)
-                like.visibility = View.GONE
+                var like: TintImageView = helper!!.getView(R.id.ivLike)
+                if (homeData.collect) {
+                    like.setBackgroundTintList(getThemeColor())
+                } else {
+                    like.setBackgroundTintList(R.color.tab_icon_no_select)
+                }
+                helper.addOnClickListener(R.id.ivLike)
             }
         }
+    }
+
+    private fun getThemeColor(): Int {
+        // 封装成自定控件
+        // 主题框架需要封装
+        return WanAndroidApplication.instance!!.getThemeColor(context!!, WanAndroidApplication.instance!!.getTheme(context!!)!!)
+
     }
 
     interface RecommendClickListener {

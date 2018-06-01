@@ -39,11 +39,11 @@
 
             <FrameLayout
                 android:id="@+id/flLike"
-                android:foreground="?attr/selectableItemBackground"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_alignParentRight="true"
-                android:layout_centerVertical="true">
+                android:layout_centerVertical="true"
+                android:foreground="?attr/selectableItemBackground">
 
                 <com.bilibili.magicasakura.widgets.TintImageView
                     android:id="@+id/ivLike"
@@ -52,7 +52,6 @@
                     android:layout_gravity="center"
                     android:layout_toLeftOf="@+id/ivMore"
                     android:background="@drawable/ic_like" />
-
             </FrameLayout>
 
         </RelativeLayout>
