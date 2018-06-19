@@ -26,6 +26,7 @@ import com.mg.axechen.wanandroid.block.splash.SplashActivity
 import com.mg.axechen.wanandroid.javabean.BannerBean
 import com.mg.axechen.wanandroid.theme.ChangeThemeActivity
 import com.mg.axechen.wanandroid.utils.SharePreferencesContants
+import com.mg.axechen.wanandroid.utils.ShareUtils
 import com.mg.axechen.wanandroid.utils.SharedPreferencesUtils
 import kotlinx.android.synthetic.main.activity_main.*
 import java.lang.ref.WeakReference
@@ -112,6 +113,7 @@ class MainActivity : BaseActivity(), MainContract.View {
         } else {
             menu?.add(0, 2, 0, "注销")
         }
+        menu?.add(0,3,1,"分享此软件")
         return super.onCreateOptionsMenu(menu)
     }
 
@@ -131,6 +133,9 @@ class MainActivity : BaseActivity(), MainContract.View {
                 SharedPreferencesUtils.systemDataClear()
                 SplashActivity.lunch(this)
                 finish()
+            }
+            3->{
+                ShareUtils.shareApp(this)
             }
         }
         return super.onOptionsItemSelected(item)

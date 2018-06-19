@@ -8,6 +8,7 @@ import com.mg.axechen.wanandroid.R
 import com.mg.axechen.wanandroid.block.collect.base.BaseCollectPresenter
 import com.mg.axechen.wanandroid.javabean.HomeData
 import com.mg.axechen.wanandroid.utils.Contacts
+import com.mg.axechen.wanandroid.utils.ShareUtils
 import network.schedules.SchedulerProvider
 
 /**
@@ -59,6 +60,7 @@ class DetailActivity : WebViewActivity() {
                 menu?.add(0, 10, 0, "collect")?.setIcon(R.drawable.ic_like_empty)?.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS)
             }
         }
+        menu?.add(0, 11, 0, "collect")?.setIcon(R.drawable.ic_menu_share)?.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS)
         return super.onCreateOptionsMenu(menu)
     }
 
@@ -78,6 +80,8 @@ class DetailActivity : WebViewActivity() {
             sendBroadcast(intent)
 
             invalidateOptionsMenu()
+        }else if(item?.itemId == 11){
+            ShareUtils.shareText(this,homeData?.title +" "+homeData?.link,homeData?.title,homeData?.title)
         }
 
         return super.onOptionsItemSelected(item)

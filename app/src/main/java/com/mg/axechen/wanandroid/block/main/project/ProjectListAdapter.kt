@@ -27,6 +27,7 @@ class ProjectListAdapter(layoutResId: Int, data: List<HomeData>) : BaseQuickAdap
                 like.setBackgroundTintList(R.color.tab_icon_no_select)
             }
             helper.addOnClickListener(R.id.flLike)
+            helper.addOnClickListener(R.id.ivMore)
             Glide.with(mContext).load(item.envelopePic).into(helper.getView(R.id.ivImage))
         }
     }

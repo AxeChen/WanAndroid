@@ -17,6 +17,7 @@ import com.mg.axechen.wanandroid.javabean.HomeData
 import com.mg.axechen.wanandroid.javabean.ProjectListBean
 import com.mg.axechen.wanandroid.javabean.TreeBean
 import com.mg.axechen.wanandroid.utils.SharePreferencesContants
+import com.mg.axechen.wanandroid.utils.ShareUtils
 import com.mg.axechen.wanandroid.utils.SharedPreferencesUtils
 import kotlinx.android.synthetic.main.fragment_home.*
 import network.schedules.SchedulerProvider
@@ -95,6 +96,9 @@ class KnowledgeListFragment : BaseCollectFragment(), KnowledgeListContract.View 
                         presenter.collectInArticle(selectId)
                     }
                 }
+            }else if (view.id == R.id.ivMore) {
+                var homdata = datas[position]
+                ShareUtils.shareText(activity, homdata.title +" "+ homdata.link, homdata.title, homdata.title)
             }
         }
 

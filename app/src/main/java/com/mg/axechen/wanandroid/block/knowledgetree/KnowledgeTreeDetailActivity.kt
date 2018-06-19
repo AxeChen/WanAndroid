@@ -11,6 +11,7 @@ import android.os.Bundle
 import android.support.design.widget.TabLayout
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import com.google.gson.Gson
 import com.mg.axechen.wanandroid.R
 import com.mg.axechen.wanandroid.WanAndroidApplication
@@ -18,6 +19,7 @@ import com.mg.axechen.wanandroid.base.BaseActivity
 import com.mg.axechen.wanandroid.block.splash.SplashActivity
 import com.mg.axechen.wanandroid.javabean.TreeBean
 import com.mg.axechen.wanandroid.utils.SharedPreferencesUtils
+import com.mg.axechen.wanandroid.utils.ShortCutUtils
 import kotlinx.android.synthetic.main.activity_knowledge_tree_detail.*
 
 
@@ -118,57 +120,10 @@ class KnowledgeTreeDetailActivity : BaseActivity() {
         if (item!!.itemId == android.R.id.home) {
             finish()
         } else if (item!!.itemId == 0) {
-            addShortcut(this)
+            ShortCutUtils.addShortcut(this,treeBean!!,initIndex)
+            Toast.makeText(this,"添加shortcut成功",Toast.LENGTH_SHORT).show()
         }
         return super.onOptionsItemSelected(item)
-    }
-
-    private fun addShortcut(activity: Activity) {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N_MR1) {
-            val sIntent = Intent(Intent.ACTION_MAIN)
-            sIntent.addCategory(Intent.CATEGORY_LAUNCHER)
-            sIntent.setClass(activity, SplashActivity::class.java)
-            sIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-            sIntent.action = "android.intent.action.SINGLE_INSTANCE_SHARE"
-            sIntent.putExtra("SHORT_CUT", true)
-            var beanJson = Gson().toJson(treeBean)
-            SharedPreferencesUtils.putString(treeBean!!.name!!, beanJson)
-            sIntent.putExtra(INTENT_TAG_JAVABEAN_TREE_BEAN, treeBean!!.name!!)
-            sIntent.putExtra(INTENT_TAG_INT_INDEX, initIndex)
-
-            val installer = Intent()
-            installer.putExtra("duplicate", false)
-            installer.putExtra("android.intent.extra.shortcut.INTENT", sIntent)
-            installer.putExtra("android.intent.extra.shortcut.NAME", treeBean!!.name)
-            installer.putExtra("android.intent.extra.shortcut.ICON_RESOURCE", Intent.ShortcutIconResource.fromContext(activity, R.drawable.ic_launcher))
-            installer.action = "com.android.launcher.action.INSTALL_SHORTCUT"
-            activity.sendBroadcast(installer)
-        } else {
-            val mShortcutManager = getSystemService(ShortcutManager::class.java)
-            val shortCuts = mShortcutManager.dynamicShortcuts
-            val intent = Intent()
-            intent.action = Intent.ACTION_VIEW
-            intent.setClass(activity, SplashActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-            intent.action = "android.intent.action.SINGLE_INSTANCE_SHARE"
-            intent.putExtra("SHORT_CUT", true)
-            val beanJson = Gson().toJson(treeBean)
-            SharedPreferencesUtils.putString(treeBean!!.name!!, beanJson)
-            intent.putExtra(INTENT_TAG_JAVABEAN_TREE_BEAN, treeBean!!.name!!)
-            intent.putExtra(INTENT_TAG_INT_INDEX, initIndex)
-
-            val info = ShortcutInfo.Builder(this, treeBean!!.name!!)
-                    .setShortLabel(treeBean!!.name!!)
-                    .setIcon(Icon.createWithResource(this, R.drawable.ic_launcher))
-                    .setIntent(intent)
-                    .build()
-            if (shortCuts.size == mShortcutManager.maxShortcutCountPerActivity) {
-                shortCuts.removeAt(0)
-            }
-            shortCuts.add(info)
-            mShortcutManager.addDynamicShortcuts(shortCuts)
-            mShortcutManager.updateShortcuts(shortCuts)
-        }
     }
 
     override fun onSaveInstanceState(outState: Bundle?) {

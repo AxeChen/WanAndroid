@@ -19,6 +19,7 @@ import com.mg.axechen.wanandroid.javabean.HomeData
 import com.mg.axechen.wanandroid.javabean.ProjectListBean
 import com.mg.axechen.wanandroid.javabean.TreeBean
 import com.mg.axechen.wanandroid.utils.SharePreferencesContants
+import com.mg.axechen.wanandroid.utils.ShareUtils
 import com.mg.axechen.wanandroid.utils.SharedPreferencesUtils
 import kotlinx.android.synthetic.main.fragment_project_list.*
 import network.schedules.SchedulerProvider
@@ -137,6 +138,9 @@ class ProjectListFragment : BaseCollectFragment(), ProjectListContract.View {
                         presenter.collectInArticle(selectId)
                     }
                 }
+            } else if (view.id == R.id.ivMore) {
+                var homdata = projects[position]
+                ShareUtils.shareText(activity, homdata.title +" "+ homdata.link, homdata.title, homdata.title);
             }
         }
     }

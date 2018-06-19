@@ -25,7 +25,6 @@ import network.schedules.SchedulerProvider
  */
 class CollectActivity : BaseCollectActivity(), View.OnClickListener {
 
-
     companion object {
         fun lunch(context: Context) {
             context.startActivity(Intent(context, CollectActivity::class.java))
@@ -54,6 +53,9 @@ class CollectActivity : BaseCollectActivity(), View.OnClickListener {
     }
 
     private fun initFloatMenu() {
+        fabCollectWebSite.setColorNormalResId(getThemeColor(this))
+        fabCollectArticle.setColorNormalResId(getThemeColor(this))
+
         fabCollectArticle.setOnClickListener(this)
         fabCollectWebSite.setOnClickListener(this)
     }

@@ -11,7 +11,7 @@ android {
         minSdkVersion 15
         targetSdkVersion 26
         versionCode 1
-        versionName "1.0"
+        versionName "1.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
@@ -19,11 +19,9 @@ android {
     def keystorePSW = ''
     def keystoreAlias = ''
     def keystoreAliasPSW = ''
-// default keystore file, PLZ config file path in local.properties
     def keyfile = file('s.keystore.temp')
 
     Properties properties = new Properties()
-// local.properties file in the root director
     properties.load(project.rootProject.file('local.properties').newDataInputStream())
     keystoreFilepath = properties.getProperty("keystore.path")
 

@@ -37,6 +37,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="bottom|right"
+        app:fab_addButtonColorNormal="@color/white"
+        app:fab_addButtonPlusIconColor="@color/gray_dark"
+        app:fab_addButtonColorPressed="@color/white"
         android:layout_marginBottom="16dp"
         android:layout_marginRight="16dp">
 

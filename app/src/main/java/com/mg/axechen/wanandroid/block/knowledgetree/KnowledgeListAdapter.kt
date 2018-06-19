@@ -25,6 +25,7 @@ class KnowledgeListAdapter(layoutResId: Int, data: MutableList<HomeData>?) : Bas
                 like.setBackgroundTintList(R.color.tab_icon_no_select)
             }
             helper.addOnClickListener(R.id.flLike)
+            helper.addOnClickListener(R.id.ivMore)
         }
 
     }

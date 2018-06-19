@@ -1,8 +1,5 @@
 <resources>
-    <string name="app_name">WanAndroid</string>
-
-    <string name="cancel">Cancel</string>
-    <string name="confirm">Ok</string>
+    <string name="app_name">玩安</string>
     <string name="host">www.wanandroid.com</string>
 
 
@@ -77,5 +74,9 @@
     <string name="history_selection">历史记录</string>
     <string name="clear_history">清空历史记录</string>
     <string name="clear_history_success">清除历史记录成功</string>
+
+    <!-- share-->
+    <string name="share_app_content">每日推荐优质文章，安卓干货分享平台！玩安下载地址：https://www.coolapk.com/apk/com.mg.axechen.wanandroid</string>
+    <string name="share_app_title">玩安——优质的安卓学习平台。</string>
 
 </resources>

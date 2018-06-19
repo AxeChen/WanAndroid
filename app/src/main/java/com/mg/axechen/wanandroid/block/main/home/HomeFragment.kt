@@ -1,7 +1,5 @@
 package com.mg.axechen.wanandroid.block.main.home
 
-import android.app.AlertDialog
-import android.content.DialogInterface
 import android.os.Bundle
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
@@ -20,6 +18,7 @@ import com.mg.axechen.wanandroid.javabean.HomeData
 import com.mg.axechen.wanandroid.javabean.HomeListBean
 import com.mg.axechen.wanandroid.javabean.HomeViewType
 import com.mg.axechen.wanandroid.utils.SharePreferencesContants
+import com.mg.axechen.wanandroid.utils.ShareUtils
 import com.mg.axechen.wanandroid.utils.SharedPreferencesUtils
 import kotlinx.android.synthetic.main.fragment_home.*
 import network.schedules.SchedulerProvider
@@ -119,7 +118,9 @@ class HomeFragment : BaseCollectFragment(), HomeContract.View {
                         presenter.collectInArticle(selectId)
                     }
                 }
-
+            } else if(view.id == R.id.ivMore){
+                var homdata = datas[position].item as HomeData
+                ShareUtils.shareText(activity,homdata.title+" "+homdata.link,homdata.title, homdata.title)
             }
         }
 

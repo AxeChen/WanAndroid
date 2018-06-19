@@ -54,7 +54,7 @@
     <color name="text_primary_color">#2d2d2d</color>
     <color name="window_background">#eaeaea</color>
     <color name="diver">#eaeaea</color>
-    <color name="tab_icon_no_select">#747575</color>
+    <color name="tab_icon_no_select">#a8a8a8</color>
 
     <color name="gray_dark">#999999</color>
 </resources>
