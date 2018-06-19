@@ -63,12 +63,15 @@ Kotlin语言开发，采用MVP架构。
 
 #### 6、APK下载
 酷安下载地址：   
-[https://www.coolapk.com/apk/com.mg.axechen.wanandroid](https://www.coolapk.com/apk/com.mg.axechen.wanandroid)
+[https://www.coolapk.com/apk/com.mg.axechen.wanandroid](https://www.coolapk.com/apk/com.mg.axechen.wanandroid)   
+
+
 扫码下载：
-![酷安下载](https://upload-images.jianshu.io/upload_images/1930161-90c155764bcbd48f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![酷安下载](https://upload-images.jianshu.io/upload_images/1930161-90c155764bcbd48f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)   
 
 
-蒲公英地址：[https://www.pgyer.com/pxix](https://www.pgyer.com/pxix)
+
+蒲公英地址：[https://www.pgyer.com/pxix](https://www.pgyer.com/pxix)   
 扫码下载：
 ![蒲公英下载](https://upload-images.jianshu.io/upload_images/1930161-6ca04c7fe51958e6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
